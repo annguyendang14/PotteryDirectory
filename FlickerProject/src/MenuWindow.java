@@ -17,7 +17,7 @@ public class MenuWindow {
 		frame.setLayout(new BorderLayout(150, 150));
 		JPanel north = new JPanel(new GridLayout(3,1));
 		Font myFont = new Font("Verdana", Font.PLAIN, 25);
-		JLabel intro1 = new JLabel("Welcome to the Sonedahl Pottery Directory!", JLabel.CENTER);
+		JLabel intro1 = new JLabel("Welcome to the Sondahl Pottery Directory!", JLabel.CENTER);
 		intro1.setFont(myFont);
 		JLabel intro2 = new JLabel("An Order Tracking Software", JLabel.CENTER);
 		intro2.setFont(myFont);
