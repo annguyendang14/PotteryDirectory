@@ -1,3 +1,7 @@
+/**
+ * @author annguyendang14
+ */
+
 import java.util.Date;
 import java.util.List;
 
@@ -5,23 +9,34 @@ import java.util.List;
 public class Order {
 	private Customer customer;
 	private List<Pottery> potteries;
-	private int orderNum;
+	private int orderNum; //not sure how to construct this yet
 	private Date orderDate;
 	private Date dueDate;
 	private double price;
 	private String specialNotice;
 	private int stage; // 0 = not done, 1 = done, 2 = shipped, 3 = customer received
 	
-	public Order(String customerName, Date orderDate){
-		this.customer = new Customer(customerName);
+	
+	/**
+	 * private constructor to reduce repetition in other constructor
+	 * @param orderDate
+	 * @param orderNum
+	 */
+	private Order(Date orderDate, int orderNum){
 		this.orderDate = orderDate;
-		
-		
+		this.orderNum = orderNum;
+	}
+	public Order(String customerName, Date orderDate, int orderNum){
+		this(orderDate, orderNum);
+		this.customer = new Customer(customerName);
+				
 	}
 	
-	public Order(Customer customer, Date orderDate){
+	
+	public Order(Customer customer, Date orderDate, int orderNum){
+		this(orderDate, orderNum);
 		this.customer = customer;
-		this.orderDate = orderDate;
+		
 	}
 	
 	public int compareTo(Object o){ //need to try later
@@ -98,6 +113,12 @@ public class Order {
 	public int getStage(){
 		return stage;
 		
+	}
+	/**
+	 * temp toString method, need revision later
+	 */
+	public String toString(){
+		return customer.getName()+" "+ orderNum+" "+ orderDate.toString();
 	}
 	
 	public void printShippingInvoice(){
