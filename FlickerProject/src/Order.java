@@ -32,11 +32,12 @@ public class Order {
 				
 	}
 	
-	
-	public Order(Customer customer, Date orderDate, int orderNum){
+	//added price, stage, and special order by Kelsey
+	public Order(Date orderDate, int orderNum, double price, String specialNotice, int stage){
 		this(orderDate, orderNum);
-		this.customer = customer;
-		
+		this.price = price;
+		this.specialNotice = specialNotice;
+		this.stage = stage;
 	}
 	
 	public int compareTo(Object o){ //need to try later

@@ -5,15 +5,21 @@ public class Customer {
 	private String phoneNum;
 	private String email;	
 
+	//why do we have this?-Kelsey
 	public Customer(String name) {
 		this.name = name;
 	}
 	
 	public Customer(String name, String address){
-		this.name = name;
+		this(name);
 		this.address = address;
 	}
-	
+	//author-Kelsey created to be used for file processing
+	public Customer(String name, String address, String phoneNum, String email){
+		this(name, address);
+		this.phoneNum = phoneNum;
+		this.email = email;
+	}
 	//public Order[] getOrder(){
 		
 	//}
@@ -58,7 +64,11 @@ public class Customer {
 	
 	public boolean equals(Object o){
 		return false;
-		
+	}
+
+//added for debug purposes
+	public String toString(){
+		return "The Customer: " + this.getName()+ " "+this.getAddress()+ " "+this.getPhoneNum()+ " "+this.getEmail();
 	}
 	
 	
