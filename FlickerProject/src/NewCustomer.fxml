@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.effect.*?>
@@ -7,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="376.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewOrderController">
+<AnchorPane prefHeight="376.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewCustomerController">
    <children>
       <Label fx:id="name" layoutX="22.0" layoutY="26.0" text="Name:" />
       <Label fx:id="address" layoutX="22.0" layoutY="70.0" text="Address:" />

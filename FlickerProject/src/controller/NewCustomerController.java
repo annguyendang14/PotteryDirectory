@@ -1,4 +1,4 @@
-/*package controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class NewOrderController {
+public class NewCustomerController {
 	
 	@FXML
 	private Label name;
@@ -24,8 +24,7 @@ public class NewOrderController {
 	private Button saveOrder;
 	
 	public void save(ActionEvent event){
-			System.out.println("woooo");
+		System.out.println("woooo");
 		
 	}
 }
-*/
