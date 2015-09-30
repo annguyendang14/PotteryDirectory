@@ -31,6 +31,12 @@ public class Order {
 		this.customer = new Customer(customerName);
 				
 	}
+	public Order(String customerName, Date orderDate, int orderNum, int stage){
+		this(orderDate, orderNum);
+		this.customer = new Customer(customerName);
+		this.stage = stage;
+				
+	}
 	
 	//added price, stage, and special order by Kelsey
 	public Order(Date orderDate, int orderNum, double price, String specialNotice, int stage){
@@ -119,11 +125,9 @@ public class Order {
 	 * temp toString method, need revision later
 	 */
 	public String toString(){
-		return customer.getName()+" "+ orderNum+" "+ orderDate.toString();
+		return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+stage;
 	}
 	
-	public void printShippingInvoice(){
-//	add code after get the Customer	class
-	}
+
 
 }
