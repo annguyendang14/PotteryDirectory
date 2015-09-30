@@ -9,12 +9,13 @@ import java.util.List;
 
 public class Order {
 	private Customer customer;
-	private List<Pottery> potteries;
+	//private List<Pottery> potteries;
+	private String description;
 	private int orderNum; //not sure how to construct this yet
 	private Date orderDate;
 	private Date dueDate;
 	private double price;
-	private String specialNotice;
+	//private String specialNotice;
 	private int stage; // 0 = not done, 1 = done, 2 = shipped, 3 = customer received
 	
 	
@@ -39,24 +40,32 @@ public class Order {
 				
 	}
 	
-	//added price, stage, and special order by Kelsey
-	public Order(Date orderDate, int orderNum, double price, String specialNotice, int stage){
-		this(orderDate, orderNum);
+	//added price, stage, and special order by Kelsey **fixed to match new field
+	/** 
+	 * 
+	 * @param orderDate
+	 * @param orderNum
+	 * @param price
+	 * @param description
+	 * @param stage
+	 */
+	public Order(String customerName, Date orderDate, int orderNum, double price, String description, int stage){
+		this(customerName, orderDate, orderNum, stage);
 		this.price = price;
-		this.specialNotice = specialNotice;
-		this.stage = stage;
+		this.description = description;
+		
 	}
 	
-	public int compareTo(Object o){ //need to try later
+/*	public int compareTo(Object o){ //need to try later
 		Order other = (Order) o;
 		if(other.orderDate.equals(this.orderDate)){
 			return this.stage-other.stage;
 		} else {
 			return -this.orderDate.compareTo(other.orderDate);
 		}
-	}
+	}*/
 	
-	public void addPotteries(Pottery pottery){
+/*	public void addPotteries(Pottery pottery){
 		potteries.add(pottery);
 		
 	}
@@ -64,7 +73,7 @@ public class Order {
 	public void setPottery(List<Pottery> potteries){
 		this.potteries = potteries;
 	}
-	
+	*/
 	public void setDueDate(Date dueDate){
 		this.dueDate = dueDate;
 	}
@@ -73,9 +82,9 @@ public class Order {
 		this.price = price;
 	}
 	
-	public void setSpecialNotice(String notice){
+	/*public void setSpecialNotice(String notice){
 		this.specialNotice = notice;
-	}
+	}*/
 	
 	public void setStage(int stage){ //restricted to reduce stage for now, might change later
 		if (stage >= this.stage){
@@ -88,11 +97,11 @@ public class Order {
 		
 	}
 	
-	public List<Pottery> getPotteries(){
+/*	public List<Pottery> getPotteries(){
 		return potteries;
 		
 	}
-	
+	*/
 	public int getOrderNum(){
 		return orderNum;
 		
@@ -113,10 +122,10 @@ public class Order {
 		
 	}
 	
-	public String getNotice(){
+/*	public String getNotice(){
 		return specialNotice;
 		
-	}
+	}*/
 	
 	public int getStage(){
 		return stage;
@@ -127,6 +136,12 @@ public class Order {
 	 */
 	public String toString(){
 		return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+stage;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 
