@@ -1,5 +1,5 @@
 
-import java.awt.*;
+/*import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -45,10 +45,10 @@ public class NewOrderGUI {
 
 	
 
-}
+}*/
 
 
-/*
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -81,7 +81,7 @@ public class NewOrderGUI extends Application{
 	
 	
 }
-*/
+
 
 
 

@@ -1,4 +1,7 @@
-/*package controller;
+package controller;
+
+
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +28,9 @@ public class NewOrderController {
 	
 	public void save(ActionEvent event){
 			System.out.println("woooo");
+			
+			Order.add(Customer())
+			 
 		
 	}
 }
-*/
