@@ -1,3 +1,4 @@
+package main;
 //author Kelsey
 import java.io.FileReader;
 import java.util.*;
@@ -5,13 +6,13 @@ import java.io.IOException;
 
 import com.opencsv.*;
 
-public class OrderFileReader {
+public class CustomerFileReader {
 	// http://opencsv.sourceforge.net/
 	// http://www.javapractices.com/topic/TopicAction.do?Id=42
 	// http://stackoverflow.com/questions/27324187/java-reading-from-csv-file-and-storing-its-information-into-arraylistclass
 	// http://stackoverflow.com/questions/10964975/parsing-csv-file-to-class-getter-methods-with-opencsv
 	public static void main(String[] args) throws IOException {
-		CSVReader reader = new CSVReader(new FileReader("OrderList.csv"));
+		CSVReader reader = new CSVReader(new FileReader("CustomerList.csv"));
 		ArrayList<Customer> result = new ArrayList<Customer>();
 		String[] nextLine;
 		while ((nextLine = reader.readNext()) != null) {
@@ -23,4 +24,3 @@ public class OrderFileReader {
 		reader.close();
 	}
 }
-
