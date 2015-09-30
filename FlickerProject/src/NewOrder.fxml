@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="378.0" prefWidth="433.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.NewOrderController">
+   <children>
+      <Label fx:id="customerName" layoutX="14.0" layoutY="98.0" text="Customer Name:" />
+      <Label layoutX="155.0" layoutY="14.0" prefHeight="62.0" prefWidth="184.0" text="Order">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+      <Label fx:id="orderNum" layoutX="18.0" layoutY="190.0" text="Order Number:" />
+      <DatePicker layoutX="130.0" layoutY="139.0" />
+      <TextField fx:id="orderNumBar" layoutX="142.0" layoutY="186.0" />
+      <TextField fx:id="customerNameBar" layoutX="120.0" layoutY="94.0" prefHeight="25.0" prefWidth="194.0" />
+      <Label fx:id="dateOrdered" layoutX="21.0" layoutY="143.0" text="Date Ordered:" />
+   </children>
+</AnchorPane>
