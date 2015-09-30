@@ -10,10 +10,16 @@ public class tempMain {
 	public static void main(String[] args) {
 		List<Order> orders = new ArrayList<Order>();
 		List<Customer> customers = new ArrayList<Customer>();
+		
 		for (int i=1; i<5; i++){
-			Order tempOrder = new Order("an"+i,new Date(),i);
-			orders.add(tempOrder);
-			customers.add(tempOrder.getCustomer());
+			Date recentDate = new Date();
+			Date recent = new Date(recentDate.getYear(),recentDate.getMonth(),recentDate.getDate());
+			System.out.println(recent);
+			for (int j=1; j<5;j++){
+				Order tempOrder = new Order("an"+i,new Date(recentDate.getYear(),recentDate.getMonth()-1,recentDate.getDate()+i),j, 5-j);
+				orders.add(tempOrder);
+				customers.add(tempOrder.getCustomer());
+			}
 		}
 		for (Order i: orders){
 			System.out.println(i);
@@ -28,6 +34,13 @@ public class tempMain {
 		searchOrder(orders, "1");
 		
 		searchOrder(orders, "an");
+		System.out.println();
+		
+		Collections.sort(orders, new DefaultSortingComparator());
+		
+		for (Order i: orders){
+			System.out.println(i);
+		}
 
 	}
 	/**
