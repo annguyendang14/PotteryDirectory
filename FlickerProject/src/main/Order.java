@@ -145,7 +145,12 @@ public class Order {
 	 * temp toString method, need revision later
 	 */
 	public String toString(){
-		return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+stage;
+		if (dueDate != null){
+			return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+dueDate.toString()+" "+stage;
+		} else {
+			return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+stage;
+
+		}
 	}
 	public String getDescription() {
 		return description;
