@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainWindowGUI extends Application{
+
 	
 	public void start(Stage primaryStage) throws Exception {
 		try {
@@ -18,6 +19,8 @@ public class MainWindowGUI extends Application{
 		} catch(Exception e){
 			e.printStackTrace();
 		}
+		
+
 		
 	}
 	
