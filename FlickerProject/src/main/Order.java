@@ -31,6 +31,7 @@ public class Order {
 	public Order(String customerName, Date orderDate, int orderNum){
 		this(orderDate, orderNum);
 		this.customer = new Customer(customerName);
+		this.stage = 0;
 				
 	}
 	public Order(String customerName, Date orderDate, int orderNum, int stage){
@@ -40,19 +41,28 @@ public class Order {
 				
 	}
 	
+				
+	public Order(String customerName, Date orderDate, int orderNum,  String description , double price){
+		this(customerName, orderDate, orderNum);
+		this.price = price;
+		this.description = description;
+		
+	}
+	
 	//added price, stage, and special order by Kelsey **fixed to match new field
 	/** 
 	 * 
 	 * @param orderDate
+	 * @param dueDate
 	 * @param orderNum
-	 * @param price
 	 * @param description
-	 * @param stage
+	 * @param price
+	 * 
 	 */
-	public Order(String customerName, Date orderDate, int orderNum, double price, String description, int stage){
-		this(customerName, orderDate, orderNum, stage);
-		this.price = price;
-		this.description = description;
+	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,  String description , double price){
+		this(customerName,orderDate, orderNum, description , price);
+		this.dueDate = dueDate;
+		
 		
 	}
 	

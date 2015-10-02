@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import main.*;
 
@@ -20,6 +21,12 @@ public class NewOrderController {
 	@FXML private DatePicker dateOrderedPicker;
 	@FXML private TextField orderNumBar;
 	@FXML private Button saveOrder;
+	@FXML private DatePicker dueDatePicker;
+	@FXML private TextArea description;
+	@FXML private TextField price;
+	@FXML private Button generateButton;
+
+
 
 	public void saveNewOrder(ActionEvent event) {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
