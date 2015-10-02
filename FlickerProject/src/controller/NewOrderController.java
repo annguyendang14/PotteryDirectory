@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -16,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import main.*;
 
-public class NewOrderController {
+public class NewOrderController{
 
 	@FXML
 	private Label customerName;
@@ -43,8 +44,7 @@ public class NewOrderController {
 
 	public void saveNewOrder(ActionEvent event) {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
-		Object source = event.getSource();
-		if (source == saveOrder){
+		
 			try {
 				Double.parseDouble(price.getText());
 				
@@ -56,8 +56,13 @@ public class NewOrderController {
 
 				alert.showAndWait();
 		    } 
-			
-			if (!dueDatePicker.getValue().equals(null)){
+			if (orderNumBar.getText().equals("0")){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning Dialog");
+				alert.setHeaderText("Null");
+				alert.setContentText("Please generate Order Number!");
+				alert.showAndWait();
+			} else if (dueDatePicker.getValue() != null){
 				Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 				System.out.println(newOrder);
 			} else {
@@ -66,16 +71,15 @@ public class NewOrderController {
 			}
 			
 		        
-		} else if (source == generateButton){
-			customerNameBar.setText("an nguyen");
-			orderNumBar.setEditable(true);
-			orderNumBar.setText("10");
-			orderNumBar.setEditable(false);
-			System.out.print(orderNumBar.getText());
-		}
+		
 				
 
 		
+	}
+	public void generateOrderNum(ActionEvent event) {
+		//orderNumBar.setEditable(true);
+		orderNumBar.setText("10");
+		//orderNumBar.setEditable(false);
 	}
 
 	// http://stackoverflow.com/questions/20446026/get-value-from-date-picker
@@ -85,5 +89,8 @@ public class NewOrderController {
 		Date date = Date.from(instant);
 		return date;
 	}
+
+
+
 
 }
