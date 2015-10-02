@@ -27,6 +27,7 @@ public class MainWindowControllerv2 {
 	public void handleButtonAction(ActionEvent event) throws IOException {
 		Stage stage;
 		Parent root;
+		//System.out.println(event.getSource());
 		
 		if(event.getSource() == createNewCustomer){
 			stage = new Stage();
@@ -38,9 +39,9 @@ public class MainWindowControllerv2 {
 		    stage.showAndWait();
 		    
 		}
-		if(event.getSource() == saveNewCustomer){
+		/*if(event.getSource() == saveNewCustomer){
 	    	saveCustomer(event);
-		}
+		}*/
 		else if (event.getSource() == createNewOrder){
 			stage = new Stage();
 			root = FXMLLoader.load(getClass().getResource("NewOrder.fxml"));
@@ -60,8 +61,11 @@ public class MainWindowControllerv2 {
 		return cus;
 		
 	}
-	public static void main(String[] args) {
+	/*
+	public void saveCustomer(ActionEvent event){
+		//Customer cus = new Customer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
+		System.out.println("is it working?");
+		//return cus;
 		
-	}
-	
+	}*/
 }

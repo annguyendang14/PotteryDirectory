@@ -48,19 +48,27 @@ public class NewOrderController{
 
 				alert.showAndWait();
 		    } 
+			Order newOrder;
 			if (orderNumBar.getText().equals("0")){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
 				alert.setHeaderText("Null");
-				alert.setContentText("Please generate Order Number!");
+				alert.setContentText("Generate Order Number!");
+				generateOrderNum(new ActionEvent());
 				alert.showAndWait();
-			} else if (dueDatePicker.getValue() != null){
-				Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+			}
+			if (dueDatePicker.getValue() != null){
+				newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 				System.out.println(newOrder);
 			} else {
-				Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+				newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 				System.out.println(newOrder);
 			}
+			AllOrders.getOrders().add(newOrder);
+			for (Order order: AllOrders.getOrders()){
+				System.out.println(order);
+			}
+			
 			
 		        
 		
