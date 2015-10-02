@@ -113,5 +113,25 @@ public class tempMain {
 	    // only got here if we didn't return false
 	    return true;
 	}
+	public static List<OrderTable> getListOrderSample(){
+		List<Order> orders = new ArrayList<Order>();
+		List<Customer> customers = new ArrayList<Customer>();
+		
+		for (int i=1; i<5; i++){
+			Date recentDate = new Date();
+			Date recent = new Date(recentDate.getYear(),recentDate.getMonth(),recentDate.getDate());
+			System.out.println(recent);
+			for (int j=1; j<5;j++){
+				Order tempOrder = new Order("an"+i,new Date(recentDate.getYear(),recentDate.getMonth()-1,recentDate.getDate()+i),j, 5-j);
+				orders.add(tempOrder);
+				customers.add(tempOrder.getCustomer());
+			}
+		}
+		List<OrderTable> orderTable = new ArrayList<OrderTable>();
+		for (Order order: orders){
+			orderTable.add(new OrderTable(order));
+		}
+		return orderTable;
+	}
 
 }
