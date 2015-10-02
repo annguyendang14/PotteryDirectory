@@ -1,6 +1,8 @@
 package controller;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javafx.application.Platform;
@@ -53,11 +55,11 @@ public class NewOrderController{
 				alert.setContentText("Please generate Order Number!");
 				alert.showAndWait();
 			} else if (dueDatePicker.getValue() != null){
-				//Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
-				//System.out.println(newOrder);
+				Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+				System.out.println(newOrder);
 			} else {
-				//Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
-				//System.out.println(newOrder);
+				Order newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+				System.out.println(newOrder);
 			}
 			
 		        
@@ -75,7 +77,13 @@ public class NewOrderController{
 		//orderNumBar.setEditable(false);
 
 	}
-
+	// http://stackoverflow.com/questions/20446026/get-value-from-date-picker
+		public static Date toDate(DatePicker datePick) {
+			LocalDate localDate = datePick.getValue();
+			Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+			Date date = Date.from(instant);
+			return date;
+		}
 
 
 
