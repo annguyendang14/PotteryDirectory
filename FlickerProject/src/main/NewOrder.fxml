@@ -17,7 +17,7 @@
       <Label fx:id="orderNum" layoutX="11.0" layoutY="181.0" text="Order Number:" />
       <DatePicker fx:id="dateOrderedPicker" layoutX="120.0" layoutY="109.0" />
       <TextField fx:id="orderNumBar" editable="false" layoutX="120.0" layoutY="177.0" text="0" />
-      <TextField fx:id="customerNameBar" layoutX="120.0" layoutY="76.0" prefHeight="25.0" prefWidth="194.0" />
+      <TextField fx:id="customerNameBar" editable="false" layoutX="120.0" layoutY="76.0" prefHeight="25.0" prefWidth="194.0" />
       <Label fx:id="dateOrdered" layoutX="14.0" layoutY="113.0" text="Date Ordered:" />
       <Button fx:id="saveOrder" layoutX="180.0" layoutY="339.0" mnemonicParsing="false" onAction="#saveNewOrder" text="Save Order" />
       <Label layoutX="14.0" layoutY="148.0" text="Due Date:" />
@@ -27,5 +27,6 @@
       <Label layoutX="14.0" layoutY="306.0" text="Price: " />
       <TextField fx:id="price" layoutX="120.0" layoutY="302.0" text="0.0" />
       <Button fx:id="generateButton" layoutX="268.0" layoutY="177.0" mnemonicParsing="false" onAction="#generateOrderNum" text="Generate" />
+      <Button fx:id="addCustomerButton" layoutX="313.0" layoutY="76.0" mnemonicParsing="false" onAction="#addNewCustomer" text="Add Customer" />
    </children>
 </AnchorPane>

@@ -6,9 +6,9 @@ import java.util.*;
  * @author annguyendang14
  *
  */
-public class tempMain {
+public class Searcher {
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		List<Order> orders = new ArrayList<Order>();
 		List<Customer> customers = new ArrayList<Customer>();
 		
@@ -26,9 +26,9 @@ public class tempMain {
 			System.out.println(i);
 			
 		}
-	/*	for (Customer i: customers ){
+		for (Customer i: customers ){
 			System.out.println(i.getName());
-		}*/
+		}
 		
 		searchCustomer(customers,"an");
 		
@@ -44,7 +44,7 @@ public class tempMain {
 		}
 		
 
-	}
+	}*/
 	/**
 	 * this method search for a customer by their name
 	 * @param customers list of customer
@@ -113,7 +113,9 @@ public class tempMain {
 	    // only got here if we didn't return false
 	    return true;
 	}
-	public static List<OrderTable> getListOrderSample(){
+	
+	
+/*	public static List<OrderTable> getListOrderSample(){
 		List<Order> orders = new ArrayList<Order>();
 		List<Customer> customers = new ArrayList<Customer>();
 		
@@ -132,6 +134,6 @@ public class tempMain {
 			orderTable.add(new OrderTable(order));
 		}
 		return orderTable;
-	}
+	}*/
 
 }

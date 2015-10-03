@@ -1,15 +1,21 @@
 package controller;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -30,6 +36,7 @@ public class NewOrderController{
 	@FXML private TextArea description;
 	@FXML private TextField price;
 	@FXML private Button generateButton;
+	@FXML private Button addCustomerButton;
 
 
 
@@ -61,16 +68,17 @@ public class NewOrderController{
 			
 				if (dueDatePicker.getValue() != null){
 			
-					newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 					System.out.println(newOrder);
 				} else {
-					newOrder = new Order (customerNameBar.getText(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 					System.out.println(newOrder);
 				}
 				AllOrders.getOrders().add(newOrder);
 				for (Order order: AllOrders.getOrders()){
 					System.out.println("all order: "+order);
 				}
+				
 			}
 			
 			
@@ -85,7 +93,7 @@ public class NewOrderController{
 	}
 	public void generateOrderNum(ActionEvent event) {
 		//orderNumBar.setEditable(true);
-		orderNumBar.setText("10");
+		orderNumBar.setText(""+AllOrders.getOrders().size());
 		//orderNumBar.setEditable(false);
 
 	}
@@ -96,7 +104,20 @@ public class NewOrderController{
 			Date date = Date.from(instant);
 			return date;
 		}
-
+	
+	public void addNewCustomer(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		Parent root = FXMLLoader.load(NewCustomerController.class.getResource("NewCustomer.fxml"));
+		stage.setScene(new Scene(root));
+	    stage.setTitle("Add New Customer");
+	    stage.initModality(Modality.APPLICATION_MODAL);
+	    stage.initOwner(addCustomerButton.getScene().getWindow());
+	    stage.showAndWait();
+	    stage.close();
+	    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
+	}
+	
+	
 
 
 

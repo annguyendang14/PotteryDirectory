@@ -35,13 +35,13 @@ public class OrderViewerControler implements Initializable{
 	@FXML private TableColumn<OrderTable,String>  stageCol;
 	@FXML private Button addOrderButton;
 	@FXML private ComboBox searchBox;
-	final ObservableList<OrderTable> data = FXCollections.observableArrayList(tempMain.getListOrderSample());
+	final ObservableList<OrderTable> data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 	
 	public void addNewOrder(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(NewOrderGUI.class.getResource("NewOrder.fxml"));
 		stage.setScene(new Scene(root));
-	    stage.setTitle("My modal window");
+	    stage.setTitle("Add New Order");
 	    stage.initModality(Modality.APPLICATION_MODAL);
 	    stage.initOwner(addOrderButton.getScene().getWindow());
 	    stage.showAndWait();
