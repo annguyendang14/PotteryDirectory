@@ -22,7 +22,7 @@
                 <TableColumn fx:id="orderDateCol" editable="false" resizable="false" text="Order Date" />
                 <TableColumn fx:id="dueDateCol" editable="false" sortable="false" text="Due Date" />
                   <TableColumn fx:id="customerCol" editable="false" minWidth="20.0" prefWidth="130.0" resizable="false" text="Customer" />
-                  <TableColumn fx:id="descrCol" editable="false" minWidth="1.0" prefWidth="172.0" resizable="false" sortable="false" text="Description" />
+                  <TableColumn fx:id="descriptionCol" editable="false" minWidth="1.0" prefWidth="172.0" resizable="false" sortable="false" text="Description" />
                   <TableColumn fx:id="priceCol" editable="false" minWidth="0.0" prefWidth="50.0" resizable="false" sortable="false" text="Price" />
                   <TableColumn fx:id="stageCol" editable="false" minWidth="6.0" prefWidth="60.0" resizable="false" sortable="false" text="Stage" />
               </columns>

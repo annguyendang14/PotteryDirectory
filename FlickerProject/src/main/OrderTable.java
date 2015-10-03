@@ -1,4 +1,6 @@
 package main;
+import java.util.Date;
+
 import javafx.beans.property.*;
 
 public class OrderTable {
@@ -14,12 +16,12 @@ public class OrderTable {
 	public OrderTable(Order order) {
 		
 		this.customerName = new SimpleStringProperty(order.getCustomer().getName());
-		//this.description = new SimpleStringProperty(""+order.getDescription());
-		this.description = new SimpleStringProperty("fekjfnekwf");
-		//this.dueDate = new SimpleStringProperty(""+order.getDueDate().toString());
-		this.dueDate = new SimpleStringProperty("21/11/1996");
-		this.orderDate = new SimpleStringProperty(order.getOrderDate().toString());
-		this.price = new SimpleStringProperty(""+order.getPrice());
+		this.description = new SimpleStringProperty(checkNull(order.getDescription()));
+		//this.description = new SimpleStringProperty("dkjdfcbsakjd");
+		this.dueDate = new SimpleStringProperty(checkNull(order.getDueDate()));
+		//this.dueDate = new SimpleStringProperty("21/11/1996");
+		this.orderDate = new SimpleStringProperty(checkNull(order.getOrderDate().toString()));
+		this.price = new SimpleStringProperty(checkNull(""+order.getPrice()));
 		String stag;
 		if (order.getStage()==0){
 			stag = "undone";
@@ -57,8 +59,22 @@ public class OrderTable {
 	public String getOrderNum() {
 		return orderNum.get();
 	}
-	
-	
+	private static String checkNull(Object o){
+		String s = (String)o;
+		if (s == null){
+			return "N/a";
+		} else {
+			return s;
+		}
+	}
+	/*public static void main(String[] args){
+		Order n = new Order("aa", new Date(2015,3,4),3, 3);
+		System.out.print(n.getDueDate());
+		System.out.println(n.getDescription());
+		Object o = n.getDescription();
+		System.out.println((String)o);
+		System.out.println(checkNull(n.getDescription()));
+	}*/
 	
 
 }

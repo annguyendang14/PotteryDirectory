@@ -66,9 +66,9 @@ public class OrderViewerControler implements Initializable{
 		orderNumCol.setCellValueFactory(
 			    new PropertyValueFactory<OrderTable,String>("orderNum")
 			);
-		/*descriptionCol.setCellValueFactory(
+		descriptionCol.setCellValueFactory(
 			    new PropertyValueFactory<OrderTable,String>("description")
-			);*/
+			);
 		priceCol.setCellValueFactory(
 			    new PropertyValueFactory<OrderTable,String>("price")
 			);
@@ -76,6 +76,7 @@ public class OrderViewerControler implements Initializable{
 			    new PropertyValueFactory<OrderTable,String>("stage")
 			);
 		orderTable.setItems(data);
+		
 	}
 
 }
