@@ -49,7 +49,7 @@ public class Order {
 		
 	}
 	
-	//added price, stage, and special order by Kelsey **fixed to match new field
+	//added price, stage, and special order by Kelsey **fixed to match new field, fixed for file processing
 	/** 
 	 * 
 	 * @param orderDate
@@ -59,11 +59,13 @@ public class Order {
 	 * @param price
 	 * 
 	 */
-	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,  String description , double price){
-		this(customerName,orderDate, orderNum, description , price);
+	public Order(Date orderDate, Date dueDate, int orderNum,  String description , double price, int stage){
+		this.orderDate = orderDate;
+		this.orderNum = orderNum;
 		this.dueDate = dueDate;
-		
-		
+		this.description = description;
+		this.price = price;
+		this.stage = stage;
 	}
 	
 /*	public int compareTo(Object o){ //need to try later
@@ -146,9 +148,9 @@ public class Order {
 	 */
 	public String toString(){
 		if (dueDate != null){
-			return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+dueDate.toString()+" "+stage;
+			return orderNum+" "+ orderDate.toString() +" "+dueDate.toString()+" "+stage;
 		} else {
-			return customer.getName()+" "+ orderNum+" "+ orderDate.toString() +" "+stage;
+			return orderNum+" "+ orderDate.toString() +" "+stage;
 
 		}
 	}
