@@ -45,11 +45,12 @@ public class Order {
 	}*/
 	
 				
-	/*public Order(String customerName, Date orderDate, int orderNum,  String description , double price){
+	public Order(String customerName, Date orderDate, int orderNum,  String description , double price, int stage){
 		this(customerName, orderDate, orderNum, description, price);
+		this.stage = stage;
 		
 		
-	}*/
+	}
 	
 	//added price, stage, and special order by Kelsey **fixed to match new field, fixed for file processing
 	/** 
@@ -61,13 +62,9 @@ public class Order {
 	 * @param price
 	 * 
 	 */
-	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,  String description , double price){
-		this.customer = new Customer(customerName);
-		this.orderDate = orderDate;
-		this.orderNum = orderNum;
+	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,  String description , double price, int stage){
+		this(customerName, orderDate, orderNum,  description , price, stage);
 		this.dueDate = dueDate;
-		this.description = description;
-		this.price = price;
 	}
 	
 	//for file saving

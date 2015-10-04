@@ -38,7 +38,7 @@ public class OrderViewerControler implements Initializable{
 	@FXML private TableColumn<OrderTable,String>  stageCol;
 	@FXML private Button addOrderButton;
 	@FXML private TextField searchBox;
-	ObservableList<OrderTable> data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+	ObservableList<OrderTable> data;
 	
 	public void addNewOrder(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
@@ -50,6 +50,7 @@ public class OrderViewerControler implements Initializable{
 	    stage.showAndWait();
 	    data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 	    updateTable();
+	    OrderFileReader.write(AllOrders.getOrders());
 	}
 	
 	public void showOrdersInCollum(ActionEvent event){
@@ -59,6 +60,22 @@ public class OrderViewerControler implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		/*try {
+			AllOrders.getOrders().addAll(OrderFileReader.read());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		try {
+			for (Order order: OrderFileReader.read()){
+				AllOrders.getOrders().add(order);
+				
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 		updateTable();
 		
 	}

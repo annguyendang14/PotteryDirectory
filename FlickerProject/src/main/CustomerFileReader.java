@@ -21,22 +21,22 @@ public class CustomerFileReader {
 		(cust);
 		}*/
 
-		write(customerList, "CustomerList.csv");
+		write(customerList);
 		
 		
-		List<Customer> customersFromFileRead = read("CustomerList.csv");
-		System.out.println("After writing and reading...");
-		System.out.println(customersFromFileRead.size());
+		/*List<Customer> customersFromFileRead = */read();
+		//System.out.println("After writing and reading...");
+		//System.out.println(customersFromFileRead.size());
 		
-		for (Customer cust: customersFromFileRead){
-			System.out.println(cust);
-		}
+	//	for (Customer cust: customersFromFileRead){
+		//	System.out.println(cust);
+		//}
 
 	}
 
 	// reads a Customer List file
-	public static List<Customer> read(String fileName) throws IOException {
-		CSVReader reader = new CSVReader(new FileReader(fileName));
+	public static List<Customer> read() throws IOException {
+		CSVReader reader = new CSVReader(new FileReader("CustomerList.csv"));
 		ArrayList<Customer> customersFromFile = new ArrayList<Customer>();
 		String[] currentCustomerRow;
 		while ((currentCustomerRow = reader.readNext()) != null) {
@@ -52,8 +52,8 @@ public class CustomerFileReader {
 	}
 
 	// writes a customer list file
-	public static void write(List<Customer> customerList, String fileName) throws IOException {
-		CSVWriter writer = new CSVWriter(new FileWriter(fileName), ',');
+	public static void write(List<Customer> customerList) throws IOException {
+		CSVWriter writer = new CSVWriter(new FileWriter("CustomerList.csv"), ',');
 		for (Customer customer: customerList) {
 			String[] currentCustomerRow = new String[4];
 			currentCustomerRow[0] = customer.getName();
