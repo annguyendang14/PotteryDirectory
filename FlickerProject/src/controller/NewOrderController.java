@@ -32,14 +32,14 @@ public class NewOrderController implements Initializable{
 	@FXML private Label customerName;
 	@FXML private Label dateOrdered;
 	@FXML private Label orderNum;
-	@FXML private TextField customerNameBar;
+	@FXML private Label customerNameBar;
 	@FXML private DatePicker dateOrderedPicker;
-	@FXML private TextField orderNumBar;
+	@FXML private Label orderNumBar;
 	@FXML private Button saveOrder;
 	@FXML private DatePicker dueDatePicker;
 	@FXML private TextArea description;
 	@FXML private TextField price;
-	@FXML private Button generateButton;
+	//@FXML private Button generateButton;
 	@FXML private Button addCustomerButton;
 
 
@@ -60,14 +60,14 @@ public class NewOrderController implements Initializable{
 				alert.showAndWait();
 		    } 
 			
-			if (orderNumBar.getText().equals("0")){
+			/*if (orderNumBar.getText().equals("0")){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
 				alert.setHeaderText("Null");
 				alert.setContentText("Generate Order Number!");
 				generateOrderNum(new ActionEvent());
 				alert.showAndWait();
-			}else {
+			}else {*/
 				Order newOrder;
 			
 				if (dueDatePicker.getValue() != null){
@@ -86,7 +86,7 @@ public class NewOrderController implements Initializable{
 				Node  source = (Node)  event.getSource(); 
 				Stage stage  = (Stage) source.getScene().getWindow();
 				stage.close();
-			}
+			
 			
 			
 		        
@@ -98,12 +98,12 @@ public class NewOrderController implements Initializable{
 		//System.out.println(newOrder);
 
 	}
-	public void generateOrderNum(ActionEvent event) {
+/*	public void generateOrderNum(ActionEvent event) {
 		//orderNumBar.setEditable(true);
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
 		//orderNumBar.setEditable(false);
 
-	}
+	}*/
 	// http://stackoverflow.com/questions/20446026/get-value-from-date-picker
 		public static Date toDate(DatePicker datePick) {
 			LocalDate localDate = datePick.getValue();
@@ -130,6 +130,8 @@ public class NewOrderController implements Initializable{
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
 		
 	}
+	
+	
 	
 	
 

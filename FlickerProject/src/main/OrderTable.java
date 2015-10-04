@@ -24,20 +24,20 @@ public class OrderTable {
 		//this.dueDate = new SimpleStringProperty("21/11/1996");
 		this.orderDate = new SimpleStringProperty(checkNull(order.getOrderDate().toString()));
 		this.price = new SimpleStringProperty(checkNull(""+order.getPrice()));
-		String stag;
-		if (order.getStage()==0){
-			stag = "undone";
-		} else if (order.getStage()==1){
-			stag = "done";
-			
-		} else if (order.getStage()==2){
-			stag = "shipped";
-			
-		} else {
-			stag = "complete";
-			
-		} 
-		this.stage = new SimpleStringProperty(stag);
+//		String stag;
+//		if (order.getStage()==0){
+//			stag = "undone";
+//		} else if (order.getStage()==1){
+//			stag = "done";
+//			
+//		} else if (order.getStage()==2){
+//			stag = "shipped";
+//			
+//		} else {
+//			stag = "complete";
+//			
+//		} 
+		this.stage = new SimpleStringProperty(order.getStage()+"");
 		this.orderNum = new SimpleStringProperty(""+order.getOrderNum());
 	}
 	public String getCustomerName() {

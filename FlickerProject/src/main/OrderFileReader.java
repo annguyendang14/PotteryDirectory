@@ -18,12 +18,14 @@ public class OrderFileReader {
 			System.out.println
 		(ord);
 		}
+		
 */
-		//write(orderList);
+		orderList.add(new Order("an", new Date(2015,2,1),1,"sajkdhasjk",12,0));
+		write(orderList);
 		
 		
 		/*List<Order> ordersFromFileRead =*/ 
-		read();
+		//read();
 		// line to check the size of list-delete later
 		
 		//System.out.println("After writing and reading...");
@@ -41,15 +43,15 @@ public class OrderFileReader {
 		ArrayList<Order> ordersFromFile = new ArrayList<Order>();
 		String[] currentOrderRow;
 		while ((currentOrderRow = reader.readNext()) != null) {
-			String customername = currentOrderRow[0];
+			String orderNum = currentOrderRow[0];
 			String orderDate = currentOrderRow[1];
 			String dueDate = currentOrderRow[2];
-			String orderNum = currentOrderRow[3];
+			String customername = currentOrderRow[3];
 			String description = currentOrderRow[4];
 			String price = currentOrderRow[5];
 			String stage = currentOrderRow[6];
 			//System.out.print(dueDate);
-			if (!dueDate.equals("null")){
+			if (!dueDate.equals("null")&&!dueDate.equals("N/a")){
 				ordersFromFile.add(new Order(customername, new Date(orderDate), new Date(dueDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
 			} else {
 				ordersFromFile.add(new Order(customername, new Date(orderDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
@@ -65,10 +67,10 @@ public class OrderFileReader {
 		CSVWriter writer = new CSVWriter(new FileWriter("OrderList.csv"), ',');
 		for (Order order: orderList) {
 			String[] currentOrderRow = new String[7];
-			currentOrderRow[0] = order.getCustomer().getName();
+			currentOrderRow[0] = order.getOrderNum()+"";
 			currentOrderRow[1] = order.getOrderDate()+"";
 			currentOrderRow[2] = order.getDueDate()+"";
-			currentOrderRow[3] = order.getOrderNum()+"";
+			currentOrderRow[3] = order.getCustomer().getName();
 			currentOrderRow[4] = order.getDescription();
 			currentOrderRow[5] = order.getPrice()+"";
 			currentOrderRow[6] = order.getStage()+"";
