@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,10 +23,11 @@ public class NewCustomerController {
 	@FXML private TextField emailBar;
 	@FXML private Button saveOrder;
 	
-	public Customer saveCustomer(ActionEvent event){
+	public void saveCustomer(ActionEvent event){
 		Customer cus = new Customer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
-		System.out.println(cus);
-		return cus;
+		AllCustomer.getCustomers().add(cus);
+		TempCustomer.setTempCustomer(cus);
+		
 		
 	}
 }

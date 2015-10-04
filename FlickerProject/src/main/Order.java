@@ -24,30 +24,32 @@ public class Order {
 	 * @param orderDate
 	 * @param orderNum
 	 */
-	private Order(Date orderDate, int orderNum){
+	private Order(Date orderDate, int orderNum, String description , double price){
 		this.orderDate = orderDate;
 		this.orderNum = orderNum;
-	}
-	public Order(String customerName, Date orderDate, int orderNum){
-		this(orderDate, orderNum);
-		this.customer = new Customer(customerName);
+		this.price = price;
+		this.description = description;
 		this.stage = 0;
+	}
+	public Order(String customerName, Date orderDate, int orderNum, String description , double price){
+		this(orderDate, orderNum,description, price);
+		this.customer = new Customer(customerName);
+		
 				
 	}
-	public Order(String customerName, Date orderDate, int orderNum, int stage){
+	/*public Order(String customerName, Date orderDate, int orderNum, int stage){
 		this(orderDate, orderNum);
 		this.customer = new Customer(customerName);
 		this.stage = stage;
 				
-	}
+	}*/
 	
 				
-	public Order(String customerName, Date orderDate, int orderNum,  String description , double price){
-		this(customerName, orderDate, orderNum);
-		this.price = price;
-		this.description = description;
+	/*public Order(String customerName, Date orderDate, int orderNum,  String description , double price){
+		this(customerName, orderDate, orderNum, description, price);
 		
-	}
+		
+	}*/
 	
 	//added price, stage, and special order by Kelsey **fixed to match new field, fixed for file processing
 	/** 
@@ -76,6 +78,14 @@ public class Order {
 		this.description = description;
 		this.price = price;
 		this.stage = stage;
+	}
+	public Order(Customer customer,Date orderDate, int orderNum, String description , double price){
+		this(orderDate, orderNum,description, price);
+		this.customer = customer;
+	}
+	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , double price){
+		this(customer,orderDate, orderNum, description , price);
+		this.dueDate = dueDate;
 	}
 	
 /*	public int compareTo(Object o){ //need to try later
