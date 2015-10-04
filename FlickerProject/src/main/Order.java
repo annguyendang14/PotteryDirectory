@@ -59,6 +59,16 @@ public class Order {
 	 * @param price
 	 * 
 	 */
+	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,  String description , double price){
+		this.customer = new Customer(customerName);
+		this.orderDate = orderDate;
+		this.orderNum = orderNum;
+		this.dueDate = dueDate;
+		this.description = description;
+		this.price = price;
+	}
+	
+	//for file saving
 	public Order(Date orderDate, Date dueDate, int orderNum,  String description , double price, int stage){
 		this.orderDate = orderDate;
 		this.orderNum = orderNum;
