@@ -23,10 +23,10 @@ public class CustomerFileReader {
 		(cust);
 		}
 
-		write(customerList, "TestCustomerList.csv");
+		write(customerList, "CustomerList.csv");
 		
 		
-		List<Customer> customersFromFileRead = read("TestCustomerList.csv");
+		List<Customer> customersFromFileRead = read("CustomerList.csv");
 		// line to check the size of list-delete later
 		
 		System.out.println("After writing and reading...");

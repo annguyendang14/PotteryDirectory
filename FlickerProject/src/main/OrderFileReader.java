@@ -21,10 +21,10 @@ public class OrderFileReader {
 		(ord);
 		}
 
-		write(orderList, "TestOrderList.csv");
+		write(orderList, "OrderList.csv");
 		
 		
-		List<Order> ordersFromFileRead = read("TestOrderList.csv");
+		List<Order> ordersFromFileRead = read("OrderList.csv");
 		// line to check the size of list-delete later
 		
 		System.out.println("After writing and reading...");
