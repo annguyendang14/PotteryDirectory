@@ -1,5 +1,7 @@
 package main;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javafx.beans.property.*;
 
@@ -60,13 +62,28 @@ public class OrderTable {
 		return orderNum.get();
 	}
 	private static String checkNull(Object o){
-		String s = (String)o;
+		String s;
+		try {
+			s =(String)o;
+				
+		} catch (Exception e){
+			s = o.toString();
+		} 
+		
 		if (s == null){
 			return "N/a";
 		} else {
 			return s;
 		}
 	}
+	public static List<OrderTable> toOrderTable(List<Order> orders){
+		List<OrderTable> orderTable = new ArrayList<OrderTable>();
+		for (Order order: orders){
+			orderTable.add(new OrderTable(order));
+		}
+		return orderTable;
+	}
+
 	/*public static void main(String[] args){
 		Order n = new Order("aa", new Date(2015,3,4),3, 3);
 		System.out.print(n.getDueDate());

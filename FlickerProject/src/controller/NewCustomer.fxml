@@ -13,7 +13,7 @@
       <Label layoutX="21.0" layoutY="121.0" text="Address:" />
       <Label layoutX="14.0" layoutY="214.0" text="Phone Number:" />
       <TextField fx:id="nameBar" layoutX="158.0" layoutY="73.0" prefHeight="22.0" prefWidth="265.0" />
-      <TextField fx:id="addressBar" layoutX="158.0" layoutY="111.0" prefHeight="83.0" prefWidth="293.0" />
+      <TextArea fx:id="addressBar" layoutX="158.0" layoutY="111.0" prefHeight="83.0" prefWidth="293.0" />
       <TextField fx:id="phoneNumBar" layoutX="158.0" layoutY="210.0" />
       <Button fx:id="saveOrder" layoutX="185.0" layoutY="308.0" mnemonicParsing="false" onAction="#saveCustomer" text="Save Customer" />
       <Label layoutX="21.0" layoutY="243.0" text="Email: " />

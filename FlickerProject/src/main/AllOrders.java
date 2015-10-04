@@ -10,11 +10,8 @@ public class AllOrders {
 		return orders;
 	}
 	public static List<OrderTable> getOrderTable(){
-		List<OrderTable> orderTable = new ArrayList<OrderTable>();
-		for (Order order: orders){
-			orderTable.add(new OrderTable(order));
-		}
-		return orderTable;
+		
+		return OrderTable.toOrderTable(orders);
 	}
 
 	

@@ -1,15 +1,19 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,7 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import main.*;
 
-public class NewOrderController{
+public class NewOrderController implements Initializable{
 
 	@FXML private Label customerName;
 	@FXML private Label dateOrdered;
@@ -74,11 +78,14 @@ public class NewOrderController{
 					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 					System.out.println(newOrder);
 				}
+				//just to print out thing for now
 				AllOrders.getOrders().add(newOrder);
 				for (Order order: AllOrders.getOrders()){
 					System.out.println("all order: "+order);
 				}
-				
+				Node  source = (Node)  event.getSource(); 
+				Stage stage  = (Stage) source.getScene().getWindow();
+				stage.close();
 			}
 			
 			
@@ -93,7 +100,7 @@ public class NewOrderController{
 	}
 	public void generateOrderNum(ActionEvent event) {
 		//orderNumBar.setEditable(true);
-		orderNumBar.setText(""+AllOrders.getOrders().size());
+		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
 		//orderNumBar.setEditable(false);
 
 	}
@@ -113,8 +120,15 @@ public class NewOrderController{
 	    stage.initModality(Modality.APPLICATION_MODAL);
 	    stage.initOwner(addCustomerButton.getScene().getWindow());
 	    stage.showAndWait();
-	    stage.close();
+	    
 	    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
+	    
+	}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		dateOrderedPicker.setValue(LocalDate.now());
+		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
+		
 	}
 	
 	

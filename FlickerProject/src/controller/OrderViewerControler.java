@@ -3,6 +3,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -21,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.*;
 
@@ -34,8 +37,8 @@ public class OrderViewerControler implements Initializable{
 	@FXML private TableColumn<OrderTable,String>  priceCol;
 	@FXML private TableColumn<OrderTable,String>  stageCol;
 	@FXML private Button addOrderButton;
-	@FXML private ComboBox searchBox;
-	final ObservableList<OrderTable> data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+	@FXML private TextField searchBox;
+	ObservableList<OrderTable> data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 	
 	public void addNewOrder(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
@@ -45,6 +48,8 @@ public class OrderViewerControler implements Initializable{
 	    stage.initModality(Modality.APPLICATION_MODAL);
 	    stage.initOwner(addOrderButton.getScene().getWindow());
 	    stage.showAndWait();
+	    data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+	    updateTable();
 	}
 	
 	public void showOrdersInCollum(ActionEvent event){
@@ -54,6 +59,11 @@ public class OrderViewerControler implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		updateTable();
+		
+	}
+	
+	public void updateTable(){
 		customerCol.setCellValueFactory(
 			    new PropertyValueFactory<OrderTable,String>("customerName")
 			);
@@ -78,5 +88,14 @@ public class OrderViewerControler implements Initializable{
 		orderTable.setItems(data);
 		
 	}
+	
+	public void searchBoxTypeIn(ActionEvent event){
+		
+		data = FXCollections.observableArrayList(OrderTable.toOrderTable(Searcher.searchOrder(AllOrders.getOrders(), searchBox.getText())));
+		updateTable();
+		
+	}
+	
+	
 
 }
