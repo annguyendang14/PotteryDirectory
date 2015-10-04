@@ -16,19 +16,15 @@ public class CustomerFileReader {
 	public static void main(String[] args) throws IOException {
 		
 		List<Customer> customerList = new ArrayList<Customer>();
-		customerList.add(new Customer("Bob", "123 Bobber St", "1234567", "bob@gmail.com"));
-		customerList.add(new Customer("Sally", "123 Sally Street", "789789", "sally@gmail.com"));
-		for (Customer cust: customerList){			
+		/*for (Customer cust: customerList){			
 			System.out.println
 		(cust);
-		}
+		}*/
 
 		write(customerList, "CustomerList.csv");
 		
 		
 		List<Customer> customersFromFileRead = read("CustomerList.csv");
-		// line to check the size of list-delete later
-		
 		System.out.println("After writing and reading...");
 		System.out.println(customersFromFileRead.size());
 		
