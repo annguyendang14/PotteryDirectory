@@ -31,10 +31,10 @@ public class EditCustomerController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
-			nameBar.setText(cus.getName());
-			addressBar.setText(cus.getAddress());
-			phoneNumBar.setText(cus.getPhoneNum());
-			emailBar.setText(cus.getEmail());
+			nameBar.setText(TempCustomer.getTempCustomer().getName());
+			addressBar.setText(TempCustomer.getTempCustomer().getAddress());
+			phoneNumBar.setText(TempCustomer.getTempCustomer().getPhoneNum());
+			emailBar.setText(TempCustomer.getTempCustomer().getEmail());
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -43,9 +43,12 @@ public class EditCustomerController implements Initializable {
 
 	}
 	public void saveCustomer(ActionEvent event){
-		cus = new Customer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
+		TempCustomer.getTempCustomer().setCustomer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
 		
-		
+		/*for(Customer cust: AllCustomer.getCustomers()){
+			System.out.println(cust);
+		}*/
+		//System.out.println(cus);
 		Node  source = (Node)  event.getSource(); 
 		Stage stage  = (Stage) source.getScene().getWindow();
 		stage.close();

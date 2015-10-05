@@ -41,13 +41,13 @@ public class Customer {
 		return email;
 	}
 	
-	public void addOrder(Order order){
+	/*public void addOrder(Order order){
 		
 	}
 	
 	public void setOrder(List<Order> orders){
 		
-	}
+	}*/
 	
 	public void setName(String name){
 		this.name = name;
@@ -60,6 +60,12 @@ public class Customer {
 	public void setEmail(String email){
 		this.email = email;
 	}
+	public void setCustomer(String name, String address, String phoneNum, String email){
+		this.setName(name);
+		this.setAddress(address);
+		this.setPhoneNum(phoneNum);
+		this.setEmail(email);
+	}
 	
 	
 	
@@ -70,6 +76,10 @@ public class Customer {
 //added for debug purposes
 	public String toString(){
 		return "The Customer: " + this.getName()+ " "+this.getAddress()+ " "+this.getPhoneNum()+ " "+this.getEmail();
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
 	}
 	
 	
