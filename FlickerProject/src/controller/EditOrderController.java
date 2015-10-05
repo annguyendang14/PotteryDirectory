@@ -124,10 +124,10 @@ public class EditOrderController implements Initializable {
 			
 				if (dueDatePicker.getValue() != null){
 			
-					order = new Order (TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Integer.parseInt(stageBar.getText()));
 					System.out.println(order);
 				} else {
-					order = new Order (TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Integer.parseInt(stageBar.getText()));
 					System.out.println(order);
 				}
 				//just to print out thing for now

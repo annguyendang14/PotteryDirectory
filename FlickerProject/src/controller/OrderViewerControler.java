@@ -204,6 +204,7 @@ public class OrderViewerControler implements Initializable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 				updateTable();
 	    		
 	        }

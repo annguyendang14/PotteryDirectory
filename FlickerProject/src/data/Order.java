@@ -165,9 +165,9 @@ public class Order {
 	 */
 	public String toString(){
 		if (dueDate != null){
-			return orderNum+" "+ orderDate.toString() +" "+dueDate.toString()+" "+stage;
+			return orderNum+" "+ orderDate.toString() +" "+dueDate.toString()+" "+stage+" "+description;
 		} else {
-			return orderNum+" "+ orderDate.toString() +" "+stage;
+			return orderNum+" "+ orderDate.toString() +" "+stage+" "+description;
 
 		}
 	}
@@ -176,6 +176,24 @@ public class Order {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public void setOrder(Customer customer,Date orderDate, String description , double price, int stage){
+		this.setCustomer(customer);
+		this.setOrderDate(orderDate);
+		this.setDescription(description);
+		this.setPrice(price);
+		this.setStage(stage);
+	}
+	public void setOrder(Customer customer,Date orderDate, Date dueDate , String description , double price, int stage){
+		this.setOrder(customer, orderDate, description, price, stage);
+		this.setDueDate(dueDate);
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
 	
 
