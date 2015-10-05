@@ -1,5 +1,6 @@
 package controller;
 
+import data.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.*;
 
 /*
  * 
@@ -22,7 +22,7 @@ public class NewCustomerController {
 	@FXML private Label phoneNum;
 	@FXML private Label email;
 	@FXML private TextField nameBar;
-	@FXML private TextArea addressBar;
+	@FXML private TextField addressBar;
 	@FXML private TextField phoneNumBar;
 	@FXML private TextField emailBar;
 	@FXML private Button saveOrder;

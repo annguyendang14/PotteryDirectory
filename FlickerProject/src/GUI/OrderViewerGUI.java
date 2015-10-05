@@ -1,6 +1,6 @@
-package main;
+package GUI;
 
-import controller.OrderViewerControler;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

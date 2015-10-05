@@ -1,5 +1,8 @@
-package main;
+package searcherAndSorter;
 import java.util.*;
+
+import data.Customer;
+import data.Order;
 
 /** 
  * temporary main class to test search method
@@ -135,5 +138,14 @@ public class Searcher {
 		}
 		return orderTable;
 	}*/
+	public static Order searchForOrder(List<Order> orders, int orderNum){
+		Order returnOrd = null;
+		for (Order order: orders){
+			if (order.getOrderNum()==orderNum){
+				returnOrd = order;
+			}
+		}
+		return returnOrd;
+	}
 
 }

@@ -1,4 +1,4 @@
-package main;
+package data;
 
 public class TempCustomer {
 	private static Customer tempCustomer;
@@ -7,9 +7,8 @@ public class TempCustomer {
 		tempCustomer = cus;
 	}
 	public static Customer getTempCustomer() {
-		Customer returnCus = tempCustomer;
-		//tempCustomer = null;
-		return returnCus;
+		
+		return tempCustomer;
 	}
 	
 }

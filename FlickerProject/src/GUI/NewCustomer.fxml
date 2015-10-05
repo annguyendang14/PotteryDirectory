@@ -12,16 +12,16 @@
       <Label layoutX="21.0" layoutY="77.0" text="Name:" />
       <Label layoutX="21.0" layoutY="121.0" text="Address:" />
       <Label layoutX="14.0" layoutY="214.0" text="Phone Number:" />
-      <TextField fx:id="nameBar" layoutX="158.0" layoutY="73.0" prefHeight="22.0" prefWidth="265.0" />
-      <TextArea fx:id="addressBar" layoutX="158.0" layoutY="111.0" prefHeight="83.0" prefWidth="293.0" />
-      <TextField fx:id="phoneNumBar" layoutX="158.0" layoutY="210.0" />
-      <Button fx:id="saveOrder" layoutX="185.0" layoutY="308.0" mnemonicParsing="false" onAction="#saveCustomer" text="Save Customer" />
       <Label layoutX="21.0" layoutY="243.0" text="Email: " />
+      <TextField fx:id="nameBar" layoutX="158.0" layoutY="73.0" prefHeight="22.0" prefWidth="265.0" />
+      <TextField fx:id="addressBar" alignment="TOP_LEFT" layoutX="158.0" layoutY="110.0" prefHeight="85.0" prefWidth="265.0" />
+      <TextField fx:id="phoneNumBar" layoutX="158.0" layoutY="210.0" />
       <TextField fx:id="emailBar" layoutX="158.0" layoutY="246.0" prefHeight="22.0" prefWidth="265.0" />
       <Label alignment="CENTER" layoutX="115.0" layoutY="14.0" prefHeight="53.0" prefWidth="238.0" text="Customer" textAlignment="CENTER">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
+      <Button fx:id="saveOrder" layoutX="185.0" layoutY="308.0" mnemonicParsing="false" onAction="#saveCustomer" text="Save Customer" />
    </children>
 </AnchorPane>

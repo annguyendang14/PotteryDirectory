@@ -7,13 +7,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import CSV.OrderFileReader;
+import GUI.EditOrderGUI;
+import GUI.NewOrderGUI;
+import data.*;
 import javafx.util.Callback;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -29,20 +36,23 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import main.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.TextAlignment;
+import searcherAndSorter.Searcher;
 
 public class OrderViewerControler implements Initializable{
 	@FXML private TableView<OrderTable> orderTable;
-	@FXML private TableColumn<OrderTable,String> orderNumCol;
-	@FXML private TableColumn<OrderTable,String>  orderDateCol;
-	@FXML private TableColumn<OrderTable,String>  dueDateCol;
-	@FXML private TableColumn<OrderTable,String>  customerCol;
-	@FXML private TableColumn<OrderTable,String>  descriptionCol;
-	@FXML private TableColumn<OrderTable,String>  priceCol;
-	@FXML private TableColumn<OrderTable,String>  stageCol;
+	@FXML private TableColumn orderNumCol;
+	@FXML private TableColumn  orderDateCol;
+	@FXML private TableColumn  dueDateCol;
+	@FXML private TableColumn customerCol;
+	@FXML private TableColumn  descriptionCol;
+	@FXML private TableColumn  priceCol;
+	@FXML private TableColumn stageCol;
 	@FXML private Button addOrderButton;
 	@FXML private TextField searchBox;
 	ObservableList<OrderTable> data;
+	
 	
 	public void addNewOrder(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
@@ -54,7 +64,7 @@ public class OrderViewerControler implements Initializable{
 	    stage.showAndWait();
 	    data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 	    updateTable();
-	    OrderFileReader.write(AllOrders.getOrders());
+	    
 	}
 	
 	public void showOrdersInCollum(ActionEvent event){
@@ -80,13 +90,24 @@ public class OrderViewerControler implements Initializable{
 			e.printStackTrace();
 		}
 		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
-		
-		/*orderNumCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		dueDateCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		customerCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		priceCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		stageCol.setCellFactory(TextFieldTableCell.forTableColumn());*/
+		//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
+		 Callback<TableColumn, TableCell> stringCellFactory =
+	                new Callback<TableColumn, TableCell>() {
+	            @Override
+	            public TableCell call(TableColumn p) {
+	                MyStringTableCell cell = new MyStringTableCell();
+	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
+	                return cell;
+	            }
+	        };
+		/*FormattedTableCellFactory cellFac = new FormattedTableCellFactory();
+		cellFac.setAlignment(TextAlignment.LEFT);*/
+		orderNumCol.setCellFactory(stringCellFactory);
+		dueDateCol.setCellFactory(stringCellFactory);
+		customerCol.setCellFactory(stringCellFactory);
+		descriptionCol.setCellFactory(stringCellFactory);
+		priceCol.setCellFactory(stringCellFactory);
+		stageCol.setCellFactory(stringCellFactory);
 		updateTable();
 		
 		
@@ -115,6 +136,12 @@ public class OrderViewerControler implements Initializable{
 			    new PropertyValueFactory<OrderTable,String>("stage")
 			);
 		orderTable.setItems(data);
+		try {
+			OrderFileReader.write(AllOrders.getOrders());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -125,7 +152,7 @@ public class OrderViewerControler implements Initializable{
 		
 	}
 	public void editTable(ActionEvent event){
-		List<Order> orders = new ArrayList<Order>();
+		/*List<Order> orders = new ArrayList<Order>();
 		int i=0;
 		while (!orderNumCol.getCellData(i).isEmpty()){
 			if (!dueDateCol.getCellData(i).equals("null")&&!dueDateCol.getCellData(i).equals("N/a")){
@@ -153,8 +180,51 @@ public class OrderViewerControler implements Initializable{
 			e.printStackTrace();
 		}
 		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
-		updateTable();
+		updateTable();*/
 	}
+	//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
+
+	class MyEventHandler implements EventHandler<MouseEvent> {
+		  
+	        @Override
+	        public void handle(MouseEvent t) {
+	            TableCell c = (TableCell) t.getSource();
+	            int index = c.getIndex();
+	            tempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
+	            Stage stage = new Stage();
+	    		Parent root;
+				try {
+					root = FXMLLoader.load(EditOrderGUI.class.getResource("EditOrder.fxml"));
+					stage.setScene(new Scene(root));
+		    	    stage.setTitle("View Customer");
+		    	    stage.initModality(Modality.APPLICATION_MODAL);
+		    	    stage.initOwner(c.getScene().getWindow());
+		    	    stage.showAndWait();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				updateTable();
+	    		
+	        }
+	    }
+	
+	//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
+
+	 class MyStringTableCell extends TableCell<OrderTable, String> {
+		 
+	        @Override
+	        public void updateItem(String item, boolean empty) {
+	            super.updateItem(item, empty);
+	            setText(empty ? null : getString());
+	            setGraphic(null);
+	        }
+	 
+	        private String getString() {
+	            return getItem() == null ? "" : getItem().toString();
+	        }
+	    }
+	  
 	
 	
 

@@ -1,4 +1,4 @@
-package main;
+package CSV;
 //author Kelsey
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -6,6 +6,8 @@ import java.util.*;
 import java.io.IOException;
 
 import com.opencsv.*;
+
+import data.Order;
 
 public class OrderFileReader {
 	// http://opencsv.sourceforge.net/

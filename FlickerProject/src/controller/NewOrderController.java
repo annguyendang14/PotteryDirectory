@@ -8,6 +8,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import GUI.NewCustomerGUI;
+import data.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,14 +27,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import main.*;
 
 public class NewOrderController implements Initializable{
 
 	@FXML private Label customerName;
 	@FXML private Label dateOrdered;
 	@FXML private Label orderNum;
-	@FXML private Label customerNameBar;
+	@FXML private TextField customerNameBar;
 	@FXML private DatePicker dateOrderedPicker;
 	@FXML private Label orderNumBar;
 	@FXML private Button saveOrder;
@@ -114,7 +115,7 @@ public class NewOrderController implements Initializable{
 	
 	public void addNewCustomer(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
-		Parent root = FXMLLoader.load(NewCustomerController.class.getResource("NewCustomer.fxml"));
+		Parent root = FXMLLoader.load(NewCustomerGUI.class.getResource("NewCustomer.fxml"));
 		stage.setScene(new Scene(root));
 	    stage.setTitle("Add New Customer");
 	    stage.initModality(Modality.APPLICATION_MODAL);

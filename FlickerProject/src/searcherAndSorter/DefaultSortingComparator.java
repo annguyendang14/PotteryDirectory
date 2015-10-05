@@ -1,5 +1,7 @@
-package main;
+package searcherAndSorter;
 import java.util.Comparator;
+
+import data.Order;
 
 public class DefaultSortingComparator implements Comparator<Order> {
 

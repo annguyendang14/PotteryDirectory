@@ -1,10 +1,12 @@
-package main;
+package CSV;
 
 //author Kelsey
 import java.io.*;
 import java.util.*;
 
 import com.opencsv.*;
+
+import data.Customer;
 
 public class CustomerFileReader {
 	// http://opencsv.sourceforge.net/
