@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /*
- * 
+ * this class saves the textField content to a new customer
  */
 public class NewCustomerController {
 	@FXML private Label title;

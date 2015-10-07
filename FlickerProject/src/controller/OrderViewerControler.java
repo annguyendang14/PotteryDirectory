@@ -53,7 +53,9 @@ public class OrderViewerControler implements Initializable{
 	@FXML private TextField searchBox;
 	ObservableList<OrderTable> data;
 	
-	
+	/*
+	 * This method saves a new order to orders
+	 */
 	public void addNewOrder(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(NewOrderGUI.class.getResource("NewOrder.fxml"));
@@ -73,6 +75,9 @@ public class OrderViewerControler implements Initializable{
 	}
 
 	@Override
+	/*
+	 * This method opens the order window when the row is clicked.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		/*try {
 			AllOrders.getOrders().addAll(OrderFileReader.read());
@@ -86,7 +91,6 @@ public class OrderViewerControler implements Initializable{
 				
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
@@ -94,6 +98,7 @@ public class OrderViewerControler implements Initializable{
 		 Callback<TableColumn, TableCell> stringCellFactory =
 	                new Callback<TableColumn, TableCell>() {
 	            @Override
+	          //TODO: need to change to double-click
 	            public TableCell call(TableColumn p) {
 	                MyStringTableCell cell = new MyStringTableCell();
 	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
@@ -112,7 +117,9 @@ public class OrderViewerControler implements Initializable{
 		
 		
 	}
-	
+	/*
+	 * This method updates edited information to the table
+	 */
 	public void updateTable(){
 		customerCol.setCellValueFactory(
 			    new PropertyValueFactory<OrderTable,String>("customerName")
@@ -144,7 +151,9 @@ public class OrderViewerControler implements Initializable{
 		}
 		
 	}
-	
+	/*
+	 * This method searches for Customer names or order numbers
+	 */
 	public void searchBoxTypeIn(ActionEvent event){
 		
 		data = FXCollections.observableArrayList(OrderTable.toOrderTable(Searcher.searchOrder(AllOrders.getOrders(), searchBox.getText())));
@@ -184,6 +193,9 @@ public class OrderViewerControler implements Initializable{
 	}
 	//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
 
+	/*
+	 * This method lets the user edit an existent order
+	 */
 	class MyEventHandler implements EventHandler<MouseEvent> {
 		  
 	        @Override
@@ -212,6 +224,9 @@ public class OrderViewerControler implements Initializable{
 	
 	//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
 
+	/* 
+	 * This is actually a new class
+	 */
 	 class MyStringTableCell extends TableCell<OrderTable, String> {
 		 
 	        @Override
