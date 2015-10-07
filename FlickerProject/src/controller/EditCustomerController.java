@@ -38,10 +38,12 @@ public class EditCustomerController implements Initializable {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
-		
-
 	}
+	
+	/*
+	 * Sends the String data in the TextFields to the TempCustomer class'
+	 * constructor for storage.
+	 */
 	public void saveCustomer(ActionEvent event){
 		TempCustomer.getTempCustomer().setCustomer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
 		
