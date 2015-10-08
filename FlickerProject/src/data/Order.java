@@ -2,27 +2,34 @@ package data;
 
 /**
  * @author annguyendang14
+ * @param orderNum
+	@param orderDate;
+	@param dueDate;
+	@param price;
+	@param stage;
+ * 
  */
 
 import java.util.Date;
 
 public class Order {
 	private Customer customer;
-	// private List<Pottery> potteries;
 	private String description;
 	private int orderNum; // not sure how to construct this yet
 	private Date orderDate;
 	private Date dueDate;
 	private double price;
-	// private String specialNotice;
-	private int stage; // 0 = not done, 1 = done, 2 = shipped, 3 = customer
-						// received
+	private int stage; // 0 = not done, 1 = done, 2 = shipped, 3 = customer received
 
 	/**
-	 * private constructor to reduce repetition in other constructors
 	 * 
 	 * @param orderDate
+	 * @param dueDate
 	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * Sets stage to 0 when called
+	 * 
 	 */
 	private Order(Date orderDate, int orderNum, String description, double price) {
 		this.orderDate = orderDate;
@@ -31,21 +38,32 @@ public class Order {
 		this.description = description;
 		this.stage = 0;
 	}
-
+	/**
+	 * @param customerName from Customer class
+	 * @param orderDate
+	 * @param dueDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param stage
+	 * 
+	 */
 	public Order(String customerName, Date orderDate, int orderNum, String description, double price) {
 		this(orderDate, orderNum, description, price);
 		this.customer = new Customer(customerName);
 
 	}
-
-	/*
-	 * public Order(String customerName, Date orderDate, int orderNum, int
-	 * stage){ this(orderDate, orderNum); this.customer = new
-	 * Customer(customerName); this.stage = stage;
+	/**
+	 * @param customerName from Customer class
+	 * @param orderDate
+	 * @param dueDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param stage
+	 * makes stage changeable 
 	 * 
-	 * }
 	 */
-
 	public Order(String customerName, Date orderDate, int orderNum, String description,
 			double price, int stage) {
 		this(customerName, orderDate, orderNum, description, price);
@@ -60,6 +78,7 @@ public class Order {
 	 * @param orderNum
 	 * @param description
 	 * @param price
+	 * @param stage
 	 * 
 	 */
 	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,
@@ -68,7 +87,16 @@ public class Order {
 		this.dueDate = dueDate;
 	}
 
-	//file saving
+	/**
+	 * 
+	 * @param orderDate
+	 * @param dueDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param stage
+	 * 
+	 */
 	public Order(Date orderDate, Date dueDate, int orderNum, String description, double price,
 			int stage) {
 		this.orderDate = orderDate;
@@ -89,22 +117,9 @@ public class Order {
 		this(customer, orderDate, orderNum, description, price);
 		this.dueDate = dueDate;
 	}
-
-	/*
-	 * public int compareTo(Object o){ //need to try later Order other = (Order)
-	 * o; if(other.orderDate.equals(this.orderDate)){ return
-	 * this.stage-other.stage; } else { return
-	 * -this.orderDate.compareTo(other.orderDate); } }
-	 */
-
-	/*
-	 * public void addPotteries(Pottery pottery){ potteries.add(pottery);
-	 * 
-	 * }
-	 * 
-	 * public void setPottery(List<Pottery> potteries){ this.potteries =
-	 * potteries; }
-	 */
+/**
+ * Various set methods that take in a parameter and sets it to the corresponding data field
+ */
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
@@ -113,10 +128,6 @@ public class Order {
 		this.price = price;
 	}
 
-	/*
-	 * public void setSpecialNotice(String notice){ this.specialNotice = notice;
-	 * }
-	 */
 
 	public void setStage(int stage) { // restricted to reduce stage for now,
 										// might change later
@@ -124,42 +135,33 @@ public class Order {
 			this.stage = stage;
 		}
 	}
-
+	/**
+	 * Gets and returns the parameters
+	 */
 	public Customer getCustomer() {
-		return customer;
+		return this.customer;
 
 	}
 
-	/*
-	 * public List<Pottery> getPotteries(){ return potteries;
-	 * 
-	 * }
-	 */
 	public int getOrderNum() {
-		return orderNum;
+		return this.orderNum;
 
 	}
 
 	public Date getOrderDate() {
-		return orderDate;
+		return this.orderDate;
 
 	}
 
 	public Date getDueDate() {
-		return dueDate;
+		return this.dueDate;
 
 	}
 
 	public double getPrice() {
-		return price;
+		return this.price;
 
 	}
-
-	/*
-	 * public String getNotice(){ return specialNotice;
-	 * 
-	 * }
-	 */
 
 	public int getStage() {
 		return stage;
