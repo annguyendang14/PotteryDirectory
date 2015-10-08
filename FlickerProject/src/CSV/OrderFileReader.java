@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import com.opencsv.*;
 
+import data.Customer;
 import data.Order;
 
 public class OrderFileReader {
@@ -40,7 +41,7 @@ public class OrderFileReader {
 		}
 
 	// reads a Customer List file
-	public static List<Order> read() throws IOException {
+	public static List<Order> read(List<Customer> customers) throws IOException {
 		CSVReader reader = new CSVReader(new FileReader("OrderList.csv"));
 		ArrayList<Order> ordersFromFile = new ArrayList<Order>();
 		String[] currentOrderRow;
@@ -48,15 +49,15 @@ public class OrderFileReader {
 			String orderNum = currentOrderRow[0];
 			String orderDate = currentOrderRow[1];
 			String dueDate = currentOrderRow[2];
-			String customername = currentOrderRow[3];
+			String customerCode = currentOrderRow[3];
 			String description = currentOrderRow[4];
 			String price = currentOrderRow[5];
 			String stage = currentOrderRow[6];
 			//System.out.print(dueDate);
 			if (!dueDate.equals("null")&&!dueDate.equals("N/a")){
-				ordersFromFile.add(new Order(customername, new Date(orderDate), new Date(dueDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
+				ordersFromFile.add(new Order(findCustomer(customers,customerCode), new Date(orderDate), new Date(dueDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
 			} else {
-				ordersFromFile.add(new Order(customername, new Date(orderDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
+				ordersFromFile.add(new Order(findCustomer(customers,customerCode), new Date(orderDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
 			}
 		}
 		reader.close();
@@ -72,12 +73,26 @@ public class OrderFileReader {
 			currentOrderRow[0] = order.getOrderNum()+"";
 			currentOrderRow[1] = order.getOrderDate()+"";
 			currentOrderRow[2] = order.getDueDate()+"";
-			currentOrderRow[3] = order.getCustomer().getName();
+			currentOrderRow[3] = order.getCustomer().hashCode()+"";
 			currentOrderRow[4] = order.getDescription();
 			currentOrderRow[5] = order.getPrice()+"";
 			currentOrderRow[6] = order.getStage()+"";
 			writer.writeNext(currentOrderRow);
 		}
 		writer.close();
+	}
+	public static Customer findCustomer(List<Customer> customers, String customerCode) throws IOException{
+		CSVReader reader = new CSVReader(new FileReader("CustomerList.csv"));
+		ArrayList<Customer> customersFromFile = new ArrayList<Customer>();
+		String[] currentCustomerRow;
+		int i=0;
+		while ((currentCustomerRow = reader.readNext()) != null) {
+			String code = currentCustomerRow[4];
+			if (code.equals(customerCode)){
+				return customers.get(i);
+			}
+			i++;
+		}
+		return null;
 	}
 }

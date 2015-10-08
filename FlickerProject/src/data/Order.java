@@ -79,9 +79,18 @@ public class Order {
 	public Order(Customer customer,Date orderDate, int orderNum, String description , double price){
 		this(orderDate, orderNum,description, price);
 		this.customer = customer;
+		
 	}
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , double price){
 		this(customer,orderDate, orderNum, description , price);
+		this.dueDate = dueDate;
+	}
+	public Order(Customer customer,Date orderDate, int orderNum, String description , double price, int stage){
+		this(customer,orderDate, orderNum,description, price);
+		this.stage = stage;
+	}
+	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , double price, int stage){
+		this(customer,orderDate, orderNum, description , price, stage);
 		this.dueDate = dueDate;
 	}
 	

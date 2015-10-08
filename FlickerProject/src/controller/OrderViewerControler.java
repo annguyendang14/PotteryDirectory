@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import CSV.CustomerFileReader;
 import CSV.OrderFileReader;
 import GUI.EditOrderGUI;
 import GUI.NewOrderGUI;
@@ -81,9 +82,17 @@ public class OrderViewerControler implements Initializable{
 			e.printStackTrace();
 		}*/
 		try {
-			for (Order order: OrderFileReader.read()){
-				AllOrders.getOrders().add(order);
-				
+			for (Customer customer: CustomerFileReader.read()){
+				AllCustomer.getCustomers().add(customer);
+			}
+			try {
+				for (Order order: OrderFileReader.read(AllCustomer.getCustomers())){
+					AllOrders.getOrders().add(order);
+					
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -136,7 +145,9 @@ public class OrderViewerControler implements Initializable{
 			    new PropertyValueFactory<OrderTable,String>("stage")
 			);
 		orderTable.setItems(data);
+		
 		try {
+			CustomerFileReader.write(AllCustomer.getCustomers());
 			OrderFileReader.write(AllOrders.getOrders());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
