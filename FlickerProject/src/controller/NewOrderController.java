@@ -47,7 +47,7 @@ public class NewOrderController implements Initializable{
 
 	public void saveNewOrder(ActionEvent event) {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
-
+		//An: we have toDate method for that (in this class), hope you find it
 		
 			try {
 				Double.parseDouble(price.getText());

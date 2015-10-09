@@ -63,16 +63,18 @@ public class EditOrderController implements Initializable {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		/*try {
+		try {
 		
 		dueDatePicker.setValue(toLocalDate(order.getDueDate()));
 		
 	} catch (Exception e){
 		e.printStackTrace();
 	}
-	*/
+	
 	
 	//Why did we have this extra try/catch?
+		//AN: dueDate might not be available (it optional), so if we dont have 
+		//separate try/catch, program will fail when it try to read order without dueDate
 		
 	}
 	public static LocalDate toLocalDate(Date date){
@@ -81,7 +83,7 @@ public class EditOrderController implements Initializable {
 	}
 	public void saveNewOrder(ActionEvent event) {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
-
+		//An: toDate method is a static method in NewOrderController
 		
 			try {
 				Double.parseDouble(price.getText());
@@ -106,6 +108,10 @@ public class EditOrderController implements Initializable {
 				alert.showAndWait();
 		    } 
 			// Why is this if statement here? Is this duplicate code?
+			// An: It kind of duplicate, but it needed for now,
+			// the try/catch check if the stage is int type or not, if statement
+			// check if it from 0 to 3 
+			// this will not happen after we change stage choice to drop down box
 			if (!(Integer.parseInt(stageBar.getText())>=0&&Integer.parseInt(stageBar.getText())<4)){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");

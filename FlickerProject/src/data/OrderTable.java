@@ -17,7 +17,7 @@ public class OrderTable {
 	
 	public OrderTable(Order order) {
 		
-		this.customerName = new SimpleStringProperty(order.getCustomer().getName());
+		this.customerName = new SimpleStringProperty(checkNull(order.getCustomer().getName()));
 		this.description = new SimpleStringProperty(checkNull(order.getDescription()));
 		//this.description = new SimpleStringProperty("dkjdfcbsakjd");
 		this.dueDate = new SimpleStringProperty(checkNull(order.getDueDate()));
