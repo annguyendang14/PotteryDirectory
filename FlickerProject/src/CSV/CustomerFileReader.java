@@ -46,6 +46,7 @@ public class CustomerFileReader {
 			String address = currentCustomerRow[1];
 			String phoneNum = currentCustomerRow[2];
 			String email = currentCustomerRow[3];
+			//String code = currentCustomerRow[4];
 			customersFromFile.add(new Customer(name, address, phoneNum, email));
 		}
 		reader.close();
@@ -57,11 +58,12 @@ public class CustomerFileReader {
 	public static void write(List<Customer> customerList) throws IOException {
 		CSVWriter writer = new CSVWriter(new FileWriter("CustomerList.csv"), ',');
 		for (Customer customer: customerList) {
-			String[] currentCustomerRow = new String[4];
+			String[] currentCustomerRow = new String[5];
 			currentCustomerRow[0] = customer.getName();
 			currentCustomerRow[1] = customer.getAddress();
 			currentCustomerRow[2] = customer.getPhoneNum();
 			currentCustomerRow[3] = customer.getEmail();
+			currentCustomerRow[4] = ""+customer.hashCode();
 			writer.writeNext(currentCustomerRow);
 		}
 		writer.close();

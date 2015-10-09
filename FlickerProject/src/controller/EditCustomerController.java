@@ -1,8 +1,10 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import CSV.CustomerFileReader;
 import data.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,12 +40,10 @@ public class EditCustomerController implements Initializable {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
+		
+		
+
 	}
-	
-	/*
-	 * Sends the String data in the TextFields to the TempCustomer class'
-	 * constructor for storage.
-	 */
 	public void saveCustomer(ActionEvent event){
 		TempCustomer.getTempCustomer().setCustomer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
 		
@@ -51,6 +51,12 @@ public class EditCustomerController implements Initializable {
 			System.out.println(cust);
 		}*/
 		//System.out.println(cus);
+		try {
+			CustomerFileReader.write(AllCustomer.getCustomers());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Node  source = (Node)  event.getSource(); 
 		Stage stage  = (Stage) source.getScene().getWindow();
 		stage.close();
@@ -58,6 +64,7 @@ public class EditCustomerController implements Initializable {
 			  
 		
 	}
+
 	public void editCustomer(ActionEvent event){
 		nameBar.setDisable(false);
 		addressBar.setDisable(false);

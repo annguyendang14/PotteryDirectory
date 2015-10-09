@@ -110,6 +110,7 @@ public class Order {
 	public Order(Customer customer, Date orderDate, int orderNum, String description, double price) {
 		this(orderDate, orderNum, description, price);
 		this.customer = customer;
+		
 	}
 
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum, String description,
@@ -117,10 +118,41 @@ public class Order {
 		this(customer, orderDate, orderNum, description, price);
 		this.dueDate = dueDate;
 	}
+
+	public Order(Customer customer,Date orderDate, int orderNum, String description , double price, int stage){
+		this(customer,orderDate, orderNum,description, price);
+		this.stage = stage;
+	}
+	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , double price, int stage){
+		this(customer,orderDate, orderNum, description , price, stage);
+		this.dueDate = dueDate;
+	}
+	
+/*	public int compareTo(Object o){ //need to try later
+		Order other = (Order) o;
+		if(other.orderDate.equals(this.orderDate)){
+			return this.stage-other.stage;
+		} else {
+			return -this.orderDate.compareTo(other.orderDate);
+		}
+	}*/
+	
+/*	public void addPotteries(Pottery pottery){
+		potteries.add(pottery);
+		
+	}
+	
+	public void setPottery(List<Pottery> potteries){
+		this.potteries = potteries;
+	}
+	*/
+	
+
 /**
  * Various set methods that take in a parameter and sets it to the corresponding data field
  */
 	public void setDueDate(Date dueDate) {
+
 		this.dueDate = dueDate;
 	}
 

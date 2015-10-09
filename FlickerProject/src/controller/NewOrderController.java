@@ -82,7 +82,8 @@ public class NewOrderController implements Initializable{
 				//just to print out thing for now
 				AllOrders.getOrders().add(newOrder);
 				for (Order order: AllOrders.getOrders()){
-					System.out.println("all order: "+order);
+					System.out.println("all order: "+order+" "+order.hashCode());
+					
 				}
 				Node  source = (Node)  event.getSource(); 
 				Stage stage  = (Stage) source.getScene().getWindow();
