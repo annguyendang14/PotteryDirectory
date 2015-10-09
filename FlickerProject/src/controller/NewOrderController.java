@@ -42,6 +42,7 @@ public class NewOrderController implements Initializable{
 	@FXML private TextField price;
 	//@FXML private Button generateButton;
 	@FXML private Button addCustomerButton;
+	@FXML private Button calculator;
 
 
 
@@ -131,6 +132,19 @@ public class NewOrderController implements Initializable{
 		dateOrderedPicker.setValue(LocalDate.now());
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
 		
+	}
+	
+	public static void callCalculator(ActionEvent event) throws IOException {
+		 Runtime run = Runtime.getRuntime();
+         try{
+                run.exec("Calc");
+         } catch(IOException e){
+        	 Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Warning Dialog");
+				alert.setHeaderText("Error");
+				alert.setContentText("Microsoft Calculator is not functioning!");
+				alert.showAndWait();
+         }
 	}
 	
 	

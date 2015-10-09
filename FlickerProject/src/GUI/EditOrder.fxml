@@ -32,5 +32,6 @@
       <Label layoutX="16.0" layoutY="338.0" text="Stage:" />
       <Label layoutX="174.0" layoutY="338.0" text="(0=undone, 1=done, 2=shipped, 3=complete)" />
       <TextField fx:id="stageBar" disable="true" layoutX="120.0" layoutY="334.0" prefHeight="25.0" prefWidth="42.0" />
+      <Button fx:id="calculator" layoutX="263.0" layoutY="302.0" mnemonicParsing="false" onAction="#callCalculator" text="Calculator" />
    </children>
 </AnchorPane>

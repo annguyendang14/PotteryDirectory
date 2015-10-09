@@ -28,5 +28,6 @@
       <Label layoutX="14.0" layoutY="306.0" text="Price: " />
       <TextField fx:id="price" layoutX="120.0" layoutY="302.0" text="0.0" />
       <Button fx:id="addCustomerButton" layoutX="313.0" layoutY="76.0" mnemonicParsing="false" onAction="#addNewCustomer" text="Add Customer" />
+      <Button fx:id="calculator" layoutX="269.0" layoutY="302.0" mnemonicParsing="false" onAction="#callCalculator" text="Calculator" />
    </children>
 </AnchorPane>

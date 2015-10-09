@@ -185,5 +185,13 @@ public class EditOrderController implements Initializable {
 	    
 	    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
 	}
+	
+	public void callCalculator(ActionEvent event){
+		try {
+			NewOrderController.callCalculator(event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
