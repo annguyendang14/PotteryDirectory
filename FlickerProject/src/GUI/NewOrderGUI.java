@@ -55,11 +55,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+/*
+ * This class runs the GUI window for creating new orders.
+ * 
+ * Written by: Amiao
+ */
 public class NewOrderGUI extends Application{
 	
 	public void start(Stage primaryStage) throws Exception {
 		try {
+			//root gets layout from NewOrder.fxml file, created with FX Scene Builder.
 			Parent root = FXMLLoader.load(getClass().getResource("NewOrder.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);

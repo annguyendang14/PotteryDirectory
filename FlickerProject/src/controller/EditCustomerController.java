@@ -64,6 +64,7 @@ public class EditCustomerController implements Initializable {
 			  
 		
 	}
+
 	public void editCustomer(ActionEvent event){
 		nameBar.setDisable(false);
 		addressBar.setDisable(false);

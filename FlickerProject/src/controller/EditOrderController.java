@@ -45,12 +45,17 @@ public class EditOrderController implements Initializable {
 	private Order order = tempOrder.getTempOrder();
 
 	@Override
+	/*
+	 * This method sets the TextField contents to the values that are currently stored
+	 * in that specific order.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		try {
 			customerNameBar.setText(order.getCustomer().getName());
 			dateOrderedPicker.setValue(toLocalDate(order.getOrderDate()));
-			
+			//inserted the dueDatePicker here rather than the other try/catch.
+			dueDatePicker.setValue(toLocalDate(order.getDueDate()));
 			orderNumBar.setText(""+order.getOrderNum());
 			description.setText(order.getDescription());
 			price.setText(""+order.getPrice());
@@ -58,19 +63,17 @@ public class EditOrderController implements Initializable {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		try {
-			
-			dueDatePicker.setValue(toLocalDate(order.getDueDate()));
-			
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+		/*try {
 		
+		dueDatePicker.setValue(toLocalDate(order.getDueDate()));
 		
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	*/
+	
+	//Why did we have this extra try/catch?
 		
-		
-		
-
 	}
 	public static LocalDate toLocalDate(Date date){
 		LocalDate local = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -102,6 +105,7 @@ public class EditOrderController implements Initializable {
 
 				alert.showAndWait();
 		    } 
+			// Why is this if statement here? Is this duplicate code?
 			if (!(Integer.parseInt(stageBar.getText())>=0&&Integer.parseInt(stageBar.getText())<4)){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
@@ -121,7 +125,7 @@ public class EditOrderController implements Initializable {
 				alert.showAndWait();
 			}else {*/
 				
-			
+				// Sends string data from TextFields to the tempOrder class for storage.
 				if (dueDatePicker.getValue() != null){
 			
 					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Integer.parseInt(stageBar.getText()));
@@ -151,6 +155,7 @@ public class EditOrderController implements Initializable {
 		//System.out.println(newOrder);
 
 	}
+	//sets default editing to false
 	public void editOrder(ActionEvent event) {
 		
 		dateOrderedPicker.setDisable(false);
@@ -160,6 +165,8 @@ public class EditOrderController implements Initializable {
 		price.setDisable(false);
 		stageBar.setDisable(false);
 	}
+	
+	//this allows user to edit customers
 	public void viewCustomer(ActionEvent event) throws IOException {
 		TempCustomer.setTempCustomer(order.getCustomer());
 		Stage stage = new Stage();
