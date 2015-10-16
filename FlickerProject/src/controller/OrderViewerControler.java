@@ -206,25 +206,26 @@ public class OrderViewerControler implements Initializable{
 		  
 	        @Override
 	        public void handle(MouseEvent t) {
-	            TableCell c = (TableCell) t.getSource();
-	            int index = c.getIndex();
-	            tempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
-	            Stage stage = new Stage();
-	    		Parent root;
-				try {
-					root = FXMLLoader.load(EditOrderGUI.class.getResource("EditOrder.fxml"));
-					stage.setScene(new Scene(root));
-		    	    stage.setTitle("View Customer");
-		    	    stage.initModality(Modality.APPLICATION_MODAL);
-		    	    stage.initOwner(c.getScene().getWindow());
-		    	    stage.showAndWait();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				data = FXCollections.observableArrayList(AllOrders.getOrderTable());
-				updateTable();
-	    		
+	        	if (t.getClickCount()%2==0){ //double click
+		            TableCell c = (TableCell) t.getSource();
+		            int index = c.getIndex();
+		            tempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
+		            Stage stage = new Stage();
+		    		Parent root;
+					try {
+						root = FXMLLoader.load(EditOrderGUI.class.getResource("EditOrder.fxml"));
+						stage.setScene(new Scene(root));
+			    	    stage.setTitle("View Customer");
+			    	    stage.initModality(Modality.APPLICATION_MODAL);
+			    	    stage.initOwner(c.getScene().getWindow());
+			    	    stage.showAndWait();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+					updateTable();
+	        	}
 	        }
 	    }
 	

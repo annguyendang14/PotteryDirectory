@@ -54,8 +54,6 @@ public class EditOrderController implements Initializable {
 		try {
 			customerNameBar.setText(order.getCustomer().getName());
 			dateOrderedPicker.setValue(toLocalDate(order.getOrderDate()));
-			//inserted the dueDatePicker here rather than the other try/catch.
-			dueDatePicker.setValue(toLocalDate(order.getDueDate()));
 			orderNumBar.setText(""+order.getOrderNum());
 			description.setText(order.getDescription());
 			price.setText(""+order.getPrice());
@@ -68,7 +66,8 @@ public class EditOrderController implements Initializable {
 		dueDatePicker.setValue(toLocalDate(order.getDueDate()));
 		
 	} catch (Exception e){
-		e.printStackTrace();
+		
+		System.out.println("This order dont have dueDate!");
 	}
 	
 	
