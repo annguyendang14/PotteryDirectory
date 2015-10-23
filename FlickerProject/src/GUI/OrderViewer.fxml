@@ -31,8 +31,14 @@
                </columnResizePolicy>
             </TableView>
             <TextField fx:id="searchBox" layoutX="7.0" layoutY="14.0" onAction="#searchBoxTypeIn" prefHeight="25.0" prefWidth="550.0" />
-            <Button fx:id="addOrderButton" layoutX="470.0" layoutY="373.0" mnemonicParsing="false" onAction="#addNewOrder" prefHeight="25.0" prefWidth="80.0" text="Add Order" />
-            <Button layoutX="582.0" layoutY="373.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Quit" />
+            <Button fx:id="addOrderButton" layoutX="445.0" layoutY="364.0" mnemonicParsing="false" onAction="#addNewOrder" prefHeight="30.0" prefWidth="104.0" text="Add Order">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button layoutX="582.0" layoutY="364.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" text="Quit">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
       </children>
     </AnchorPane>
   </children>
