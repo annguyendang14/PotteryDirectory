@@ -66,7 +66,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label layoutX="192.0" layoutY="425.0" text="(0=undone, 1=done, 2=shipped, 3=complete)">
+      <Label layoutX="176.0" layoutY="425.0" prefHeight="20.0" prefWidth="355.0" text="(0=undone, 1=done, 2=shipped, 3=complete, 4=cancel)">
          <font>
             <Font size="14.0" />
          </font></Label>

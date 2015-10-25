@@ -102,7 +102,7 @@ public class EditOrderController implements Initializable {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
 				alert.setHeaderText("Null");
-				alert.setContentText("Stage must be number (from 0 to 3)!!");
+				alert.setContentText("Stage must be number (from 0 to 4)!!");
 
 				alert.showAndWait();
 		    } 
@@ -111,11 +111,11 @@ public class EditOrderController implements Initializable {
 			// the try/catch check if the stage is int type or not, if statement
 			// check if it from 0 to 3 
 			// this will not happen after we change stage choice to drop down box
-			if (!(Integer.parseInt(stageBar.getText())>=0&&Integer.parseInt(stageBar.getText())<4)){
+			if (!(Integer.parseInt(stageBar.getText())>=0&&Integer.parseInt(stageBar.getText())<5)){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
 				alert.setHeaderText("Null");
-				alert.setContentText("Stage must be number (from 0 to 3)!!");
+				alert.setContentText("Stage must be number (from 0 to 4)!!");
 
 				alert.showAndWait();
 			} else {
