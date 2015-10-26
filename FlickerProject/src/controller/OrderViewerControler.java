@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,6 +49,8 @@ public class OrderViewerControler implements Initializable{
 	@FXML private Button addOrderButton;
 	@FXML private TextField searchBox;
 	ObservableList<OrderTable> data;
+	@FXML private ChoiceBox stageBox;
+	ObservableList<String> stageList = FXCollections.observableArrayList("0", "1", "2", "3", "4");
 	
 	/*
 	 * This method saves a new order to orders
@@ -69,6 +72,7 @@ public class OrderViewerControler implements Initializable{
 		
 		
 	}
+	
 
 	@Override
 	/*
@@ -109,6 +113,11 @@ public class OrderViewerControler implements Initializable{
 	                return cell;
 	            }
 	        };
+	        
+	        stageBox.setValue("0");
+			stageBox.setItems(stageList); 
+	        
+	        
 		/*FormattedTableCellFactory cellFac = new FormattedTableCellFactory();
 		cellFac.setAlignment(TextAlignment.LEFT);*/
 		orderNumCol.setCellFactory(stringCellFactory);
@@ -166,6 +175,13 @@ public class OrderViewerControler implements Initializable{
 		updateTable();
 		
 	}
+	/*
+	 * This method searches for orders by different stages
+	 */
+	public void stageBoxSelect(ActionEvent event){
+		data = FXCollections.observableArrayList(OrderTable.toOrderTable(Searcher.searchOrder(AllOrders.getOrders(), (String)stageBox.getValue()))); 
+		updateTable();
+	}
 	public void editTable(ActionEvent event){
 		/*List<Order> orders = new ArrayList<Order>();
 		int i=0;
@@ -173,7 +189,7 @@ public class OrderViewerControler implements Initializable{
 			if (!dueDateCol.getCellData(i).equals("null")&&!dueDateCol.getCellData(i).equals("N/a")){
 				orders.add(new Order(customerCol.getCellData(i), new Date(orderDateCol.getCellData(i)), new Date(dueDateCol.getCellData(i)), Integer.parseInt(orderNumCol.getCellData(i)), descriptionCol.getCellData(i), Double.parseDouble(priceCol.getCellData(i)), Integer.parseInt(stageCol.getCellData(i))));
 			} else {
-				orders.add(new Order(customerCol.getCellData(i), new Date(orderDateCol.getCellData(i)),  Integer.parseInt(orderNumCol.getCellData(i)), descriptionCol.getCellData(i), Double.parseDouble(priceCol.getCellData(i)), Integer.parseInt(stageCol.getCellData(i))));
+				orders.add(new Order(customerCol.getCellData(i), new Date(orderDateCol.getCell(i)),  Integer.parseInt(orderNumCol.getCellData(i)), descriptionCol.getCellData(i), Double.parseDouble(priceCol.getCellData(i)), Integer.parseInt(stageCol.getCellData(i))));
 
 			}
 			i++;
@@ -206,25 +222,26 @@ public class OrderViewerControler implements Initializable{
 		  
 	        @Override
 	        public void handle(MouseEvent t) {
-	            TableCell c = (TableCell) t.getSource();
-	            int index = c.getIndex();
-	            tempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
-	            Stage stage = new Stage();
-	    		Parent root;
-				try {
-					root = FXMLLoader.load(EditOrderGUI.class.getResource("EditOrder.fxml"));
-					stage.setScene(new Scene(root));
-		    	    stage.setTitle("View Customer");
-		    	    stage.initModality(Modality.APPLICATION_MODAL);
-		    	    stage.initOwner(c.getScene().getWindow());
-		    	    stage.showAndWait();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				data = FXCollections.observableArrayList(AllOrders.getOrderTable());
-				updateTable();
-	    		
+	        	if (t.getClickCount()%2==0){ //double click
+		            TableCell c = (TableCell) t.getSource();
+		            int index = c.getIndex();
+		            tempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
+		            Stage stage = new Stage();
+		    		Parent root;
+					try {
+						root = FXMLLoader.load(EditOrderGUI.class.getResource("EditOrder.fxml"));
+						stage.setScene(new Scene(root));
+			    	    stage.setTitle("View Customer");
+			    	    stage.initModality(Modality.APPLICATION_MODAL);
+			    	    stage.initOwner(c.getScene().getWindow());
+			    	    stage.showAndWait();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+					updateTable();
+	        	}
 	        }
 	    }
 	

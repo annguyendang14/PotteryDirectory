@@ -134,10 +134,4 @@ public class NewOrderController implements Initializable{
 	}
 	
 	
-	
-	
-
-
-
-
 }
