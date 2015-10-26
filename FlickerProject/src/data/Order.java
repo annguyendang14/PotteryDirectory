@@ -161,12 +161,14 @@ public class Order {
 	}
 
 
-	public void setStage(int stage) { // restricted to reduce stage for now,
-										// might change later
-		if (stage >= this.stage) {
-			this.stage = stage;
-		}
+	public void setStage(int stage) { 
+		this.stage = stage;
 	}
+	
+	public void setStageByName(String stageName) {
+		
+	}
+	
 	/**
 	 * Gets and returns the parameters
 	 */
@@ -244,4 +246,19 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
+	public static int convertStageNameToStageNumber(String stageName){ 
+		if (stageName.equals("Undone")){
+			return 0;
+		} else if (stageName.equals("Done")){
+			return 1;
+		} else if (stageName.equals("Shipped")){
+			return 2;
+		} else if (stageName.equals("Completed")){
+			return 3;
+		} else { // for canceled
+			return 4;
+		}
+	}
+
+	
 }

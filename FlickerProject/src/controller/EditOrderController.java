@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 
 import GUI.EditCustomerGUI;
 import data.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -41,7 +44,9 @@ public class EditOrderController implements Initializable {
 	//@FXML private Button generateButton;
 	@FXML private Button viewCustomerButton;
 	@FXML private Button editButton;
-	@FXML private TextField stageBar;
+	// @FXML private TextField stageBar;
+	@FXML private ChoiceBox<String> stageBox;
+	ObservableList<String> stageList = FXCollections.observableArrayList("Undone", "Done", "Shipped", "Completed", "Canceled");
 	private Order order = tempOrder.getTempOrder();
 
 	@Override
@@ -51,25 +56,27 @@ public class EditOrderController implements Initializable {
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		stageBox.setValue("Undone");
+		stageBox.setItems(stageList);
+
 		try {
 			customerNameBar.setText(order.getCustomer().getName());
 			dateOrderedPicker.setValue(toLocalDate(order.getOrderDate()));
 			orderNumBar.setText(""+order.getOrderNum());
 			description.setText(order.getDescription());
 			price.setText(""+order.getPrice());
-			stageBar.setText(""+order.getStage());
+			//stageBar.setText(""+order.getStage());
+			stageBox.setValue(""+order.getStage());  // Don't know if it's correct
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		try {
-		
-		dueDatePicker.setValue(toLocalDate(order.getDueDate()));
-		
-	} catch (Exception e){
-		
-		System.out.println("This order dont have dueDate!");
-	}
+		if (order.getDueDate() != null) {
+			dueDatePicker.setValue(toLocalDate(order.getDueDate()));
+		}		    
 	
+		TempCustomer.setTempCustomer(order.getCustomer());
+		
+		   
 	
 	//Why did we have this extra try/catch?
 		//AN: dueDate might not be available (it optional), so if we dont have 
@@ -95,8 +102,11 @@ public class EditOrderController implements Initializable {
 
 				alert.showAndWait();
 		    } 
+			
+			/*
 			try {
 				Integer.parseInt(stageBar.getText());
+				
 				
 			} catch(NumberFormatException e ) { 
 				Alert alert = new Alert(AlertType.WARNING);
@@ -106,11 +116,18 @@ public class EditOrderController implements Initializable {
 
 				alert.showAndWait();
 		    } 
+			
+			*/
+			
 			// Why is this if statement here? Is this duplicate code?
 			// An: It kind of duplicate, but it needed for now,
 			// the try/catch check if the stage is int type or not, if statement
 			// check if it from 0 to 3 
 			// this will not happen after we change stage choice to drop down box
+			
+			
+			
+			/*
 			if (!(Integer.parseInt(stageBar.getText())>=0&&Integer.parseInt(stageBar.getText())<5)){
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
@@ -119,6 +136,8 @@ public class EditOrderController implements Initializable {
 
 				alert.showAndWait();
 			} else {
+			
+			*/
 			
 			
 			/*if (orderNumBar.getText().equals("0")){
@@ -131,24 +150,29 @@ public class EditOrderController implements Initializable {
 			}else {*/
 				
 				// Sends string data from TextFields to the tempOrder class for storage.
+			
+				
+			
+				
 				if (dueDatePicker.getValue() != null){
 			
-					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Integer.parseInt(stageBar.getText()));
+					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()) );
+					// OrderViewerControler.stageToInt(stageBar.getValue())
+					// Integer.parseInt(stageBar.getText())
 					System.out.println(order);
 				} else {
-					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Integer.parseInt(stageBar.getText()));
+					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()));
 					System.out.println(order);
 				}
 				//just to print out thing for now
 				
 				for (Order order: AllOrders.getOrders()){
-					System.out.println("all order: "+order);
+					System.out.println("all order: "+order +order.getCustomer());
 				}
 				Node  source = (Node)  event.getSource(); 
 				Stage stage  = (Stage) source.getScene().getWindow();
 				stage.close();
-			}
-			
+		
 			
 			
 		        
@@ -168,12 +192,13 @@ public class EditOrderController implements Initializable {
 		dueDatePicker.setDisable(false);
 		description.setDisable(false);
 		price.setDisable(false);
-		stageBar.setDisable(false);
+		// stageBar.setDisable(false);
+		stageBox.setDisable(false);
 	}
 	
 	//this allows user to edit customers
 	public void viewCustomer(ActionEvent event) throws IOException {
-		TempCustomer.setTempCustomer(order.getCustomer());
+		
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(EditCustomerGUI.class.getResource("EditCustomer.fxml"));
 		stage.setScene(new Scene(root));

@@ -99,6 +99,16 @@ public class Searcher {
 		return result;
 	}
 	
+	public static List<Order> searchStageOrder(List<Order> orders, int stageNum){
+		List<Order> result = new ArrayList<Order>();
+		for (Order i: orders){
+			if (i.getStage()==stageNum){
+				result.add(i);
+			}
+		}
+			
+		return result;
+	}
 	
 	
 	

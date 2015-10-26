@@ -40,8 +40,7 @@
                   <Font size="14.0" />
                </font></Button>
             <Label layoutX="14.0" layoutY="366.0" prefHeight="27.0" prefWidth="41.0" text="Stage: " />
-            <ChoiceBox fx:id="stageBox" layoutX="55.0" layoutY="367.0" onMouseClicked="#stageBoxSelect" prefHeight="25.0" prefWidth="52.0" />
-            <Label layoutX="128.0" layoutY="371.0" prefHeight="17.0" prefWidth="298.0" text="0=undone, 1=done, 2=shipped, 3=complete, 4=cencel" />
+            <ChoiceBox fx:id="stageBox" layoutX="55.0" layoutY="367.0" prefHeight="25.0" prefWidth="116.0" />
       </children>
     </AnchorPane>
   </children>

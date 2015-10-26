@@ -66,13 +66,6 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label layoutX="176.0" layoutY="425.0" prefHeight="20.0" prefWidth="355.0" text="(0=undone, 1=done, 2=shipped, 3=complete, 4=cancel)">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <TextField fx:id="stageBar" disable="true" layoutX="112.0" layoutY="421.0" prefHeight="25.0" prefWidth="50.0">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
+      <ChoiceBox fx:id="stageBox" layoutX="88.0" layoutY="421.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
