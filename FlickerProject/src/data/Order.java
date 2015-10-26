@@ -259,6 +259,20 @@ public class Order {
 			return 4;
 		}
 	}
+	
+	public static String convertStageNumberToStageName(int stageNum){
+		if (stageNum==0){
+			return "Undone";
+		} else if (stageNum == 1){
+			return "Done";
+		} else if (stageNum == 2){
+			return "Shipped";
+		}  else if (stageNum == 3){
+			return "Completed";
+		}  else { // for stageNum == 4
+			return "Canceled"; 
+		}
+	}
 
 	
 }

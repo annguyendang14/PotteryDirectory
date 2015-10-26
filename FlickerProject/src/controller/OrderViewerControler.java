@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import CSV.CustomerFileReader;
@@ -14,7 +15,7 @@ import data.AllOrders;
 import data.Customer;
 import data.Order;
 import data.OrderTable;
-import data.tempOrder;
+import data.TempOrder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,6 +39,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import searcherAndSorter.DefaultSortingComparator;
 import searcherAndSorter.Searcher;
 
 public class OrderViewerControler implements Initializable{
@@ -53,7 +55,7 @@ public class OrderViewerControler implements Initializable{
 	@FXML private TextField searchBox;
 	ObservableList<OrderTable> data;
 	@FXML private ChoiceBox<String> stageBox;
-	ObservableList<String> stageList = FXCollections.observableArrayList("Undone", "Done", "Shipped", "Completed", "Canceled");
+	ObservableList<String> stageList = FXCollections.observableArrayList("All","Undone", "Done", "Shipped", "Completed", "Canceled");
 	
 	/*
 	 * This method saves a new order to orders
@@ -66,6 +68,7 @@ public class OrderViewerControler implements Initializable{
 	    stage.initModality(Modality.APPLICATION_MODAL);
 	    stage.initOwner(addOrderButton.getScene().getWindow());
 	    stage.showAndWait();
+	    Collections.sort(AllOrders.getOrders(), new DefaultSortingComparator());		
 	    data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 	    updateTable();
 	    
@@ -82,7 +85,7 @@ public class OrderViewerControler implements Initializable{
 	 * This method opens the order window when the row is clicked.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		    stageBox.setValue("Undone");
+		    stageBox.setValue("All");
 			stageBox.setItems(stageList);
 			stageBox.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String> () {
 
@@ -115,6 +118,7 @@ public class OrderViewerControler implements Initializable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Collections.sort(AllOrders.getOrders(), new DefaultSortingComparator());
 		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 		//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
 		 Callback<TableColumn, TableCell> stringCellFactory =
@@ -192,9 +196,17 @@ public class OrderViewerControler implements Initializable{
 	 * This method searches for orders by different stages
 	 */
 	private void searchForOrdersByStage(String stageName){
-		data = FXCollections.observableArrayList(OrderTable.toOrderTable(Searcher.searchStageOrder(AllOrders.getOrders(), Order.convertStageNameToStageNumber(stageName)))); 
-		updateTable();
+	
+		if (stageName.equals("All")){
+			data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+			updateTable();
+		} else {
+			data = FXCollections.observableArrayList(OrderTable.toOrderTable(Searcher.searchStageOrder(AllOrders.getOrders(), Order.convertStageNameToStageNumber(stageName)))); 
+			updateTable();
+		}
 	}
+	
+
 	public void editTable(ActionEvent event){
 		/*List<Order> orders = new ArrayList<Order>();
 		int i=0;
@@ -238,7 +250,7 @@ public class OrderViewerControler implements Initializable{
 	        	if (t.getClickCount()%2==0){ //double click
 		            TableCell c = (TableCell) t.getSource();
 		            int index = c.getIndex();
-		            tempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
+		            TempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
 		            Stage stage = new Stage();
 		    		Parent root;
 					try {

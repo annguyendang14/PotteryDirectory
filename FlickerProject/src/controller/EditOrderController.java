@@ -47,7 +47,7 @@ public class EditOrderController implements Initializable {
 	// @FXML private TextField stageBar;
 	@FXML private ChoiceBox<String> stageBox;
 	ObservableList<String> stageList = FXCollections.observableArrayList("Undone", "Done", "Shipped", "Completed", "Canceled");
-	private Order order = tempOrder.getTempOrder();
+	private Order order = TempOrder.getTempOrder();
 
 	@Override
 	/*
@@ -156,12 +156,12 @@ public class EditOrderController implements Initializable {
 				
 				if (dueDatePicker.getValue() != null){
 			
-					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()) );
+					TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()) );
 					// OrderViewerControler.stageToInt(stageBar.getValue())
 					// Integer.parseInt(stageBar.getText())
 					System.out.println(order);
 				} else {
-					tempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()));
+					TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()));
 					System.out.println(order);
 				}
 				//just to print out thing for now

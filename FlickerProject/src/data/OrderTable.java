@@ -37,7 +37,7 @@ public class OrderTable {
 //			stag = "complete";
 //			
 //		} 
-		this.stage = new SimpleStringProperty(order.getStage()+"");
+		this.stage = new SimpleStringProperty(Order.convertStageNumberToStageName(order.getStage()));
 		this.orderNum = new SimpleStringProperty(""+order.getOrderNum());
 	}
 	public String getCustomerName() {
