@@ -52,18 +52,18 @@ public class Searcher {
 	 * this method search for a customer by their name
 	 * @param customers list of customer
 	 * @param name the name of the customer user want to search for
-	 * @return
+	 * @return list of Customer match the search
 	 */
 	public static List<Customer> searchCustomer(List<Customer> customers, String name){
 		List<Customer> result = new ArrayList<Customer>();
-		for (Customer i: customers){
-			if (i.getName().contains(name)){
-				result.add(i);
+		for (Customer cus: customers){
+			if (cus.getName().contains(name)){
+				result.add(cus);
 			}
 			
 		}
-		for (Customer i: result){
-			System.out.println(i.getName());
+		for (Customer cus: result){
+			System.out.println(cus.getName());
 		}
 		return result;
 	}
@@ -79,23 +79,23 @@ public class Searcher {
 		List<Order> result = new ArrayList<Order>();
 		if (isInteger(searchKeyWords)){
 			int searchOrderNum = Integer.parseInt(searchKeyWords);
-			for (Order i: orders){
-				if (i.getOrderNum()==searchOrderNum){
-					result.add(i);
+			for (Order ord: orders){
+				if (ord.getOrderNum()==searchOrderNum){
+					result.add(ord);
 				}
 			}
 		} else {
-			for (Order i: orders){
-				if (i.getCustomer().getName().contains(searchKeyWords)){
-					result.add(i);
+			for (Order ord: orders){
+				if (ord.getCustomer().getName().contains(searchKeyWords)){
+					result.add(ord);
 				}
 			}
 		}
 		
-		for (Order i: result){
+		/*for (Order i: result){
 			System.out.println(i);
 		}
-		
+		*/
 		return result;
 	}
 	
@@ -114,6 +114,7 @@ public class Searcher {
 	
 	/**
 	 * http://stackoverflow.com/questions/5439529/determine-if-a-string-is-an-integer-in-java
+	 * 
 	 */
 	public static boolean isInteger(String s) {
 	    try { 
