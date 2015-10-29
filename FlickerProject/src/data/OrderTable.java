@@ -1,28 +1,35 @@
 package data;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import controller.EditOrderController;
 import javafx.beans.property.*;
 
 public class OrderTable {
 	
 	private final SimpleStringProperty customerName;
 	private final SimpleStringProperty description;
-	private final SimpleStringProperty dueDate;
-	private final SimpleStringProperty orderDate;
+	private final SimpleObjectProperty<LocalDate> dueDate;
+	private final SimpleObjectProperty<LocalDate> orderDate;
 	private final SimpleStringProperty price;
 	private final SimpleStringProperty stage;
-	private final SimpleStringProperty orderNum;
+	private final SimpleIntegerProperty orderNum;
 	
 	public OrderTable(Order order) {
 		
 		this.customerName = new SimpleStringProperty(checkNull(order.getCustomer().getName()));
 		this.description = new SimpleStringProperty(checkNull(order.getDescription()));
 		//this.description = new SimpleStringProperty("dkjdfcbsakjd");
-		this.dueDate = new SimpleStringProperty(checkNull(order.getDueDate()));
+		if (order.getDueDate()!=null){
+			this.dueDate = new SimpleObjectProperty<LocalDate>(EditOrderController.toLocalDate(order.getDueDate()));
+		} else {
+			//this.dueDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(0, 1, 1));
+			this.dueDate = null;
+		}
 		//this.dueDate = new SimpleStringProperty("21/11/1996");
-		this.orderDate = new SimpleStringProperty(checkNull(order.getOrderDate().toString()));
+		this.orderDate = new SimpleObjectProperty<LocalDate>(EditOrderController.toLocalDate(order.getOrderDate()));
 		this.price = new SimpleStringProperty(checkNull(""+order.getPrice()));
 //		String stag;
 //		if (order.getStage()==0){
@@ -38,7 +45,7 @@ public class OrderTable {
 //			
 //		} 
 		this.stage = new SimpleStringProperty(Order.convertStageNumberToStageName(order.getStage()));
-		this.orderNum = new SimpleStringProperty(""+order.getOrderNum());
+		this.orderNum = new SimpleIntegerProperty(order.getOrderNum());
 	}
 	public String getCustomerName() {
 		return customerName.get();
@@ -46,10 +53,15 @@ public class OrderTable {
 	public String getDescription() {
 		return description.get();
 	}
-	public String getDueDate() {
-		return dueDate.get();
+	public LocalDate getDueDate() {
+		if (dueDate!=null){
+			return dueDate.get();
+			
+		} else {
+			return null;
+		}
 	}
-	public String getOrderDate() {
+	public LocalDate getOrderDate() {
 		return orderDate.get();
 	}
 	public String getPrice() {
@@ -58,7 +70,7 @@ public class OrderTable {
 	public String getStage() {
 		return stage.get();
 	}
-	public String getOrderNum() {
+	public int getOrderNum() {
 		return orderNum.get();
 	}
 	private static String checkNull(Object o){

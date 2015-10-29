@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
@@ -36,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -68,6 +70,7 @@ public class OrderViewerControler implements Initializable{
 	    stage.initModality(Modality.APPLICATION_MODAL);
 	    stage.initOwner(addOrderButton.getScene().getWindow());
 	    stage.showAndWait();
+	    
 	    Collections.sort(AllOrders.getOrders(), new DefaultSortingComparator());		
 	    data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 	    updateTable();
@@ -127,18 +130,39 @@ public class OrderViewerControler implements Initializable{
 	          //TODO: need to change to double-click
 	            public TableCell call(TableColumn p) {
 	                MyStringTableCell cell = new MyStringTableCell();
+	                cell.setFont(new Font("Arial", 16));
 	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
 	                return cell;
 	            }
 	        };
 	        
+	        Callback<TableColumn, TableCell> integerCellFactory =
+	                new Callback<TableColumn, TableCell>() {
+	            @Override
+	            public TableCell call(TableColumn p) {
+	                MyIntegerTableCell cell = new MyIntegerTableCell();
+	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
+	                return cell;
+	            }
+	        };   
 	       
-	        
+	        Callback<TableColumn, TableCell> dateCellFactory =
+	                new Callback<TableColumn, TableCell>() {
+	            @Override
+	          //TODO: need to change to double-click
+	            public TableCell call(TableColumn p) {
+	                MyDateTableCell cell = new MyDateTableCell();
+	                cell.setFont(new Font("Arial", 16));
+	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
+	                return cell;
+	            }
+	        };   
 	        
 		/*FormattedTableCellFactory cellFac = new FormattedTableCellFactory();
 		cellFac.setAlignment(TextAlignment.LEFT);*/
-		orderNumCol.setCellFactory(stringCellFactory);
-		dueDateCol.setCellFactory(stringCellFactory);
+		orderNumCol.setCellFactory(integerCellFactory);
+		orderDateCol.setCellFactory(dateCellFactory);
+		dueDateCol.setCellFactory(dateCellFactory);
 		customerCol.setCellFactory(stringCellFactory);
 		descriptionCol.setCellFactory(stringCellFactory);
 		priceCol.setCellFactory(stringCellFactory);
@@ -161,7 +185,7 @@ public class OrderViewerControler implements Initializable{
 			    new PropertyValueFactory<OrderTable,String>("dueDate")
 			);
 		orderNumCol.setCellValueFactory(
-			    new PropertyValueFactory<OrderTable,String>("orderNum")
+			    new PropertyValueFactory<OrderTable,Integer>("orderNum")
 			);
 		descriptionCol.setCellValueFactory(
 			    new PropertyValueFactory<OrderTable,String>("description")
@@ -250,7 +274,7 @@ public class OrderViewerControler implements Initializable{
 	        	if (t.getClickCount()%2==0){ //double click
 		            TableCell c = (TableCell) t.getSource();
 		            int index = c.getIndex();
-		            TempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),Integer.parseInt(data.get(index).getOrderNum())));
+		            TempOrder.setTempOrder(Searcher.searchForOrder(AllOrders.getOrders(),(data.get(index).getOrderNum())));
 		            Stage stage = new Stage();
 		    		Parent root;
 					try {
@@ -287,6 +311,50 @@ public class OrderViewerControler implements Initializable{
 	 
 	        private String getString() {
 	            return getItem() == null ? "" : getItem().toString();
+	        }
+	    }
+	 class MyIntegerTableCell extends TableCell<OrderTable, Integer> {
+		 
+	        @Override
+	        public void updateItem(Integer item, boolean empty) {
+	            super.updateItem(item, empty);
+	            setText(empty ? null : getString());
+	            setGraphic(null);
+	        }
+	 
+	        private String getString() {
+	            return getItem() == null ? "" : getItem().toString();
+	        }
+	    }
+	 class MyDateTableCell extends TableCell<OrderTable, LocalDate> {
+		 
+	        @Override
+	        public void updateItem(LocalDate item, boolean empty) {
+	            super.updateItem(item, empty);
+	            setText(empty ? null : getString());
+	            setGraphic(null);
+	        }
+	 
+	        private String getString() {
+	        	LocalDate item = (LocalDate) getItem();
+	        	String dateFormated = null;
+	        	if (item!=null){
+	        		String month;
+	        		if (item.getMonthValue()<10){
+	        			month = "0"+item.getMonthValue();
+	        		} else {
+	        			month = ""+item.getMonthValue();
+	        		}
+	        		String day;
+	        		if (item.getDayOfMonth()<10){
+	        			day = "0"+item.getDayOfMonth();
+	        		} else {
+	        			day = ""+item.getDayOfMonth();
+	        		}
+	        		
+	        		dateFormated = ""+month+"/"+day+"/"+item.getYear();
+	        	} 
+	            return dateFormated == null ? "N/a" : dateFormated;
 	        }
 	    }
 	  

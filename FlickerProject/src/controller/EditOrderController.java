@@ -155,11 +155,22 @@ public class EditOrderController implements Initializable {
 			
 				
 				if (dueDatePicker.getValue() != null){
+					if (dueDatePicker.getValue().compareTo(dateOrderedPicker.getValue())<=0){
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("Warning Dialog");
+						
+						alert.setContentText("Please choose due date later than order date!");
+
+						alert.showAndWait();
+						return;
+						
+					}else {
 			
-					TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()) );
-					// OrderViewerControler.stageToInt(stageBar.getValue())
-					// Integer.parseInt(stageBar.getText())
-					System.out.println(order);
+						TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()) );
+						// OrderViewerControler.stageToInt(stageBar.getValue())
+						// Integer.parseInt(stageBar.getText())
+						System.out.println(order);
+					}
 				} else {
 					TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()));
 					System.out.println(order);

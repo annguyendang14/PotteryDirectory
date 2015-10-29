@@ -32,7 +32,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button fx:id="saveOrder" layoutX="210.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveNewOrder" text="Save Order">
+      <Button fx:id="saveOrder" disable="true" layoutX="210.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveNewOrder" text="Save Order">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -58,5 +58,6 @@
          <font>
             <Font size="14.0" />
          </font></Button>
+      <Label fx:id="warningLabel" layoutX="306.0" layoutY="424.0" prefHeight="38.0" prefWidth="235.0" text="Please choose Customer" textFill="RED" />
    </children>
 </AnchorPane>

@@ -20,7 +20,7 @@ public class OrderViewerGUI extends Application {
 			//root gets layout from OrderViewer.fxml file, created with FX Scene Builder.
 			Parent root = FXMLLoader.load(getClass().getResource("OrderViewer.fxml"));
 			primaryStage.setMaximized(true);
-			primaryStage.setResizable(false);
+			//primaryStage.setResizable(false);
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

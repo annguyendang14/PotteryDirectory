@@ -42,6 +42,7 @@ public class NewOrderController implements Initializable{
 	@FXML private TextField price;
 	//@FXML private Button generateButton;
 	@FXML private Button addCustomerButton;
+	@FXML private Label warningLabel;
 
 
 
@@ -55,7 +56,7 @@ public class NewOrderController implements Initializable{
 			} catch(NumberFormatException e) { 
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Null");
+				
 				alert.setContentText("Price must be number!!");
 
 				alert.showAndWait();
@@ -69,12 +70,26 @@ public class NewOrderController implements Initializable{
 				generateOrderNum(new ActionEvent());
 				alert.showAndWait();
 			}else {*/
+			
+				
 				Order newOrder;
 			
-				if (dueDatePicker.getValue() != null){
+				if(dueDatePicker.getValue() != null){
+					if (dueDatePicker.getValue().compareTo(dateOrderedPicker.getValue())<=0){
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("Warning Dialog");
+						
+						alert.setContentText("Please choose due date later than order date!");
+
+						alert.showAndWait();
+						return;
+						
+					}else {
+						newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+						System.out.println(newOrder);
+					}
 			
-					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
-					System.out.println(newOrder);
+					
 				} else {
 					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
 					System.out.println(newOrder);
@@ -124,6 +139,8 @@ public class NewOrderController implements Initializable{
 	    stage.showAndWait();
 	    
 	    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
+	    warningLabel.setText("");
+	    saveOrder.setDisable(false);
 	    
 	}
 	@Override
