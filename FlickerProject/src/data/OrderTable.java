@@ -14,7 +14,7 @@ public class OrderTable {
 	private final SimpleObjectProperty<LocalDate> dueDate;
 	private final SimpleObjectProperty<LocalDate> orderDate;
 	private final SimpleStringProperty price;
-	private final SimpleStringProperty stage;
+	private final SimpleIntegerProperty stage;
 	private final SimpleIntegerProperty orderNum;
 	
 	public OrderTable(Order order) {
@@ -44,7 +44,7 @@ public class OrderTable {
 //			stag = "complete";
 //			
 //		} 
-		this.stage = new SimpleStringProperty(Order.convertStageNumberToStageName(order.getStage()));
+		this.stage = new SimpleIntegerProperty(order.getStage());
 		this.orderNum = new SimpleIntegerProperty(order.getOrderNum());
 	}
 	public String getCustomerName() {
@@ -67,7 +67,7 @@ public class OrderTable {
 	public String getPrice() {
 		return price.get();
 	}
-	public String getStage() {
+	public int getStage() {
 		return stage.get();
 	}
 	public int getOrderNum() {
