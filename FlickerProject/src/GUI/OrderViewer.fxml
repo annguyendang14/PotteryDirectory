@@ -52,11 +52,11 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
-            <Label layoutX="14.0" layoutY="366.0" prefHeight="27.0" prefWidth="60.0" text="Stage: " AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="7.0">
+            <Label layoutX="14.0" layoutY="366.0" prefHeight="27.0" prefWidth="73.0" text="Stage: " AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="7.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
-            <ChoiceBox fx:id="stageBox" layoutX="67.0" layoutY="362.0" prefHeight="25.0" prefWidth="116.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="67.0" />
+            <ChoiceBox fx:id="stageBox" layoutX="80.0" layoutY="362.0" prefHeight="25.0" prefWidth="116.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" />
       </children>
     </AnchorPane>
   </children>

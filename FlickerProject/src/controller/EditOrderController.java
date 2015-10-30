@@ -56,7 +56,7 @@ public class EditOrderController implements Initializable {
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		stageBox.setValue("Undone");
+		stageBox.setValue(Order.convertStageNumberToStageName(order.getStage()));
 		stageBox.setItems(stageList);
 
 		try {

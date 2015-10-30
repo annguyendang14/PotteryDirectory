@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.ResourceBundle;
@@ -144,7 +145,17 @@ public class OrderViewerControler implements Initializable{
 	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
 	                return cell;
 	            }
-	        };   
+	        };  
+	        
+	        Callback<TableColumn, TableCell> stageCellFactory =
+	                new Callback<TableColumn, TableCell>() {
+	            @Override
+	            public TableCell call(TableColumn p) {
+	                MyStageTableCell cell = new MyStageTableCell();
+	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
+	                return cell;
+	            }
+	        }; 
 	       
 	        Callback<TableColumn, TableCell> dateCellFactory =
 	                new Callback<TableColumn, TableCell>() {
@@ -166,7 +177,7 @@ public class OrderViewerControler implements Initializable{
 		customerCol.setCellFactory(stringCellFactory);
 		descriptionCol.setCellFactory(stringCellFactory);
 		priceCol.setCellFactory(stringCellFactory);
-		stageCol.setCellFactory(stringCellFactory);
+		stageCol.setCellFactory(stageCellFactory);
 		updateTable();
 		
 		
@@ -313,6 +324,7 @@ public class OrderViewerControler implements Initializable{
 	            return getItem() == null ? "" : getItem().toString();
 	        }
 	    }
+	 
 	 class MyIntegerTableCell extends TableCell<OrderTable, Integer> {
 		 
 	        @Override
@@ -322,10 +334,32 @@ public class OrderViewerControler implements Initializable{
 	            setGraphic(null);
 	        }
 	 
-	        private String getString() {
+	        public String getString() {
 	            return getItem() == null ? "" : getItem().toString();
 	        }
 	    }
+	 
+	 class MyDoubleTableCell extends TableCell<OrderTable, Double> {
+		 
+	        @Override
+	        public void updateItem(Double item, boolean empty) {
+	            super.updateItem(item, empty);
+	            setText(empty ? null : getString());
+	            setGraphic(null);
+	        }
+	 
+	        public String getString() {
+	        	String strDouble = String.format("%.2f", getItem());
+	            return getItem() == null ? "N/a" : strDouble;
+	        }
+	    }
+	 
+	 class MyStageTableCell extends MyIntegerTableCell{
+		 	public String getString() {
+	            return getItem() == null ? "" : Order.convertStageNumberToStageName(getItem());
+	        }
+	 }
+	 
 	 class MyDateTableCell extends TableCell<OrderTable, LocalDate> {
 		 
 	        @Override
