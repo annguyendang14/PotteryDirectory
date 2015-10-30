@@ -1,9 +1,12 @@
 package data;
+import java.util.Date;
+
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 public class StringtoMathCalculator {
 	public static void main(String[] args) {
 		DoubleEvaluator evaluator = new DoubleEvaluator();
-	    String expression = "(2^3-1)*sin(pi/4)/ln(pi^2)";
+	    Order tempOrder = new Order("Kelsey", new Date(2,3,2015), new Date(2,5,2015), 12,  "4.95*12" , 25.5, 5);
+		String expression = tempOrder.getDescription();
 	    // Evaluate an expression
 	    Double result = evaluator.evaluate(expression);
 	    // Ouput the result
