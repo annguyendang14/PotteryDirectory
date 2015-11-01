@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 import GUI.EditCustomerGUI;
+import GUI.PrintViewGUI;
 import data.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +39,7 @@ public class EditOrderController implements Initializable {
 	@FXML private DatePicker dateOrderedPicker;
 	@FXML private Label orderNumBar;
 	@FXML private Button saveOrder;
+	@FXML private Button printButton;
 	@FXML private DatePicker dueDatePicker;
 	@FXML private TextArea description;
 	@FXML private TextField price;
@@ -220,6 +222,14 @@ public class EditOrderController implements Initializable {
 	    
 	    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
 	}
-	
+	public void print(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		Parent root = FXMLLoader.load(PrintViewGUI.class.getResource("PrintView.fxml"));
+		stage.setScene(new Scene(root));
+	    stage.setTitle("Print Screen");
+	    stage.initModality(Modality.APPLICATION_MODAL);
+	    stage.initOwner(printButton.getScene().getWindow());
+	    stage.showAndWait();
+	}
 
 }

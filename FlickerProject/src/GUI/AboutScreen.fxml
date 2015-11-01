@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="548.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AboutScreenController">
+   <children>
+      <Label layoutX="175.0" layoutY="14.0" text="About The Program">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="73.0" text="Group Members:" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="102.0" text="An Nguyan Dang">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="125.0" text="Kelsey Self">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="148.0" text="Amiao Gao">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="173.0" text="Taylor Vaughan">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="325.0" layoutY="73.0" text="Project Supervisor:" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="369.0" layoutY="104.0" text="Dr. Forrest Stonedahl">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="373.0" layoutY="502.0" text="ACE Consulting, LLC">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="419.0" layoutY="525.0" text="Augustana College">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="274.0" text="Javaluator-3.0.1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="298.0" text="OpenCSV-3.5">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="15.0" layoutY="236.0" text="Libraries Used/Integrated Programs" underline="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="322.0" text="JavaFX">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="349.0" text="JavaFX SceneBuilder-2.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="53.0" layoutY="376.0" text="Stack Overflow">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="53.0" layoutY="400.0" text="YouTube">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

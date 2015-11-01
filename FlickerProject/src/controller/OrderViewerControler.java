@@ -10,7 +10,9 @@ import java.util.ResourceBundle;
 
 import CSV.CustomerFileReader;
 import CSV.OrderFileReader;
+import GUI.AboutScreenGUI;
 import GUI.EditOrderGUI;
+import GUI.NewCustomerGUI;
 import GUI.NewOrderGUI;
 import data.AllCustomer;
 import data.AllOrders;
@@ -55,6 +57,7 @@ public class OrderViewerControler implements Initializable{
 	@FXML private TableColumn  priceCol;
 	@FXML private TableColumn stageCol;
 	@FXML private Button addOrderButton;
+	@FXML private Button aboutWindowButton;
 	@FXML private TextField searchBox;
 	ObservableList<OrderTable> data;
 	@FXML private ChoiceBox<String> stageBox;
@@ -78,6 +81,15 @@ public class OrderViewerControler implements Initializable{
 	    
 	}
 	
+	public void callAboutWindow(ActionEvent event) throws IOException{
+		Stage stage = new Stage();
+		Parent root = FXMLLoader.load(AboutScreenGUI.class.getResource("AboutScreen.fxml"));
+		stage.setScene(new Scene(root));
+	    stage.setTitle("About window");
+	    stage.initModality(Modality.APPLICATION_MODAL);
+	    stage.initOwner(aboutWindowButton.getScene().getWindow());
+	    stage.showAndWait();
+	}
 	public void showOrdersInCollum(ActionEvent event){
 		
 		
@@ -179,9 +191,9 @@ public class OrderViewerControler implements Initializable{
 		priceCol.setCellFactory(stringCellFactory);
 		stageCol.setCellFactory(stageCellFactory);
 		updateTable();
-		
-		
 	}
+	
+	
 	/*
 	 * This method updates edited information to the table
 	 */
@@ -241,7 +253,7 @@ public class OrderViewerControler implements Initializable{
 		}
 	}
 	
-
+	
 	public void editTable(ActionEvent event){
 		/*List<Order> orders = new ArrayList<Order>();
 		int i=0;

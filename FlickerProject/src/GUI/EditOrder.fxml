@@ -67,5 +67,10 @@
             <Font size="18.0" />
          </font></Label>
       <ChoiceBox fx:id="stageBox" disable="true" layoutX="88.0" layoutY="421.0" prefWidth="150.0" />
+      <Button fx:id="printButton" layoutX="72.0" layoutY="471.0" mnemonicParsing="false" onAction="#print" text="Print">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
