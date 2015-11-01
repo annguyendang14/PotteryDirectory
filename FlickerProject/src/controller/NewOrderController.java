@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import GUI.NewCustomerGUI;
 import data.*;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,11 +24,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class NewOrderController implements Initializable{
 
@@ -43,6 +41,15 @@ public class NewOrderController implements Initializable{
 	//@FXML private Button generateButton;
 	@FXML private Button addCustomerButton;
 	@FXML private Label warningLabel;
+	@FXML private Label totalPrice;
+	@FXML private TextField taxRate;
+	@FXML private Label priceAfterTax;
+	@FXML private RadioButton shippingChoice;
+	@FXML private TextField shippingCost;
+	@FXML private Label finalPrice;
+	@FXML private TextArea shippingAddress;
+	@FXML private Button useCusAddButton;
+	@FXML private ToggleGroup shippingOption;
 
 
 
@@ -85,13 +92,13 @@ public class NewOrderController implements Initializable{
 						return;
 						
 					}else {
-						newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+						newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
 						System.out.println(newOrder);
 					}
 			
 					
 				} else {
-					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker),Integer.parseInt(orderNumBar.getText()), description.getText(), Double.parseDouble(price.getText()));
+					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
 					System.out.println(newOrder);
 				}
 				//just to print out thing for now
@@ -143,10 +150,32 @@ public class NewOrderController implements Initializable{
 	    saveOrder.setDisable(false);
 	    
 	}
+	
+
+	
+	public void useCusAdd(ActionEvent event) {
+		shippingAddress.setText(TempCustomer.getTempCustomer().getName()+"/n"+TempCustomer.getTempCustomer().getAddress());
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		dateOrderedPicker.setValue(LocalDate.now());
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
+		//https://docs.oracle.com/javafx/2/ui_controls/radio-button.htm
+		shippingOption.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+		    public void changed(ObservableValue<? extends Toggle> ov,
+		        Toggle old_toggle, Toggle new_toggle) {
+		            if (shippingOption.getSelectedToggle() == shippingChoice) {
+		            	shippingCost.setDisable(false);
+		        		shippingAddress.setDisable(false);
+		        		useCusAddButton.setDisable(false);
+		        		
+		            } else {
+		            	shippingCost.setDisable(true);
+		        		shippingAddress.setDisable(true);
+		        		useCusAddButton.setDisable(true);
+		            }
+		        }
+		});
 		
 	}
 	

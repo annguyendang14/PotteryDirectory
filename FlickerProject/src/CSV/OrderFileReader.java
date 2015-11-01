@@ -23,7 +23,7 @@ public class OrderFileReader {
 		}
 		
 */
-		orderList.add(new Order("an", new Date(2015,2,1),1,"sajkdhasjk",12,0));
+		
 		write(orderList);
 		
 		
@@ -52,12 +52,17 @@ public class OrderFileReader {
 			String customerCode = currentOrderRow[3];
 			String description = currentOrderRow[4];
 			String price = currentOrderRow[5];
-			String stage = currentOrderRow[6];
+			String needShip = currentOrderRow[6];
+			String shippingAddress = currentOrderRow[7];
+			String shippingCost = currentOrderRow[8];
+			String taxRate = currentOrderRow[9];
+			String stage = currentOrderRow[10];
 			//System.out.print(dueDate);
 			if (!dueDate.equals("null")&&!dueDate.equals("N/a")){
-				ordersFromFile.add(new Order(findCustomer(customers,customerCode), new Date(orderDate), new Date(dueDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
+				ordersFromFile.add(new Order(findCustomer(customers,customerCode), new Date(orderDate), new Date(dueDate), Integer.parseInt(orderNum), description, price, stringToBoolean(needShip), shippingAddress, Double.parseDouble(shippingCost),Double.parseDouble(taxRate),Integer.parseInt(stage)));
 			} else {
-				ordersFromFile.add(new Order(findCustomer(customers,customerCode), new Date(orderDate), Integer.parseInt(orderNum), description, Double.parseDouble(price), Integer.parseInt(stage)));
+				ordersFromFile.add(new Order(findCustomer(customers,customerCode), new Date(orderDate), Integer.parseInt(orderNum), description, price, stringToBoolean(needShip), shippingAddress, Double.parseDouble(shippingCost), Double.parseDouble(taxRate), Integer.parseInt(stage)));
+
 			}
 		}
 		reader.close();
@@ -69,14 +74,19 @@ public class OrderFileReader {
 	public static void write(List<Order> orderList) throws IOException {
 		CSVWriter writer = new CSVWriter(new FileWriter("OrderList.csv"), ',');
 		for (Order order: orderList) {
-			String[] currentOrderRow = new String[7];
+			String[] currentOrderRow = new String[11];
 			currentOrderRow[0] = order.getOrderNum()+"";
 			currentOrderRow[1] = order.getOrderDate()+"";
 			currentOrderRow[2] = order.getDueDate()+"";
 			currentOrderRow[3] = order.getCustomer().hashCode()+"";
 			currentOrderRow[4] = order.getDescription();
-			currentOrderRow[5] = order.getPrice()+"";
-			currentOrderRow[6] = order.getStage()+"";
+			currentOrderRow[5] = order.getPrice();
+			currentOrderRow[6] = order.isNeedShip()+"";
+			currentOrderRow[7] = order.getShippingAddress();
+			currentOrderRow[8] = order.getShippingCost()+"";
+			currentOrderRow[9] = order.getTaxRate()+"";
+			currentOrderRow[10] = order.getStage()+"";
+			
 			writer.writeNext(currentOrderRow);
 		}
 		writer.close();
@@ -94,5 +104,12 @@ public class OrderFileReader {
 			i++;
 		}
 		return null;
+	}
+	public static boolean stringToBoolean(String s){
+		if (s.equals("true")){
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
