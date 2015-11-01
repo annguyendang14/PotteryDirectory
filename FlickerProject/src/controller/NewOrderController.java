@@ -154,12 +154,66 @@ public class NewOrderController implements Initializable{
 
 	
 	public void useCusAdd(ActionEvent event) {
-		shippingAddress.setText(TempCustomer.getTempCustomer().getName()+"/n"+TempCustomer.getTempCustomer().getAddress());
+		shippingAddress.setText(TempCustomer.getTempCustomer().getName()+"\n"+TempCustomer.getTempCustomer().getAddress());
 	}
+	
+	public void calPrice(ActionEvent event) {
+		double calculated=0.0;
+		
+		try {
+			calculated = Calculator.StringCalculator(price.getText());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String calculatedString =  String.format("%.2f", calculated);
+		totalPrice.setText(calculatedString);
+		calPriceAfterTax(new ActionEvent());
+		finalPrice.setText(calFinalPrice());
+		
+	}
+	
+	public void calPriceAfterTax(ActionEvent event) {
+		String calculatedString =  String.format("%.2f", Double.parseDouble(totalPrice.getText())*Double.parseDouble(taxRate.getText())/100);
+		priceAfterTax.setText(calculatedString);
+		finalPrice.setText(calFinalPrice());
+		
+	}
+	
+	public void calPriceWithShipping(ActionEvent event) {
+		finalPrice.setText(calFinalPrice());
+	}
+	
+	public String calFinalPrice(){
+		double total = 0;
+		double tax = 0;
+		double ship = 0;
+		try {
+			total = Double.parseDouble(totalPrice.getText());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			tax = Double.parseDouble(priceAfterTax.getText());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ship = Double.parseDouble(shippingCost.getText());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return String.format("%.2f", total + tax +ship);
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		dateOrderedPicker.setValue(LocalDate.now());
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
+		taxRate.setText("0");
 		//https://docs.oracle.com/javafx/2/ui_controls/radio-button.htm
 		shippingOption.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
 		    public void changed(ObservableValue<? extends Toggle> ov,

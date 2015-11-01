@@ -54,7 +54,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="price" layoutX="163.0" layoutY="334.0">
+      <TextField fx:id="price" layoutX="163.0" layoutY="334.0" onAction="#calPrice">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -63,7 +63,7 @@
             <Font size="14.0" />
          </font></Button>
       <Label fx:id="warningLabel" layoutX="314.0" layoutY="556.0" prefHeight="38.0" prefWidth="235.0" text="Please choose Customer" textFill="RED" />
-      <TextField fx:id="taxRate" layoutX="119.0" layoutY="371.0" prefHeight="22.0" prefWidth="59.0">
+      <TextField fx:id="taxRate" layoutX="119.0" layoutY="371.0" onAction="#calPriceAfterTax" prefHeight="22.0" prefWidth="59.0">
          <font>
             <Font size="16.0" />
          </font></TextField>
@@ -115,12 +115,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="shippingCost" disable="true" layoutX="350.0" layoutY="401.0" prefHeight="22.0" prefWidth="59.0" promptText="0.00">
+      <TextField fx:id="shippingCost" disable="true" layoutX="350.0" layoutY="401.0" onAction="#calPriceWithShipping" prefHeight="22.0" prefWidth="59.0" promptText="0.00">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="232.0" layoutY="370.0" text="After Tax:">
+      <Label layoutX="232.0" layoutY="370.0" text="Tax:">
          <font>
             <Font size="18.0" />
          </font>
