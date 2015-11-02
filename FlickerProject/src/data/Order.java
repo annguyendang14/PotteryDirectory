@@ -59,13 +59,14 @@ public class Order {
 
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum, String description,
 			String price,  boolean needShip, String shippingAddress,double shippingCost, double taxRate) {
-		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
+		this(customer,orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
 		this.dueDate = dueDate;
 	}
 
 	public Order(Customer customer,Date orderDate, int orderNum, String description , String price,   boolean needShip, String shippingAddress,double shippingCost, double taxRate, int stage){
 		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
 		this.stage = stage;
+		this.customer = customer;
 	}
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , String price,  boolean needShip, String shippingAddress, double shippingCost,double taxRate,int stage){
 		this(customer, orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost,taxRate, stage);

@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import GUI.EditCustomerGUI;
 import GUI.PrintViewGUI;
 import data.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
@@ -51,6 +54,7 @@ public class EditOrderController implements Initializable {
 	@FXML private TextField taxRate;
 	@FXML private Label priceAfterTax;
 	@FXML private RadioButton shippingChoice;
+	@FXML private RadioButton pickup;
 	@FXML private TextField shippingCost;
 	@FXML private Label finalPrice;
 	@FXML private TextArea shippingAddress;
@@ -81,12 +85,39 @@ public class EditOrderController implements Initializable {
 			//stageBar.setText(""+order.getStage());
 			stageBox.setValue(""+order.getStage());  // Don't know if it's correct
 			totalPrice.setText("" + order.getPrice());
+			taxRate.setText(order.getTaxRate()+"");
+			shippingCost.setText(order.getShippingCost()+"");
+			shippingAddress.setText(order.getShippingAddress());
+			if (order.isNeedShip()){
+				shippingOption.selectToggle(shippingChoice);
+			} else {
+				shippingOption.selectToggle(pickup);
+			}
+			
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 		if (order.getDueDate() != null) {
 			dueDatePicker.setValue(toLocalDate(order.getDueDate()));
 		}		    
+		
+		
+		//https://docs.oracle.com/javafx/2/ui_controls/radio-button.htm
+		shippingOption.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+		    public void changed(ObservableValue<? extends Toggle> ov,
+		        Toggle old_toggle, Toggle new_toggle) {
+		            if (shippingOption.getSelectedToggle() == shippingChoice) {
+		            	shippingCost.setDisable(false);
+		        		shippingAddress.setDisable(false);
+		        		useCusAddButton.setDisable(false);
+		        		
+		            } else {
+		            	shippingCost.setDisable(true);
+		        		shippingAddress.setDisable(true);
+		        		useCusAddButton.setDisable(true);
+		            }
+		        }
+		});
 	
 		TempCustomer.setTempCustomer(order.getCustomer());
 		
@@ -134,7 +165,7 @@ public class EditOrderController implements Initializable {
 		return String.format("%.2f", total + tax +ship);
 	}
 	
-	
+	//http://stackoverflow.com/questions/21242110/convert-java-util-date-to-java-time-localdate
 	public static LocalDate toLocalDate(Date date){
 		LocalDate local = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		return local;
@@ -236,6 +267,9 @@ public class EditOrderController implements Initializable {
 		//System.out.println(newOrder);
 
 	}
+	public void useCusAdd(ActionEvent event) {
+		shippingAddress.setText(TempCustomer.getTempCustomer().getName()+"\n"+TempCustomer.getTempCustomer().getAddress());
+	}
 	//sets default editing to false
 	public void editOrder(ActionEvent event) {
 		
@@ -246,6 +280,16 @@ public class EditOrderController implements Initializable {
 		price.setDisable(false);
 		// stageBar.setDisable(false);
 		stageBox.setDisable(false);
+		taxRate.setDisable(false);
+		pickup.setDisable(false);
+		shippingChoice.setDisable(false);
+		if (shippingOption.getSelectedToggle()==shippingChoice){
+			shippingCost.setDisable(false);
+    		shippingAddress.setDisable(false);
+    		useCusAddButton.setDisable(false);
+		}
+		
+		
 	}
 	
 	//this allows user to edit customers

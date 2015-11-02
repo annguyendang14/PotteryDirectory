@@ -82,7 +82,9 @@ public class NewOrderController implements Initializable{
 						
 					}else {
 						newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
-						System.out.println(newOrder);
+						System.out.println("all order: "+newOrder);
+						System.out.println(newOrder.getCustomer().getName());
+
 					}
 			
 					
@@ -93,7 +95,7 @@ public class NewOrderController implements Initializable{
 				//just to print out thing for now
 				AllOrders.getOrders().add(newOrder);
 				for (Order order: AllOrders.getOrders()){
-					System.out.println("all order: "+order+" "+order.hashCode());
+					System.out.println("all order: "+order+" "+order.getCustomer().getName());
 					
 				}
 				Node  source = (Node)  event.getSource(); 

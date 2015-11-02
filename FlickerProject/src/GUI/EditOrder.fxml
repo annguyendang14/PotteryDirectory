@@ -87,7 +87,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="taxRate" layoutX="104.0" layoutY="375.0" onAction="#calPriceAfterTax" prefHeight="22.0" prefWidth="59.0">
+      <TextField fx:id="taxRate" disable="true" layoutX="104.0" layoutY="375.0" onAction="#calPriceAfterTax" prefHeight="22.0" prefWidth="59.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -107,7 +107,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton disable="true" layoutX="15.0" layoutY="417.0" mnemonicParsing="false" text="Pick Up">
+      <RadioButton fx:id="pickup" disable="true" layoutX="15.0" layoutY="417.0" mnemonicParsing="false" text="Pick Up">
          <font>
             <Font size="16.0" />
          </font>

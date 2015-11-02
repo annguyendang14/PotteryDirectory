@@ -28,7 +28,7 @@ public class OrderTable {
 			//this.dueDate = new SimpleObjectProperty<LocalDate>(LocalDate.of(0, 1, 1));
 			this.dueDate = null;
 		}
-		//this.dueDate = new SimpleStringProperty("21/11/1996");
+		
 		this.orderDate = new SimpleObjectProperty<LocalDate>(EditOrderController.toLocalDate(order.getOrderDate()));
 		this.price = new SimpleStringProperty(checkNull(""+order.getFinalPrice()));
 //		String stag;

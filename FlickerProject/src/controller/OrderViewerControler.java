@@ -122,16 +122,17 @@ public class OrderViewerControler implements Initializable{
 			for (Customer customer: CustomerFileReader.read()){
 				AllCustomer.getCustomers().add(customer);
 			}
-			try {
-				for (Order order: OrderFileReader.read(AllCustomer.getCustomers())){
-					AllOrders.getOrders().add(order);
-					
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			for (Order order: OrderFileReader.read(AllCustomer.getCustomers())){
+				AllOrders.getOrders().add(order);
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Collections.sort(AllOrders.getOrders(), new DefaultSortingComparator());
@@ -164,6 +165,7 @@ public class OrderViewerControler implements Initializable{
 	            @Override
 	            public TableCell call(TableColumn p) {
 	                MyStageTableCell cell = new MyStageTableCell();
+	                cell.setFont(new Font("Arial", 16));
 	                cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
 	                return cell;
 	            }
