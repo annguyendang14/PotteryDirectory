@@ -89,12 +89,8 @@ public class Customer {
 		this.setPhoneNum(phoneNum);
 		this.setEmail(email);
 	}
-	/**
-	 * checks to see if an object is equal or not
-	 */
-	public boolean equals(Object o) {
-		return false;
-	}
+	
+	
 
 	// added for debug purposes, prints out all the data fields to the console
 	public String toString() {

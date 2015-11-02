@@ -9,6 +9,20 @@ public class AllCustomer {
 	public static List<Customer> getCustomers() {
 		return customers;
 	}
+	
+	public static List<CustomerTable> getCustomerTable(){
+		
+		return CustomerTable.toCustomerTable(customers);
+	}
+	
+	public static Customer findCustomer(int code){
+		for(Customer cus: customers){
+			if (cus.hashCode()==code){
+				return cus;
+			}
+		}
+		return null;
+	}
 
 
 }

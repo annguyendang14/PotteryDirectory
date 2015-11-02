@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactListController">
+   <children>
+      <TableView fx:id="customerTable" layoutX="11.0" layoutY="13.0" prefHeight="515.0" prefWidth="578.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="13.0">
+        <columns>
+          <TableColumn fx:id="nameCol" editable="false" prefWidth="149.0" text="Name" />
+          <TableColumn fx:id="addressCol" editable="false" prefWidth="182.0" text="Address" />
+            <TableColumn fx:id="phoneCol" editable="false" minWidth="4.0" prefWidth="104.0" text="Phone" />
+            <TableColumn fx:id="emailCol" editable="false" prefWidth="142.0" text="Email" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>
