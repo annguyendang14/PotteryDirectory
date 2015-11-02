@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="18.0" />
                </font></Label>
             <ChoiceBox fx:id="stageBox" layoutX="80.0" layoutY="362.0" prefHeight="25.0" prefWidth="116.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="80.0" />
-            <Button fx:id="aboutWindowButton" layoutX="305.0" layoutY="355.0" mnemonicParsing="false" onAction="#callAboutWindow" text="About" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="257.0">
+            <Button fx:id="aboutWindowButton" layoutX="308.0" layoutY="355.0" mnemonicParsing="false" onAction="#callAboutWindow" prefHeight="39.0" prefWidth="78.0" text="About" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="254.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
