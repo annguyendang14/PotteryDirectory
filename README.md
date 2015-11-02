@@ -11,4 +11,3 @@ User stories:
 As an owner, I can store any customer information independently with the order so that I can reuse the information for 
 the next order 
 
-As an owner, I can receive notification for any order that reaches a due date so that I won't miss any order. 
