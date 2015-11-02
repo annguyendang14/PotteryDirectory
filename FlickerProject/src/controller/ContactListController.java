@@ -24,6 +24,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
@@ -47,22 +48,7 @@ public class ContactListController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		try {
-			for (Customer customer: CustomerFileReader.read()){
-				AllCustomer.getCustomers().add(customer);
-			}
-			try {
-				for (Order order: OrderFileReader.read(AllCustomer.getCustomers())){
-					AllOrders.getOrders().add(order);
-					
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		data = FXCollections.observableArrayList(AllCustomer.getCustomerTable());
 		//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
 		 Callback<TableColumn, TableCell> stringCellFactory =
@@ -93,6 +79,7 @@ public class ContactListController implements Initializable{
 	        emailCol.setCellValueFactory(
 				    new PropertyValueFactory<CustomerTable,String>("email")
 				);
+	        customerTable.setItems(data);
 		
 	}
 	
@@ -113,6 +100,9 @@ public class ContactListController implements Initializable{
 		    	    stage.initModality(Modality.APPLICATION_MODAL);
 		    	    stage.initOwner(c.getScene().getWindow());
 		    	    stage.showAndWait();
+		    	    Node  source = (Node)  t.getSource(); 
+		    		Stage stage2  = (Stage) source.getScene().getWindow();
+		    		stage2.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

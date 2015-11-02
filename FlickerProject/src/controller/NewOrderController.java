@@ -6,8 +6,10 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import GUI.ContactListGUI;
 import GUI.NewCustomerGUI;
 import data.*;
 import javafx.application.Platform;
@@ -22,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
@@ -82,22 +85,18 @@ public class NewOrderController implements Initializable{
 						
 					}else {
 						newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
-						System.out.println("all order: "+newOrder);
-						System.out.println(newOrder.getCustomer().getName());
+						
 
 					}
 			
 					
 				} else {
 					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
-					System.out.println(newOrder);
+					
 				}
 				//just to print out thing for now
 				AllOrders.getOrders().add(newOrder);
-				for (Order order: AllOrders.getOrders()){
-					System.out.println("all order: "+order+" "+order.getCustomer().getName());
-					
-				}
+			
 				Node  source = (Node)  event.getSource(); 
 				Stage stage  = (Stage) source.getScene().getWindow();
 				stage.close();
@@ -128,18 +127,54 @@ public class NewOrderController implements Initializable{
 		}
 	
 	public void addNewCustomer(ActionEvent event) throws IOException {
-		Stage stage = new Stage();
-		Parent root = FXMLLoader.load(NewCustomerGUI.class.getResource("NewCustomer.fxml"));
-		stage.setScene(new Scene(root));
-	    stage.setTitle("Add New Customer");
-	    stage.initModality(Modality.APPLICATION_MODAL);
-	    stage.initOwner(addCustomerButton.getScene().getWindow());
-	    stage.showAndWait();
-	    
-	    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
-	    warningLabel.setText("");
-	    saveOrder.setDisable(false);
-	    
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		
+		
+		alert.setContentText("Would you want to add an existing customer in Contact List?");
+
+		ButtonType buttonAddFromContact = new ButtonType("Add from Contact List");
+		ButtonType buttonAddNewCus = new ButtonType("Add New Customer");
+		
+		ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonAddFromContact, buttonAddNewCus, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonAddFromContact){
+			Stage stage = new Stage();
+			Parent root = FXMLLoader.load(ContactListGUI.class.getResource("ContactList.fxml"));
+			stage.setScene(new Scene(root));
+		    stage.setTitle("Add New Customer");
+		    stage.initModality(Modality.APPLICATION_MODAL);
+		    stage.initOwner(addCustomerButton.getScene().getWindow());
+		    stage.showAndWait();
+		    
+		    try {
+				customerNameBar.setText(TempCustomer.getTempCustomer().getName());
+				warningLabel.setText("");
+				saveOrder.setDisable(false);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (result.get() == buttonAddNewCus) {
+		    
+			Stage stage = new Stage();
+			Parent root = FXMLLoader.load(NewCustomerGUI.class.getResource("NewCustomer.fxml"));
+			stage.setScene(new Scene(root));
+		    stage.setTitle("Add New Customer");
+		    stage.initModality(Modality.APPLICATION_MODAL);
+		    stage.initOwner(addCustomerButton.getScene().getWindow());
+		    stage.showAndWait();
+		    
+		    customerNameBar.setText(TempCustomer.getTempCustomer().getName());
+		    warningLabel.setText("");
+		    saveOrder.setDisable(false);
+		    
+		} else {
+		    // ... user chose CANCEL or closed the dialog
+		}
+		
 	}
 	
 
