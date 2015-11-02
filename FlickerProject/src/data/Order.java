@@ -18,8 +18,12 @@ public class Order {
 	private int orderNum; // not sure how to construct this yet
 	private Date orderDate;
 	private Date dueDate;
-	private double price;
-	private int stage; // 0 = not done, 1 = done, 2 = shipped, 3 = customer received
+	private String price;
+	private int stage; // 0 = not done, 1 = done, 2 = shipped, 3 = completed, 4 = canceled
+	private boolean needShip;
+	private String shippingAddress;
+	private double shippingCost;
+	private double taxRate;
 
 	/**
 	 * 
@@ -28,103 +32,43 @@ public class Order {
 	 * @param orderNum
 	 * @param description
 	 * @param price
+	 * @param needShip (boolean)
+	 * @param shippingAddress
 	 * Sets stage to 0 when called
 	 * 
 	 */
-	private Order(Date orderDate, int orderNum, String description, double price) {
+	private Order(Date orderDate, int orderNum, String description, String price, boolean needShip, String shippingAddress, double shippingCost,double taxRate) {
 		this.orderDate = orderDate;
 		this.orderNum = orderNum;
 		this.price = price;
 		this.description = description;
 		this.stage = 0;
-	}
-	/**
-	 * @param customerName from Customer class
-	 * @param orderDate
-	 * @param dueDate
-	 * @param orderNum
-	 * @param description
-	 * @param price
-	 * @param stage
-	 * 
-	 */
-	public Order(String customerName, Date orderDate, int orderNum, String description, double price) {
-		this(orderDate, orderNum, description, price);
-		this.customer = new Customer(customerName);
-
-	}
-	/**
-	 * @param customerName from Customer class
-	 * @param orderDate
-	 * @param dueDate
-	 * @param orderNum
-	 * @param description
-	 * @param price
-	 * @param stage
-	 * makes stage changeable 
-	 * 
-	 */
-	public Order(String customerName, Date orderDate, int orderNum, String description,
-			double price, int stage) {
-		this(customerName, orderDate, orderNum, description, price);
-		this.stage = stage;
-
+		this.needShip = needShip;
+		this.shippingAddress = shippingAddress;
+		this.shippingCost = shippingCost;
+		this.taxRate = taxRate;
 	}
 
-	/**
-	 * 
-	 * @param orderDate
-	 * @param dueDate
-	 * @param orderNum
-	 * @param description
-	 * @param price
-	 * @param stage
-	 * 
-	 */
-	public Order(String customerName, Date orderDate, Date dueDate, int orderNum,
-			String description, double price, int stage) {
-		this(customerName, orderDate, orderNum, description, price, stage);
-		this.dueDate = dueDate;
-	}
 
-	/**
-	 * 
-	 * @param orderDate
-	 * @param dueDate
-	 * @param orderNum
-	 * @param description
-	 * @param price
-	 * @param stage
-	 * 
-	 */
-	public Order(Date orderDate, Date dueDate, int orderNum, String description, double price,
-			int stage) {
-		this.orderDate = orderDate;
-		this.orderNum = orderNum;
-		this.dueDate = dueDate;
-		this.description = description;
-		this.price = price;
-		this.stage = stage;
-	}
 
-	public Order(Customer customer, Date orderDate, int orderNum, String description, double price) {
-		this(orderDate, orderNum, description, price);
+	public Order(Customer customer, Date orderDate, int orderNum, String description, String price,  boolean needShip, String shippingAddress,double shippingCost, double taxRate) {
+		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost,taxRate);
 		this.customer = customer;
 		
 	}
 
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum, String description,
-			double price) {
-		this(customer, orderDate, orderNum, description, price);
+			String price,  boolean needShip, String shippingAddress,double shippingCost, double taxRate) {
+		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
 		this.dueDate = dueDate;
 	}
 
-	public Order(Customer customer,Date orderDate, int orderNum, String description , double price, int stage){
-		this(customer,orderDate, orderNum,description, price);
+	public Order(Customer customer,Date orderDate, int orderNum, String description , String price,   boolean needShip, String shippingAddress,double shippingCost, double taxRate, int stage){
+		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
 		this.stage = stage;
 	}
-	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , double price, int stage){
-		this(customer,orderDate, orderNum, description , price, stage);
+	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , String price,  boolean needShip, String shippingAddress, double shippingCost,double taxRate,int stage){
+		this(customer, orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost,taxRate, stage);
 		this.dueDate = dueDate;
 	}
 	
@@ -156,7 +100,7 @@ public class Order {
 		this.dueDate = dueDate;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -192,7 +136,7 @@ public class Order {
 
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return this.price;
 
 	}
@@ -223,18 +167,21 @@ public class Order {
 		this.description = description;
 	}
 
-	public void setOrder(Customer customer, Date orderDate, String description, double price,
-			int stage) {
+	public void setOrder(Customer customer, Date orderDate, String description, String price, boolean needShip, String shippingAddress,double shippingCost, double taxRate,int stage) {
 		this.setCustomer(customer);
 		this.setOrderDate(orderDate);
 		this.setDescription(description);
 		this.setPrice(price);
 		this.setStage(stage);
+		this.setNeedShip(needShip);
+		this.setShippingAddress(shippingAddress);
+		this.setShippingCost(shippingCost);
+		this.taxRate = taxRate;
 	}
 
 	public void setOrder(Customer customer, Date orderDate, Date dueDate, String description,
-			double price, int stage) {
-		this.setOrder(customer, orderDate, description, price, stage);
+			String price, boolean needShip, String shippingAddress,double shippingCost,double taxRate, int stage) {
+		this.setOrder(customer, orderDate, description, price, needShip, shippingAddress, shippingCost,taxRate,stage );
 		this.setDueDate(dueDate);
 	}
 
@@ -272,6 +219,60 @@ public class Order {
 		}  else { // for stageNum == 4
 			return "Canceled"; 
 		}
+	}
+
+
+
+	public boolean isNeedShip() {
+		return needShip;
+	}
+
+
+
+	public void setNeedShip(boolean needShip) {
+		this.needShip = needShip;
+	}
+
+
+
+	public String getShippingAddress() {
+		return shippingAddress;
+	}
+
+
+
+	public void setShippingAddress(String shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+
+
+	public double getTaxRate() {
+		return taxRate;
+	}
+
+
+
+	public void setTaxRate(double taxRate) {
+		this.taxRate = taxRate;
+	}
+
+
+
+	public double getShippingCost() {
+		return shippingCost;
+	}
+
+
+
+	public void setShippingCost(double shippingCost) {
+		this.shippingCost = shippingCost;
+	}
+	
+	public double getFinalPrice(){
+		double total = Calculator.StringCalculator(price);
+		double tax = total*taxRate/100;
+		return total +tax + shippingCost;
 	}
 
 	

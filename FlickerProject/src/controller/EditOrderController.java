@@ -24,8 +24,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -45,6 +47,15 @@ public class EditOrderController implements Initializable {
 	@FXML private TextField price;
 	//@FXML private Button generateButton;
 	@FXML private Button viewCustomerButton;
+	@FXML private Label totalPrice;
+	@FXML private TextField taxRate;
+	@FXML private Label priceAfterTax;
+	@FXML private RadioButton shippingChoice;
+	@FXML private TextField shippingCost;
+	@FXML private Label finalPrice;
+	@FXML private TextArea shippingAddress;
+	@FXML private Button useCusAddButton;
+	@FXML private ToggleGroup shippingOption;
 	@FXML private Button editButton;
 	// @FXML private TextField stageBar;
 	@FXML private ChoiceBox<String> stageBox;
@@ -69,6 +80,7 @@ public class EditOrderController implements Initializable {
 			price.setText(""+order.getPrice());
 			//stageBar.setText(""+order.getStage());
 			stageBox.setValue(""+order.getStage());  // Don't know if it's correct
+			totalPrice.setText("" + order.getPrice());
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -85,6 +97,44 @@ public class EditOrderController implements Initializable {
 		//separate try/catch, program will fail when it try to read order without dueDate
 		
 	}
+	
+	public void calPriceAfterTax(ActionEvent event) {
+		String calculatedString =  String.format("%.2f", Double.parseDouble(totalPrice.getText())*Double.parseDouble(taxRate.getText())/100);
+		priceAfterTax.setText(calculatedString);
+		finalPrice.setText(calFinalPrice());
+		
+	}
+	
+	public void calPriceWithShipping(ActionEvent event) {
+		finalPrice.setText(calFinalPrice());
+	}
+	
+	public String calFinalPrice(){
+		double total = 0;
+		double tax = 0;
+		double ship = 0;
+		try {
+			total = Double.parseDouble(totalPrice.getText());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			tax = Double.parseDouble(priceAfterTax.getText());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			ship = Double.parseDouble(shippingCost.getText());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return String.format("%.2f", total + tax +ship);
+	}
+	
+	
 	public static LocalDate toLocalDate(Date date){
 		LocalDate local = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		return local;
@@ -93,17 +143,6 @@ public class EditOrderController implements Initializable {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
 		//An: toDate method is a static method in NewOrderController
 		
-			try {
-				Double.parseDouble(price.getText());
-				
-			} catch(NumberFormatException e) { 
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Null");
-				alert.setContentText("Price must be number!!");
-
-				alert.showAndWait();
-		    } 
 			
 			/*
 			try {
@@ -168,13 +207,13 @@ public class EditOrderController implements Initializable {
 						
 					}else {
 			
-						TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()) );
+						TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker), NewOrderController.toDate(dueDatePicker), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue())) ;
 						// OrderViewerControler.stageToInt(stageBar.getValue())
 						// Integer.parseInt(stageBar.getText())
 						System.out.println(order);
 					}
 				} else {
-					TempOrder.getTempOrder().setOrder(TempCustomer.getTempCustomer(), NewOrderController.toDate(dateOrderedPicker),description.getText(), Double.parseDouble(price.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()));
+					TempOrder.getTempOrder().setOrder((TempCustomer.getTempCustomer()), NewOrderController.toDate(dateOrderedPicker), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()), Order.convertStageNameToStageNumber((String)stageBox.getValue()));
 					System.out.println(order);
 				}
 				//just to print out thing for now
