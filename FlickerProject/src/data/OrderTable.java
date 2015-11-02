@@ -18,7 +18,7 @@ public class OrderTable {
 	private final SimpleIntegerProperty orderNum;
 	
 	public OrderTable(Order order) {
-		
+		//this.customerName = new SimpleStringProperty("????");
 		this.customerName = new SimpleStringProperty(checkNull(order.getCustomer().getName()));
 		this.description = new SimpleStringProperty(checkNull(order.getDescription()));
 		//this.description = new SimpleStringProperty("dkjdfcbsakjd");
@@ -30,7 +30,7 @@ public class OrderTable {
 		}
 		//this.dueDate = new SimpleStringProperty("21/11/1996");
 		this.orderDate = new SimpleObjectProperty<LocalDate>(EditOrderController.toLocalDate(order.getOrderDate()));
-		this.price = new SimpleStringProperty(checkNull(""+order.getPrice()));
+		this.price = new SimpleStringProperty(checkNull(""+order.getFinalPrice()));
 //		String stag;
 //		if (order.getStage()==0){
 //			stag = "undone";
@@ -73,19 +73,13 @@ public class OrderTable {
 	public int getOrderNum() {
 		return orderNum.get();
 	}
-	private static String checkNull(Object o){
-		String s;
-		try {
-			s =(String)o;
-				
-		} catch (Exception e){
-			s = o.toString();
-		} 
+	private static String checkNull(String s){
 		
-		if (s == null){
+	
+		if (s.equals("null")){
 			return "N/a";
 		} else {
-			return s;
+			return s.toString();
 		}
 	}
 	public static List<OrderTable> toOrderTable(List<Order> orders){

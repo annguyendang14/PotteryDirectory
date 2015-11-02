@@ -167,8 +167,7 @@ public class Order {
 		this.description = description;
 	}
 
-	public void setOrder(Customer customer, Date orderDate, String description, String price, boolean needShip, String shippingAddress,double shippingCost, double taxRate,
-			int stage) {
+	public void setOrder(Customer customer, Date orderDate, String description, String price, boolean needShip, String shippingAddress,double shippingCost, double taxRate,int stage) {
 		this.setCustomer(customer);
 		this.setOrderDate(orderDate);
 		this.setDescription(description);
@@ -268,6 +267,12 @@ public class Order {
 
 	public void setShippingCost(double shippingCost) {
 		this.shippingCost = shippingCost;
+	}
+	
+	public double getFinalPrice(){
+		double total = Calculator.StringCalculator(price);
+		double tax = total*taxRate/100;
+		return total +tax + shippingCost;
 	}
 
 	

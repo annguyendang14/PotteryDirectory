@@ -106,7 +106,7 @@ public class OrderFileReader {
 		return null;
 	}
 	public static boolean stringToBoolean(String s){
-		if (s.equals("true")){
+		if (s.toLowerCase().equals("true")){
 			return true;
 		} else {
 			return false;

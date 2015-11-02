@@ -57,17 +57,6 @@ public class NewOrderController implements Initializable{
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
 		//An: we have toDate method for that (in this class), hope you find it
 		
-			try {
-				Double.parseDouble(price.getText());
-				
-			} catch(NumberFormatException e) { 
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				
-				alert.setContentText("Price must be number!!");
-
-				alert.showAndWait();
-		    } 
 			
 			/*if (orderNumBar.getText().equals("0")){
 				Alert alert = new Alert(AlertType.WARNING);
@@ -214,6 +203,7 @@ public class NewOrderController implements Initializable{
 		dateOrderedPicker.setValue(LocalDate.now());
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
 		taxRate.setText("0");
+		shippingCost.setText("0.00");
 		//https://docs.oracle.com/javafx/2/ui_controls/radio-button.htm
 		shippingOption.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
 		    public void changed(ObservableValue<? extends Toggle> ov,

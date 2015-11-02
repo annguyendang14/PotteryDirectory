@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="568.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditOrderController">
+<AnchorPane prefHeight="677.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditOrderController">
    <children>
       <Label fx:id="customerName" layoutX="14.0" layoutY="80.0" text="Customer Name:">
          <font>
@@ -35,7 +35,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button fx:id="saveOrder" disable="true" layoutX="185.0" layoutY="468.0" mnemonicParsing="false" onAction="#saveNewOrder" text="Save Order">
+      <Button fx:id="saveOrder" disable="true" layoutX="178.0" layoutY="626.0" mnemonicParsing="false" onAction="#saveNewOrder" text="Save Order">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -49,7 +49,7 @@
             <Font size="18.0" />
          </font></Label>
       <TextArea fx:id="description" disable="true" layoutX="133.0" layoutY="243.0" prefHeight="83.0" prefWidth="303.0" />
-      <Label layoutX="15.0" layoutY="342.0" text="Price: ">
+      <Label layoutX="15.0" layoutY="342.0" text="Price/Calculation: ">
          <font>
             <Font size="18.0" />
          </font></Label>
@@ -58,14 +58,107 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button fx:id="editButton" layoutX="130.0" layoutY="468.0" mnemonicParsing="false" onAction="#editOrder" text="Edit">
+      <Button fx:id="editButton" layoutX="119.0" layoutY="626.0" mnemonicParsing="false" onAction="#editOrder" text="Edit">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Label layoutX="15.0" layoutY="420.0" text="Stage:">
+      <Label layoutX="17.0" layoutY="585.0" text="Stage:">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <ChoiceBox fx:id="stageBox" disable="true" layoutX="88.0" layoutY="421.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="stageBox" disable="true" layoutX="73.0" layoutY="586.0" prefWidth="150.0" />
+      <Button fx:id="printButton" layoutX="57.0" layoutY="626.0" mnemonicParsing="false" onAction="#print" text="Print">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="307.0" layoutY="342.0" text="=">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPrice" layoutX="332.0" layoutY="340.0" prefHeight="28.0" prefWidth="52.0" text="0.00">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="380.0" text="Tax Rate:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="taxRate" layoutX="104.0" layoutY="375.0" onAction="#calPriceAfterTax" prefHeight="22.0" prefWidth="59.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="169.0" layoutY="380.0" text="\%">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="204.0" layoutY="380.0" text="Tax:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="priceAfterTax" layoutX="331.0" layoutY="380.0" text="0.00">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <RadioButton disable="true" layoutX="15.0" layoutY="417.0" mnemonicParsing="false" text="Pick Up">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="shippingOption" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="shippingChoice" disable="true" layoutX="103.0" layoutY="417.0" mnemonicParsing="false" text="Shipping" toggleGroup="$shippingOption">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </RadioButton>
+      <Label layoutX="204.0" layoutY="417.0" text="Shipping Cost:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="shippingCost" disable="true" layoutX="319.0" layoutY="411.0" onAction="#calPriceWithShipping" prefHeight="22.0" prefWidth="59.0" promptText="0.00">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="204.0" layoutY="453.0" text="Final Price:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="finalPrice" layoutX="331.0" layoutY="453.0" text="0.00">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="19.0" layoutY="476.0" prefHeight="23.0" prefWidth="77.0" text="Shipping">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="499.0" text="Address:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="shippingAddress" disable="true" layoutX="127.0" layoutY="478.0" prefHeight="72.0" prefWidth="303.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="useCusAddButton" contentDisplay="CENTER" disable="true" layoutX="436.0" layoutY="499.0" mnemonicParsing="false" onAction="#useCusAdd" prefHeight="47.0" prefWidth="108.0" text="Use Customer Address" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

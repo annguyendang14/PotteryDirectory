@@ -95,7 +95,7 @@
       </Label>
       <Group>
          <children>
-            <RadioButton layoutX="17.0" layoutY="407.0" mnemonicParsing="false" selected="true" text="Pick Up">
+            <RadioButton layoutX="17.0" layoutY="407.0" mnemonicParsing="false" text="Pick Up">
                <toggleGroup>
                   <ToggleGroup fx:id="shippingOption" />
                </toggleGroup>
