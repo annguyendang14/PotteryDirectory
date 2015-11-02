@@ -29,6 +29,7 @@ public class PrintViewController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Order order = TempOrder.getTempOrder();
 		packingListBox.setText(order.getDescription());
+		toAddress.setText(order.getShippingAddress());
 		
 	}
 	public void print(ActionEvent event){

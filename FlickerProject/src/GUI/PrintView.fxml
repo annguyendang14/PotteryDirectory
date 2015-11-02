@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="shippingLabelPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="693.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrintViewController">
    <children>
-      <TextArea fx:id="toAddress" layoutX="187.0" layoutY="176.0" prefHeight="79.0" prefWidth="207.0" text="To: Kelsey Self &#10;" />
+      <TextArea fx:id="toAddress" layoutX="187.0" layoutY="176.0" prefHeight="79.0" prefWidth="207.0" />
       <TextArea fx:id="fromAddress" layoutX="42.0" layoutY="36.0" prefHeight="69.0" prefWidth="160.0" text="From Sondahl Pottery &#10;PO Box 725&#10;6326 West Maine St.&#10;Spirit Lake ID 83869-0725" />
       <Label layoutX="252.0" layoutY="96.0" text="Fragile Pottery">
          <font>
