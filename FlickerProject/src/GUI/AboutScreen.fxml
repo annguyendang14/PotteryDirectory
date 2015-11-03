@@ -18,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="102.0" text="An Nguyan Dang">
+      <Label layoutX="57.0" layoutY="102.0" text="An Nguyen Dang">
          <font>
             <Font size="14.0" />
          </font>

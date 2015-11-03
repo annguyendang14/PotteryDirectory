@@ -58,6 +58,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="contactButton" layoutX="284.0" layoutY="353.0" mnemonicParsing="false" onAction="#openContactList" prefHeight="39.0" prefWidth="141.0" text="Contact List" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="250.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
       </children>
     </AnchorPane>
   </children>

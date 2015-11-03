@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import CSV.CustomerFileReader;
 import CSV.OrderFileReader;
 import GUI.AboutScreenGUI;
+import GUI.ContactListGUI;
 import GUI.EditOrderGUI;
 import GUI.NewCustomerGUI;
 import GUI.NewOrderGUI;
@@ -68,6 +69,8 @@ public class MainWindowController implements Initializable {
 	@FXML
 	private Button aboutWindowButton;
 	@FXML
+	private Button contactButton;
+	@FXML
 	private TextField searchBox;
 	ObservableList<OrderTable> data;
 	@FXML
@@ -91,6 +94,20 @@ public class MainWindowController implements Initializable {
 		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 		updateTable();
 
+	}
+	
+	public void openContactList(ActionEvent event) throws IOException {
+		Stage stage = new Stage();
+		Parent root = FXMLLoader.load(ContactListGUI.class.getResource("ContactList.fxml"));
+		stage.setScene(new Scene(root));
+	    stage.setTitle("Add New Customer");
+	    stage.initModality(Modality.APPLICATION_MODAL);
+	    stage.initOwner(contactButton.getScene().getWindow());
+	    stage.showAndWait();
+	    
+	    Collections.sort(AllOrders.getOrders(), new DefaultSortingComparator());
+		data = FXCollections.observableArrayList(AllOrders.getOrderTable());
+		updateTable();
 	}
 
 	public void callAboutWindow(ActionEvent event) throws IOException {
