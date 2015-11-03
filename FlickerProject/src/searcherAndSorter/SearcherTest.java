@@ -2,14 +2,9 @@ package searcherAndSorter;
 
 import static org.junit.Assert.*;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.junit.Test;
-
-import data.Customer;
-import data.Order;
 
 public class SearcherTest {
 
