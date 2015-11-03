@@ -56,6 +56,10 @@ public class NewOrderController implements Initializable{
 
 
 
+	/**
+	 * this method call when saveOrder button clicked, it save the order and close the window
+	 * @param event
+	 */
 	public void saveNewOrder(ActionEvent event) {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
 		//An: we have toDate method for that (in this class), hope you find it
@@ -83,14 +87,14 @@ public class NewOrderController implements Initializable{
 						alert.showAndWait();
 						return;
 						
-					}else {
+					}else {//add new order with dueDate
 						newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), toDate(dueDatePicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
 						
 
 					}
 			
 					
-				} else {
+				} else {//add new order w/o dueDate
 					newOrder = new Order (TempCustomer.getTempCustomer(), toDate(dateOrderedPicker), Integer.parseInt(orderNumBar.getText()), description.getText(), price.getText(), shippingChoice.selectedProperty().getValue(), shippingAddress.getText(), Double.parseDouble(shippingCost.getText()), Double.parseDouble(taxRate.getText()));
 					
 				}
@@ -119,6 +123,11 @@ public class NewOrderController implements Initializable{
 
 	}*/
 	// http://stackoverflow.com/questions/20446026/get-value-from-date-picker
+	/**
+	 * this method convert LocalDate (value of DatePicker) to Date
+	 * @param datePick
+	 * @return
+	 */
 		public static Date toDate(DatePicker datePick) {
 			LocalDate localDate = datePick.getValue();
 			Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
@@ -126,6 +135,11 @@ public class NewOrderController implements Initializable{
 			return date;
 		}
 	
+	/**
+	 * this method call when user click on Add Customer button
+	 * @param event
+	 * @throws IOException
+	 */
 	public void addNewCustomer(ActionEvent event) throws IOException {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		
@@ -178,11 +192,17 @@ public class NewOrderController implements Initializable{
 	}
 	
 
-	
+	/**
+	 * this call when user clicked on use customer address button, ato coppy customer address to shipping address
+	 * @param event
+	 */
 	public void useCusAdd(ActionEvent event) {
 		shippingAddress.setText(TempCustomer.getTempCustomer().getName()+"\n"+TempCustomer.getTempCustomer().getAddress());
 	}
-	
+	/**
+	 * this calculate the price, call when change in price TextField
+	 * @param event
+	 */
 	public void calPrice(ActionEvent event) {
 		double calculated=0.0;
 		
@@ -194,22 +214,30 @@ public class NewOrderController implements Initializable{
 		}
 		String calculatedString =  String.format("%.2f", calculated);
 		totalPrice.setText(calculatedString);
-		calPriceAfterTax(new ActionEvent());
+		calTax(new ActionEvent());
 		finalPrice.setText(calFinalPrice());
 		
 	}
-	
-	public void calPriceAfterTax(ActionEvent event) {
+	/**
+	 * this method calculate tax, call when change in taxRate TextField
+	 * @param event
+	 */
+	public void calTax(ActionEvent event) {
 		String calculatedString =  String.format("%.2f", Double.parseDouble(totalPrice.getText())*Double.parseDouble(taxRate.getText())/100);
 		priceAfterTax.setText(calculatedString);
 		finalPrice.setText(calFinalPrice());
 		
 	}
-	
+	/**
+	 * this cal when enter shipping cost
+	 */
 	public void calPriceWithShipping(ActionEvent event) {
 		finalPrice.setText(calFinalPrice());
 	}
-	
+	/**
+	 * this calculate the final price
+	 * @return String for finnalPrice, formated
+	 */
 	public String calFinalPrice(){
 		double total = 0;
 		double tax = 0;
@@ -236,6 +264,9 @@ public class NewOrderController implements Initializable{
 	}
 	
 	@Override
+	/**
+	 * setup window when it openned, add action listener to the RadioButton
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		dateOrderedPicker.setValue(LocalDate.now());
 		orderNumBar.setText(AllOrders.getOrders().size()+1+"");

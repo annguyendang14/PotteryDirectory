@@ -47,6 +47,9 @@ public class ContactListController implements Initializable{
 	ObservableList<CustomerTable> data;
 	
 	@Override
+	/**
+	 * setup the window when it opened
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		data = FXCollections.observableArrayList(AllCustomer.getCustomerTable());

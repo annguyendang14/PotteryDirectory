@@ -67,7 +67,7 @@ public class EditOrderController implements Initializable {
 	private Order order = TempOrder.getTempOrder();
 
 	@Override
-	/*
+	/**
 	 * This method sets the TextField contents to the values that are currently stored
 	 * in that specific order.
 	 */
@@ -174,57 +174,7 @@ public class EditOrderController implements Initializable {
 		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
 		//An: toDate method is a static method in NewOrderController
 		
-			
-			/*
-			try {
-				Integer.parseInt(stageBar.getText());
-				
-				
-			} catch(NumberFormatException e ) { 
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Null");
-				alert.setContentText("Stage must be number (from 0 to 4)!!");
-
-				alert.showAndWait();
-		    } 
-			
-			*/
-			
-			// Why is this if statement here? Is this duplicate code?
-			// An: It kind of duplicate, but it needed for now,
-			// the try/catch check if the stage is int type or not, if statement
-			// check if it from 0 to 3 
-			// this will not happen after we change stage choice to drop down box
-			
-			
-			
-			/*
-			if (!(Integer.parseInt(stageBar.getText())>=0&&Integer.parseInt(stageBar.getText())<5)){
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Null");
-				alert.setContentText("Stage must be number (from 0 to 4)!!");
-
-				alert.showAndWait();
-			} else {
-			
-			*/
-			
-			
-			/*if (orderNumBar.getText().equals("0")){
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Null");
-				alert.setContentText("Generate Order Number!");
-				generateOrderNum(new ActionEvent());
-				alert.showAndWait();
-			}else {*/
-				
-				// Sends string data from TextFields to the tempOrder class for storage.
-			
-				
-			
+		
 				
 				if (dueDatePicker.getValue() != null){
 					if (dueDatePicker.getValue().compareTo(dateOrderedPicker.getValue())<=0){

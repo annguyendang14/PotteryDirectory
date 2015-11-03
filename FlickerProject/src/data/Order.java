@@ -28,12 +28,13 @@ public class Order {
 	/**
 	 * 
 	 * @param orderDate
-	 * @param dueDate
 	 * @param orderNum
 	 * @param description
 	 * @param price
 	 * @param needShip (boolean)
 	 * @param shippingAddress
+	 * @param shippingCost
+	 * @param taxRate
 	 * Sets stage to 0 when called
 	 * 
 	 */
@@ -50,24 +51,78 @@ public class Order {
 	}
 
 
-
+	/**
+	 * @param customer
+	 * @param orderDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param needShip (boolean)
+	 * @param shippingAddress
+	 * @param shippingCost
+	 * @param taxRate
+	 * Sets stage to 0 when called
+	 * 
+	 */
 	public Order(Customer customer, Date orderDate, int orderNum, String description, String price,  boolean needShip, String shippingAddress,double shippingCost, double taxRate) {
 		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost,taxRate);
 		this.customer = customer;
 		
 	}
 
+	/**
+	 * @param customer
+	 * @param orderDate
+	 * @param dueDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param needShip (boolean)
+	 * @param shippingAddress
+	 * @param shippingCost
+	 * @param taxRate
+	 * Sets stage to 0 when called
+	 * 
+	 */
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum, String description,
 			String price,  boolean needShip, String shippingAddress,double shippingCost, double taxRate) {
 		this(customer,orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
 		this.dueDate = dueDate;
 	}
-
+	
+	/**
+	 * @param customer
+	 * @param orderDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param needShip (boolean)
+	 * @param shippingAddress
+	 * @param shippingCost
+	 * @param taxRate
+	 * @param stage
+	 * 
+	 */
 	public Order(Customer customer,Date orderDate, int orderNum, String description , String price,   boolean needShip, String shippingAddress,double shippingCost, double taxRate, int stage){
 		this(orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost, taxRate);
 		this.stage = stage;
 		this.customer = customer;
 	}
+	
+	/**
+	 * @param customer
+	 * @param orderDate
+	 * @param dueDate
+	 * @param orderNum
+	 * @param description
+	 * @param price
+	 * @param needShip (boolean)
+	 * @param shippingAddress
+	 * @param shippingCost
+	 * @param taxRate
+	 * @param stage
+	 * 
+	 */
 	public Order(Customer customer, Date orderDate, Date dueDate, int orderNum,  String description , String price,  boolean needShip, String shippingAddress, double shippingCost,double taxRate,int stage){
 		this(customer, orderDate, orderNum, description, price, needShip, shippingAddress, shippingCost,taxRate, stage);
 		this.dueDate = dueDate;

@@ -63,8 +63,8 @@ public class OrderViewerControler implements Initializable{
 	@FXML private ChoiceBox<String> stageBox;
 	ObservableList<String> stageList = FXCollections.observableArrayList("All","Undone", "Done", "Shipped", "Completed", "Canceled");
 	
-	/*
-	 * This method saves a new order to orders
+	/**
+	 * This method open the order window and then update the table after the window close
 	 */
 	public void addNewOrder(ActionEvent event) throws IOException {
 		Stage stage = new Stage();
@@ -97,8 +97,8 @@ public class OrderViewerControler implements Initializable{
 	
 
 	@Override
-	/*
-	 * This method opens the order window when the row is clicked.
+	/**
+	 * This method set up the window when it open
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		    stageBox.setValue("All");
@@ -196,7 +196,7 @@ public class OrderViewerControler implements Initializable{
 	}
 	
 	
-	/*
+	/**
 	 * This method updates edited information to the table
 	 */
 	public void updateTable(){
@@ -232,7 +232,7 @@ public class OrderViewerControler implements Initializable{
 		}
 		
 	}
-	/*
+	/**
 	 * This method searches for Customer names or order numbers
 	 */
 	public void searchBoxTypeIn(ActionEvent event){
@@ -241,7 +241,7 @@ public class OrderViewerControler implements Initializable{
 		updateTable();
 		
 	}
-	/*
+	/**
 	 * This method searches for orders by different stages
 	 */
 	private void searchForOrdersByStage(String stageName){
@@ -289,8 +289,8 @@ public class OrderViewerControler implements Initializable{
 	}
 	//http://java-buddy.blogspot.com/2013/05/detect-mouse-click-on-javafx-tableview.html
 
-	/*
-	 * This method lets the user edit an existent order
+	/**
+	 * This method lets the user choose and edit an existent order
 	 */
 	class MyEventHandler implements EventHandler<MouseEvent> {
 		  
@@ -323,7 +323,7 @@ public class OrderViewerControler implements Initializable{
 	
 
 	/* 
-	 * This is actually a new class
+	 * These are actually new classes, in charge of formating TableCell
 	 */
 	 class MyStringTableCell extends TableCell<OrderTable, String> {
 		 

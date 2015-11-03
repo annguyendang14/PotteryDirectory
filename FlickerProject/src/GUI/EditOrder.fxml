@@ -72,9 +72,9 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="307.0" layoutY="342.0" text="=">
+      <Label layoutX="315.0" layoutY="342.0" prefHeight="27.0" prefWidth="21.0" text="=">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font size="18.0" />
          </font>
       </Label>
       <Label fx:id="totalPrice" layoutX="332.0" layoutY="340.0" prefHeight="28.0" prefWidth="52.0" text="0.00">
@@ -155,7 +155,7 @@
             <Font size="16.0" />
          </font>
       </TextArea>
-      <Button fx:id="useCusAddButton" contentDisplay="CENTER" disable="true" layoutX="436.0" layoutY="499.0" mnemonicParsing="false" onAction="#useCusAdd" prefHeight="47.0" prefWidth="108.0" text="Use Customer Address" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="useCusAddButton" contentDisplay="CENTER" disable="true" layoutX="436.0" layoutY="484.0" mnemonicParsing="false" onAction="#useCusAdd" prefHeight="62.0" prefWidth="108.0" text="Use Customer Address" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
