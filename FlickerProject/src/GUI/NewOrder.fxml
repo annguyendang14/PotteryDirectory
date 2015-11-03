@@ -77,7 +77,11 @@
             <Font size="18.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <Label layoutX="343.0" layoutY="336.0" prefHeight="28.0" prefWidth="22.0" text="=">
+=======
+      <Label layoutX="340.0" layoutY="335.0" prefHeight="28.0" prefWidth="24.0" text="=">
+>>>>>>> branch 'master' of https://github.com/AugustanaCSC285Fall15/FlickerRepo.git
          <font>
             <Font size="18.0" />
          </font>

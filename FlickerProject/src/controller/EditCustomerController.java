@@ -28,8 +28,7 @@ public class EditCustomerController implements Initializable {
 	@FXML private TextField emailBar;
 	@FXML private Button saveOrder;
 	@FXML private Button editButton;
-	private Customer cus = TempCustomer.getTempCustomer();
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
@@ -44,17 +43,16 @@ public class EditCustomerController implements Initializable {
 		
 
 	}
+	
+	
 	public void saveCustomer(ActionEvent event){
 		TempCustomer.getTempCustomer().setCustomer(nameBar.getText(),addressBar.getText(),phoneNumBar.getText(),emailBar.getText());
 		
-		/*for(Customer cust: AllCustomer.getCustomers()){
-			System.out.println(cust);
-		}*/
-		//System.out.println(cus);
+		
 		try {
 			CustomerFileReader.write(AllCustomer.getCustomers());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		Node  source = (Node)  event.getSource(); 
