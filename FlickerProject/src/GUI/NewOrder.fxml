@@ -90,7 +90,7 @@
          </font>
       </Label>
       <Label layoutX="222.0" layoutY="375.0" />
-      <Label fx:id="finalPrice" layoutX="362.0" layoutY="443.0" text="0.00">
+      <Label fx:id="finalPrice" layoutX="362.0" layoutY="443.0" prefHeight="23.0" prefWidth="108.0" text="0.00">
          <font>
             <Font size="18.0" />
          </font>
@@ -117,7 +117,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="shippingCost" disable="true" layoutX="350.0" layoutY="401.0" onAction="#calPriceWithShipping" prefHeight="22.0" prefWidth="59.0" promptText="0.00">
+      <TextField fx:id="shippingCost" disable="true" layoutX="350.0" layoutY="401.0" onAction="#calPriceWithShipping" prefHeight="35.0" prefWidth="115.0" promptText="0.00">
          <font>
             <Font size="18.0" />
          </font>
@@ -127,7 +127,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="priceAfterTax" layoutX="362.0" layoutY="370.0" text="0.00">
+      <Label fx:id="priceAfterTax" layoutX="362.0" layoutY="370.0" prefHeight="23.0" prefWidth="101.0" text="0.00">
          <font>
             <Font size="18.0" />
          </font>

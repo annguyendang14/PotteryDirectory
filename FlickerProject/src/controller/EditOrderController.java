@@ -108,10 +108,11 @@ public class EditOrderController implements Initializable {
 			description.setText(order.getDescription());
 			price.setText("" + order.getPrice());
 			stageBox.setValue("" + order.getStage()); 
-			totalPrice.setText("" + order.getPrice());
+			totalPrice.setText("" + Calculator.StringCalculator(order.getPrice()));
 			taxRate.setText(order.getTaxRate() + "");
 			shippingCost.setText(order.getShippingCost() + "");
 			shippingAddress.setText(order.getShippingAddress());
+			finalPrice.setText(""+ order.getFinalPrice());
 			if (order.isNeedShip()) {
 				shippingOption.selectToggle(shippingChoice);
 			} else {
