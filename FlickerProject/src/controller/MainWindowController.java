@@ -76,7 +76,7 @@ public class MainWindowController implements Initializable {
 	@FXML
 	private ChoiceBox<String> stageBox;
 	ObservableList<String> stageList = FXCollections.observableArrayList("All", "Undone", "Done", "Shipped",
-			"Completed", "Canceled");
+			"Completed", "Cancelled");
 
 	/*
 	 * This method saves a new order to orders
@@ -303,6 +303,7 @@ public class MainWindowController implements Initializable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				Collections.sort(AllOrders.getOrders(), new DefaultSortingComparator());
 				data = FXCollections.observableArrayList(AllOrders.getOrderTable());
 				updateTable();
 			}

@@ -255,7 +255,7 @@ public class Order {
 		}  else if (stageNum == 3){
 			return "Completed";
 		}  else { // for stageNum == 4
-			return "Canceled"; 
+			return "Cancelled"; 
 		}
 	}
 

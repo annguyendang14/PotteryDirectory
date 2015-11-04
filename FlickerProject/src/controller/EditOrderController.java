@@ -86,7 +86,7 @@ public class EditOrderController implements Initializable {
 	@FXML
 	private ChoiceBox<String> stageBox;
 	ObservableList<String> stageList = FXCollections.observableArrayList("Undone", "Done", "Shipped", "Completed",
-			"Canceled");
+			"Cancelled");
 	private Order order = TempOrder.getTempOrder();
 
 	@Override
