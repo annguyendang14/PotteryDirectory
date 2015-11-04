@@ -58,7 +58,6 @@ public class EditOrderController implements Initializable {
 	private TextArea description;
 	@FXML
 	private TextField price;
-	// @FXML private Button generateButton;
 	@FXML
 	private Button viewCustomerButton;
 	@FXML
@@ -108,9 +107,7 @@ public class EditOrderController implements Initializable {
 			orderNumBar.setText("" + order.getOrderNum());
 			description.setText(order.getDescription());
 			price.setText("" + order.getPrice());
-			// stageBar.setText(""+order.getStage());
-			stageBox.setValue("" + order.getStage()); // Don't know if it's
-														// correct
+			stageBox.setValue("" + order.getStage()); 
 			totalPrice.setText("" + order.getPrice());
 			taxRate.setText(order.getTaxRate() + "");
 			shippingCost.setText(order.getShippingCost() + "");
@@ -121,7 +118,7 @@ public class EditOrderController implements Initializable {
 				shippingOption.selectToggle(pickup);
 			}
 
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 		if (order.getDueDate() != null) {

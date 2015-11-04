@@ -13,34 +13,7 @@ import data.Order;
  */
 public class Searcher {
 
-	/*
-	 * public static void main(String[] args) { List<Order> orders = new
-	 * ArrayList<Order>(); List<Customer> customers = new ArrayList<Customer>();
-	 * 
-	 * for (int i=1; i<5; i++){ Date recentDate = new Date(); Date recent = new
-	 * Date(recentDate.getYear(),recentDate.getMonth(),recentDate.getDate());
-	 * System.out.println(recent); for (int j=1; j<5;j++){ Order tempOrder = new
-	 * Order("an"+i,new
-	 * Date(recentDate.getYear(),recentDate.getMonth()-1,recentDate
-	 * .getDate()+i),j, 5-j); orders.add(tempOrder);
-	 * customers.add(tempOrder.getCustomer()); } } for (Order i: orders){
-	 * System.out.println(i);
-	 * 
-	 * } for (Customer i: customers ){ System.out.println(i.getName()); }
-	 * 
-	 * searchCustomer(customers,"an");
-	 * 
-	 * searchOrder(orders, "1");
-	 * 
-	 * searchOrder(orders, "an"); System.out.println();
-	 * 
-	 * Collections.sort(orders, new DefaultSortingComparator());
-	 * 
-	 * for (Order i: orders){ System.out.println(i); }
-	 * 
-	 * 
-	 * }
-	 */
+	
 	/**
 	 * this method search for a customer by their name
 	 * 
@@ -94,9 +67,7 @@ public class Searcher {
 			}
 		}
 
-		/*
-		 * for (Order i: result){ System.out.println(i); }
-		 */
+		
 		return result;
 	}
 
@@ -128,21 +99,7 @@ public class Searcher {
 		return true;
 	}
 
-	/*
-	 * public static List<OrderTable> getListOrderSample(){ List<Order> orders =
-	 * new ArrayList<Order>(); List<Customer> customers = new
-	 * ArrayList<Customer>();
-	 * 
-	 * for (int i=1; i<5; i++){ Date recentDate = new Date(); Date recent = new
-	 * Date(recentDate.getYear(),recentDate.getMonth(),recentDate.getDate());
-	 * System.out.println(recent); for (int j=1; j<5;j++){ Order tempOrder = new
-	 * Order("an"+i,new
-	 * Date(recentDate.getYear(),recentDate.getMonth()-1,recentDate
-	 * .getDate()+i),j, 5-j); orders.add(tempOrder);
-	 * customers.add(tempOrder.getCustomer()); } } List<OrderTable> orderTable =
-	 * new ArrayList<OrderTable>(); for (Order order: orders){
-	 * orderTable.add(new OrderTable(order)); } return orderTable; }
-	 */
+
 	public static Order searchForOrder(List<Order> orders, int orderNum) {
 		Order returnOrd = null;
 		for (Order order : orders) {

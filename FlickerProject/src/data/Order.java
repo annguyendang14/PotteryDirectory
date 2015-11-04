@@ -128,24 +128,6 @@ public class Order {
 		this.dueDate = dueDate;
 	}
 	
-/*	public int compareTo(Object o){ //need to try later
-		Order other = (Order) o;
-		if(other.orderDate.equals(this.orderDate)){
-			return this.stage-other.stage;
-		} else {
-			return -this.orderDate.compareTo(other.orderDate);
-		}
-	}*/
-	
-/*	public void addPotteries(Pottery pottery){
-		potteries.add(pottery);
-		
-	}
-	
-	public void setPottery(List<Pottery> potteries){
-		this.potteries = potteries;
-	}
-	*/
 	
 
 /**

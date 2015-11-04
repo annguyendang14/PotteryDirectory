@@ -17,26 +17,10 @@ public class OrderFileReader {
 	// http://stackoverflow.com/questions/10964975/parsing-csv-file-to-class-getter-methods-with-opencsv
 	public static void main(String[] args) throws IOException {
 		List<Order> orderList = new ArrayList<Order>();
-		/*for (Order ord: orderList){			
-			System.out.println
-		(ord);
-		}
-		
-*/
+
 		
 		write(orderList);
 		
-		
-		/*List<Order> ordersFromFileRead =*/ 
-		//read();
-		// line to check the size of list-delete later
-		
-		//System.out.println("After writing and reading...");
-		//System.out.println(ordersFromFileRead.size());
-		
-		//for (Order ord: ordersFromFileRead){
-			//System.out.println(ord);
-		//}
 
 		}
 

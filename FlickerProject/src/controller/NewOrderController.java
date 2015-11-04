@@ -41,7 +41,6 @@ public class NewOrderController implements Initializable{
 	@FXML private DatePicker dueDatePicker;
 	@FXML private TextArea description;
 	@FXML private TextField price;
-	//@FXML private Button generateButton;
 	@FXML private Button addCustomerButton;
 	@FXML private Label warningLabel;
 	@FXML private Label totalPrice;
@@ -61,20 +60,7 @@ public class NewOrderController implements Initializable{
 	 * @param event
 	 */
 	public void saveNewOrder(ActionEvent event) {
-		//INCOMPLETE CONSTRUCTOR CALL. Need to somehow convert DatePicker into Date
-		//An: we have toDate method for that (in this class), hope you find it
-		
-			
-			/*if (orderNumBar.getText().equals("0")){
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("Null");
-				alert.setContentText("Generate Order Number!");
-				generateOrderNum(new ActionEvent());
-				alert.showAndWait();
-			}else {*/
-			
-				
+					
 				Order newOrder;
 			
 				if(dueDatePicker.getValue() != null){
@@ -105,23 +91,9 @@ public class NewOrderController implements Initializable{
 				Stage stage  = (Stage) source.getScene().getWindow();
 				stage.close();
 			
-			
-			
-		        
 		
-				
-
-
-		//Order newOrder = new Order (customerNameBar.getText(), date, Integer.parseInt(orderNumBar.getText()));
-		//System.out.println(newOrder);
-
 	}
-/*	public void generateOrderNum(ActionEvent event) {
-		//orderNumBar.setEditable(true);
-		orderNumBar.setText(AllOrders.getOrders().size()+1+"");
-		//orderNumBar.setEditable(false);
 
-	}*/
 	// http://stackoverflow.com/questions/20446026/get-value-from-date-picker
 	/**
 	 * this method convert LocalDate (value of DatePicker) to Date

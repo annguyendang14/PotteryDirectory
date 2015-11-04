@@ -18,22 +18,11 @@ public class CustomerFileReader {
 	public static void main(String[] args) throws IOException {
 		
 		List<Customer> customerList = new ArrayList<Customer>();
-		/*for (Customer cust: customerList){			
-			System.out.println
-		(cust);
-		}*/
-
+	
 		write(customerList);
 		
+		read();
 		
-		/*List<Customer> customersFromFileRead = */read();
-		//System.out.println("After writing and reading...");
-		//System.out.println(customersFromFileRead.size());
-		
-	//	for (Customer cust: customersFromFileRead){
-		//	System.out.println(cust);
-		//}
-
 	}
 
 	// reads a Customer List file
