@@ -13,7 +13,7 @@ public class OrderTable {
 	private final SimpleStringProperty description;
 	private final SimpleObjectProperty<LocalDate> dueDate;
 	private final SimpleObjectProperty<LocalDate> orderDate;
-	private final SimpleStringProperty price;
+	private final SimpleDoubleProperty price;
 	private final SimpleIntegerProperty stage;
 	private final SimpleIntegerProperty orderNum;
 	
@@ -27,7 +27,13 @@ public class OrderTable {
 		}
 		
 		this.orderDate = new SimpleObjectProperty<LocalDate>(EditOrderController.toLocalDate(order.getOrderDate()));
-		this.price = new SimpleStringProperty(checkNull(""+order.getFinalPrice()));
+		double finalPrice = 0;
+		try {
+			finalPrice = order.getFinalPrice();
+		} catch (IllegalArgumentException e) {
+			
+		}
+		this.price = new SimpleDoubleProperty(finalPrice);
 		this.stage = new SimpleIntegerProperty(order.getStage());
 		this.orderNum = new SimpleIntegerProperty(order.getOrderNum());
 	}
@@ -48,7 +54,7 @@ public class OrderTable {
 	public LocalDate getOrderDate() {
 		return orderDate.get();
 	}
-	public String getPrice() {
+	public Double getPrice() {
 		return price.get();
 	}
 	public int getStage() {

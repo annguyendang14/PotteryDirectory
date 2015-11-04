@@ -188,6 +188,16 @@ public class MainWindowController implements Initializable {
 				return cell;
 			}
 		};
+		
+		Callback<TableColumn, TableCell> doubleCellFactory = new Callback<TableColumn, TableCell>() {
+			@Override
+			public TableCell call(TableColumn p) {
+				MyDoubleTableCell cell = new MyDoubleTableCell();
+				cell.setFont(new Font("Arial", 16));
+				cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new MyEventHandler());
+				return cell;
+			}
+		};
 
 		Callback<TableColumn, TableCell> dateCellFactory = new Callback<TableColumn, TableCell>() {
 			@Override
@@ -208,7 +218,7 @@ public class MainWindowController implements Initializable {
 		dueDateCol.setCellFactory(dateCellFactory);
 		customerCol.setCellFactory(stringCellFactory);
 		descriptionCol.setCellFactory(stringCellFactory);
-		priceCol.setCellFactory(stringCellFactory);
+		priceCol.setCellFactory(doubleCellFactory);
 		stageCol.setCellFactory(stageCellFactory);
 		updateTable();
 	}
@@ -222,7 +232,7 @@ public class MainWindowController implements Initializable {
 		dueDateCol.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("dueDate"));
 		orderNumCol.setCellValueFactory(new PropertyValueFactory<OrderTable, Integer>("orderNum"));
 		descriptionCol.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("description"));
-		priceCol.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("price"));
+		priceCol.setCellValueFactory(new PropertyValueFactory<OrderTable, Double>("price"));
 		stageCol.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("stage"));
 		orderTable.setItems(data);
 

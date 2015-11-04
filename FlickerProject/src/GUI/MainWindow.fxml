@@ -34,7 +34,7 @@
                       <TableColumn fx:id="dueDateCol" editable="false" prefWidth="120.0" resizable="false" text="Due Date" />
                         <TableColumn fx:id="customerCol" editable="false" maxWidth="10000.0" minWidth="30.0" text="Customer" />
                         <TableColumn fx:id="descriptionCol" editable="false" maxWidth="20000.0" minWidth="50.0" prefWidth="150.0" sortable="false" text="Description" />
-                        <TableColumn fx:id="priceCol" editable="false" minWidth="0.0" prefWidth="81.0" resizable="false" sortable="false" text="Price" />
+                        <TableColumn fx:id="priceCol" editable="false" minWidth="0.0" prefWidth="81.0" resizable="false" text="Price" />
                         <TableColumn fx:id="stageCol" editable="false" minWidth="6.0" resizable="false" text="Stage" />
                     </columns>
                      <columnResizePolicy>

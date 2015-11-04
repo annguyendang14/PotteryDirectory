@@ -34,10 +34,11 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <TextField fx:id="addressBar" alignment="TOP_LEFT" disable="true" layoutX="161.0" layoutY="121.0" prefHeight="83.0" prefWidth="293.0">
+      <TextArea fx:id="addressBar" disable="true" layoutX="160.0" layoutY="120.0" prefHeight="83.0" prefWidth="293.0">
          <font>
             <Font size="14.0" />
-         </font></TextField>
+         </font>
+      </TextArea>
       <TextField fx:id="phoneNumBar" disable="true" layoutX="164.0" layoutY="229.0">
          <font>
             <Font size="14.0" />

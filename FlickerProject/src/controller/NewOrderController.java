@@ -180,9 +180,14 @@ public class NewOrderController implements Initializable{
 		
 		try {
 			calculated = Calculator.StringCalculator(price.getText());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning Dialog");
+			
+			alert.setContentText("Please type in legal math expression");
+
+			alert.showAndWait();
+			return;
 		}
 		String calculatedString =  String.format("%.2f", calculated);
 		totalPrice.setText(calculatedString);

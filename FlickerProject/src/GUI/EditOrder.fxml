@@ -53,7 +53,10 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="price" disable="true" layoutX="162.0" layoutY="343.0" text="0.0" />
+      <TextField fx:id="price" disable="true" layoutX="162.0" layoutY="343.0" onAction="#calPrice" prefHeight="32.0" prefWidth="144.0" text="0.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
       <Button fx:id="viewCustomerButton" layoutX="381.0" layoutY="81.0" mnemonicParsing="false" onAction="#viewCustomer" text="View">
          <font>
             <Font size="14.0" />
@@ -87,7 +90,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="taxRate" disable="true" layoutX="104.0" layoutY="375.0" onAction="#calPriceAfterTax" prefHeight="22.0" prefWidth="59.0">
+      <TextField fx:id="taxRate" disable="true" layoutX="104.0" layoutY="375.0" onAction="#calTax" prefHeight="22.0" prefWidth="59.0">
          <font>
             <Font size="16.0" />
          </font>

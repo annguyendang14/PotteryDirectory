@@ -144,9 +144,33 @@ public class EditOrderController implements Initializable {
 		TempCustomer.setTempCustomer(order.getCustomer());
 
 	}
+	
+	/**
+	 * this calculate the price, call when change in price TextField
+	 * @param event
+	 */
+	public void calPrice(ActionEvent event) {
+		double calculated=0.0;
+		
+		try {
+			calculated = Calculator.StringCalculator(price.getText());
+		} catch (IllegalArgumentException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning Dialog");
+			
+			alert.setContentText("Please type in legal math expression");
+
+			alert.showAndWait();
+			return;
+		}
+		String calculatedString =  String.format("%.2f", calculated);
+		totalPrice.setText(calculatedString);
+		calTax(new ActionEvent());
+		finalPrice.setText(calFinalPrice());
+	}
 
 	// This method calculates the cost after tax is applied
-	public void calPriceAfterTax(ActionEvent event) {
+	public void calTax(ActionEvent event) {
 		String calculatedString = String.format("%.2f",
 				Double.parseDouble(totalPrice.getText()) * Double.parseDouble(taxRate.getText()) / 100);
 		priceAfterTax.setText(calculatedString);

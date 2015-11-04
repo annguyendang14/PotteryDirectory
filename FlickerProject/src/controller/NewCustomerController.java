@@ -22,7 +22,7 @@ public class NewCustomerController {
 	@FXML private Label phoneNum;
 	@FXML private Label email;
 	@FXML private TextField nameBar;
-	@FXML private TextField addressBar;
+	@FXML private TextArea addressBar;
 	@FXML private TextField phoneNumBar;
 	@FXML private TextField emailBar;
 	@FXML private Button saveOrder;
